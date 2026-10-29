@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#0f172a"/>
+  <rect x="50" y="250" width="300" height="100" fill="#334155"/>
+  <text x="200" y="300" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle" font-weight="bold">SOLANA</text>
+  
+  <!-- Multiple ant silhouettes -->
+  <g fill="#ff6b6b">
+    <!-- Ant 1 -->
+    <circle cx="100" cy="200" r="10"/>
+    <path d="M100,200 L80,180 L70,190 M100,200 L120,180 L130,190" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M100,200 L100,230" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M100,230 L85,250 M100,230 L115,250" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    
+    <!-- Ant 2 -->
+    <circle cx="150" cy="220" r="10"/>
+    <path d="M150,220 L130,200 L120,210 M150,220 L170,200 L180,210" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M150,220 L150,250" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M150,250 L135,270 M150,250 L165,270" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    
+    <!-- Ant 3 -->
+    <circle cx="200" cy="190" r="10"/>
+    <path d="M200,190 L180,170 L170,180 M200,190 L220,170 L230,180" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M200,190 L200,220" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M200,220 L185,240 M200,220 L215,240" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    
+    <!-- Ant 4 -->
+    <circle cx="250" cy="210" r="10"/>
+    <path d="M250,210 L230,190 L220,200 M250,210 L270,190 L280,200" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M250,210 L250,240" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M250,240 L235,260 M250,240 L265,260" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    
+    <!-- Ant 5 -->
+    <circle cx="300" cy="200" r="10"/>
+    <path d="M300,200 L280,180 L270,190 M300,200 L320,180 L330,190" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M300,200 L300,230" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+    <path d="M300,230 L285,250 M300,230 L315,250" stroke="#ff6b6b" stroke-width="2" fill="none"/>
+  </g>
+  
+  <text x="200" y="150" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle" font-weight="bold">ANT ARMY</text>
+  <text x="200" y="350" font-family="Arial" font-size="18" fill="#16c784" text-anchor="middle">Taking Over!</text>
+</svg>

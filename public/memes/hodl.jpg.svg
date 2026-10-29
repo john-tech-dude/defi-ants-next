@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#0f172a"/>
+  <path d="M200,100 L150,150 L250,150 Z" fill="#ff6b6b"/>
+  <path d="M150,150 L100,300 L300,300 L250,150 Z" fill="#ff6b6b"/>
+  <text x="200" y="250" font-family="Arial" font-size="24" fill="#ffffff" text-anchor="middle" font-weight="bold">HODL ANT!</text>
+  <path d="M120,320 L280,320" stroke="#16c784" stroke-width="4" stroke-dasharray="5,5"/>
+  <text x="200" y="350" font-family="Arial" font-size="18" fill="#ffffff" text-anchor="middle">Diamond Hands Only</text>
+</svg>

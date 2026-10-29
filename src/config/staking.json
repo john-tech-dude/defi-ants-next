@@ -1,0 +1,204 @@
+{
+  "version": "0.1.0",
+  "name": "ants_staking",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "stake",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "lockPeriod",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "unstake",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claimRewards",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakeAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenMint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "rewardVault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "stakeAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "publicKey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "stakedAt",
+            "type": "i64"
+          },
+          {
+            "name": "lockEndsAt",
+            "type": "i64"
+          },
+          {
+            "name": "rewardsClaimed",
+            "type": "u64"
+          },
+          {
+            "name": "tier",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Tier",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Explorer"
+          },
+          {
+            "name": "Pioneer"
+          },
+          {
+            "name": "Visionary"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InsufficientFunds",
+      "msg": "Insufficient funds for staking"
+    },
+    {
+      "code": 6001,
+      "name": "StakeLocked",
+      "msg": "Stake is still locked"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidTier",
+      "msg": "Invalid staking tier"
+    },
+    {
+      "code": 6003,
+      "name": "Unauthorized",
+      "msg": "Unauthorized access"
+    }
+  ]
+}

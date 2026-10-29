@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="currentColor" stroke-width="0.5" fill="none">
+    <rect x="0" y="0" width="30" height="30"></rect>
+    <line x1="15" y1="0" x2="15" y2="30"></line>
+    <line x1="0" y1="15" x2="30" y2="15"></line>
+  </g>
+</svg>

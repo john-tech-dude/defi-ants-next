@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../.."
+		},
+		{
+			"path": "../../../../../Staking DApp"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Defi ANTS NEXT"
+	}
+}

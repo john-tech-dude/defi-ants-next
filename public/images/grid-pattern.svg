@@ -1,0 +1,14 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 40L40 0H0V40Z" fill="url(#grid-pattern-gradient)" fill-opacity="0.1"/>
+  <path d="M40 40V0L0 40H40Z" fill="url(#grid-pattern-gradient-2)" fill-opacity="0.1"/>
+  <defs>
+    <linearGradient id="grid-pattern-gradient" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="currentColor"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="grid-pattern-gradient-2" x1="40" y1="0" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="currentColor"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

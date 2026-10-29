@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Swiper styles */
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/effect-fade';
+@import 'swiper/css/effect-coverflow';
+@import 'swiper/css/effect-cube';
+
+/* Import theme styles */
+@import '@/theme/theme-variables.css';
+@import '@/theme/theme-styles.css';
+
+:root {
+  /* Premium Light Theme - Enhanced Visual Hierarchy & Sophistication */
+  --background: 210 50% 98%;      /* Subtle blue tint for sophistication */
+  --foreground: 222 40% 12%;      /* Richer text color for better contrast */
+  --card: 0 0% 100%;              /* Pure white card backgrounds */
+  --card-foreground: 222 40% 12%;  /* Matching text color */
+  --popover: 0 0% 100%;           /* Pure white popovers */
+  --popover-foreground: 222 40% 12%; /* Matching text color */
+  --primary: 43 96% 56%;          /* Vibrant gold */
+  --primary-foreground: 0 0% 100%; /* White text on gold for better contrast */
+  --secondary: 210 40% 96.1%;     /* Lighter blue-gray for secondary elements */
+  --secondary-foreground: 222 47% 11%; /* Darker text for contrast */
+  --muted: 210 40% 96.1%;         /* Muted background */
+  --muted-foreground: 215 16% 47%; /* Muted text color */
+  --accent: 210 40% 96.1%;        /* Accent color */
+  --accent-foreground: 222 47% 11%; /* Accent text */
+  --destructive: 0 84% 60%;       /* More vibrant red for errors */
+  --destructive-foreground: 0 0% 100%; /* White text on red */
+  --border: 214 32% 91%;          /* Softer border color */
+  --input: 214 32% 91%;           /* Input border */
+  --ring: 43 96% 56%;             /* Gold ring for focus states */
+  --radius: 0.5rem;               /* Border radius */
+  
+  /* Custom variables */
+  --header-height: 4rem;          /* Fixed header height */
+  --sidebar-width: 16rem;         /* Fixed sidebar width */
+  
+  /* Scrollbar */
+  --scrollbar-thumb: 215 16% 47%;
+  --scrollbar-thumb-hover: 215 16% 37%;
+  --scrollbar-track: 0 0% 100%;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.04), 0 4px 6px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.04), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.dark {
+  /* Premium Dark Theme - Enhanced Contrast & Richness */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 43 96% 56%; /* Same gold as light theme for consistency */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 43 96% 56%; /* Gold ring for focus states */
+  
+  /* Custom dark mode overrides */
+  --scrollbar-thumb: 215 16% 30%;
+  --scrollbar-thumb-hover: 215 16% 40%;
+  --scrollbar-track: 222.2 84% 4.9%;
+  
+  /* Shadows */
+  /* Shadows with better contrast for dark mode */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.25), 0 4px 6px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.25), 0 8px 10px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  
+  /* Border radius */
+  --radius: 0.5rem;                /* Consistent border radius */
+  --radius-sm: 0.3rem;             /* Smaller radius for buttons */
+  --radius-lg: 0.8rem;             /* Larger radius for cards */
+  --radius-full: 9999px;           /* Full radius for pills */
+  
+  /* Glass effect */
+  --glass-background: 210 50% 98% / 80%; /* More sophisticated with blue tint */
+  --glass-border: 214 32% 91% / 50%;     /* Refined border */
+  --glass-blur: 12px;                    /* Enhanced blur for depth */
+  --glass-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.08); /* Primary-colored shadow */
+  
+  /* Scrollbar */
+  --scrollbar-track: 0 0% 96%;             /* Lighter track */
+  --scrollbar-thumb: 214 20% 85%;          /* Slightly darker thumb */
+  --scrollbar-thumb-hover: 214 20% 75%;    /* Hover state */
+  
+  /* Dark mode specific overrides */
+  --glass-background: 217 33% 10% / 80%;  /* Darker glass for dark mode */
+  --glass-border: 215 25% 15% / 50%;      /* Darker border for dark mode */
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Darker shadow for dark mode */
+  --scrollbar-track: 222.2 84% 4.9%;     /* Dark theme scrollbar track */
+  --scrollbar-thumb: 215 16% 30%;        /* Dark theme scrollbar thumb */
+  --scrollbar-thumb-hover: 215 16% 40%;  /* Dark theme scrollbar hover */
+}
+
+/* Base styles */
