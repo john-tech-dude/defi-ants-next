@@ -10,6 +10,7 @@ import Community from '@/components/features/community/Community';
 import FAQ from '@/components/features/faq/FAQ';
 import NFTGallery from '@/components/features/nft/NFTGallery';
 import FooterComponent from '@/components/layout/Footer';
+import Roadmap from '@/components/Roadmap';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Container } from '@/components/ui/container';
 import BuyPanelWrapper from '@/components/features/swap/BuyPanelWrapper';
@@ -49,13 +50,6 @@ export default function Home() {
         </section>
 
         <section
-          id="nft"
-          className="py-16 md:py-20 lg:py-24 relative overflow-hidden"
-        >
-          <NFTGallery />
-        </section>
-
-        <section
           id="tokenomics"
           className="py-16 md:py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-background via-background/80 to-background/50"
         >
@@ -66,6 +60,20 @@ export default function Home() {
           <Container>
             <ClientPageContent />
           </Container>
+        </section>
+
+        <section
+          id="nft"
+          className="py-16 md:py-20 lg:py-24 relative overflow-hidden"
+        >
+          <NFTGallery />
+        </section>
+
+        <section
+          id="roadmap"
+          className="py-16 md:py-20 lg:py-24 relative overflow-hidden"
+        >
+          <Roadmap />
         </section>
 
         <section id="community" className="py-16 md:py-20 lg:py-24">
