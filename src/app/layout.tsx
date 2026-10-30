@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Providers } from '@/components/providers';
 import ThemeToggle from '@/components/common/ThemeToggle';
@@ -6,7 +6,7 @@ import Script from 'next/script';
 import './globals.css';
 
 // Load font with display swap to prevent layout shift
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
+};
+
+export const viewport: Viewport = {
   themeColor: '#ffffff',
 };
 
@@ -41,14 +44,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <Script 
-          src="https://terminal.jup.ag/main-v4.js" 
-          strategy="beforeInteractive" 
-          data-preload 
-          defer 
-        />
-      </head>
       <body className={`${inter.variable} font-sans`}>
         <Providers>
           {children}

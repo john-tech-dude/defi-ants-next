@@ -59,6 +59,30 @@ const nextConfig = {
             key: 'Permissions-Policy',
             value: 'interest-cohort=()',
           },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+          },
         ],
       },
     ];
@@ -97,23 +121,6 @@ const nextConfig = {
       );
     }
     
-    // Add resolve.fallback for Node.js modules
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      fs: false,
-      net: false,
-      tls: false,
-      dns: false,
-      child_process: false,
-      process: false,
-      path: require.resolve('path-browserify'),
-      os: require.resolve('os-browserify/browser'),
-      crypto: require.resolve('crypto-browserify'),
-      stream: require.resolve('stream-browserify'),
-      http: require.resolve('stream-http'),
-      https: require.resolve('https-browserify'),
-    };
-    
     // Add resolve.alias configuration
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -122,16 +129,17 @@ const nextConfig = {
       // Polyfill for process
       'process/browser': require.resolve('process/browser'),
     };
-    
-    // Add fallbacks for Node.js modules
+
+    // Add fallbacks for Node.js modules (merged configuration)
     config.resolve.fallback = {
       ...config.resolve.fallback,
-      // Node.js modules to polyfill
+      // Node.js modules to disable in browser
       fs: false,
       net: false,
       tls: false,
       dns: false,
       child_process: false,
+      process: false,
       // Polyfill for Node.js core modules
       crypto: require.resolve('crypto-browserify'),
       stream: require.resolve('stream-browserify'),
@@ -160,11 +168,11 @@ const nextConfig = {
       config.externals = [...(config.externals || []), 'jupiverse-kit'];
     }
     
-    // Only add source maps in development
-    if (dev) {
-      config.devtool = 'eval-source-map';
-    }
-    
+    // Only add source maps in development (use default devtool to avoid performance issues)
+    // if (dev) {
+    //   config.devtool = 'eval-source-map';
+    // }
+
     return config;
   },
   images: {
@@ -187,60 +195,6 @@ const nextConfig = {
     ],
   },
   
-  // Configure public directory assets
-  publicRuntimeConfig: {
-    // Public directory paths
-    publicPaths: {
-      icons: '/icons',
-      images: '/images',
-      nft: '/images/nft',
-      logos: '/images/logos',
-      tutorial: '/images/tutorial',
-      community: '/images/community',
-      videos: '/videos',
-      memes: '/memes',
-    },
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
-          },
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: process.env.NODE_ENV === 'production' 
-              ? 'https://defiant.fun' 
-              : 'http://localhost:3002',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-          },
-        ],
-      },
-    ]
-  },
-
 }
 
 module.exports = nextConfig
