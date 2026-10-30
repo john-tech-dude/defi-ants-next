@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Providers } from '@/components/providers';
 import ThemeToggle from '@/components/common/ThemeToggle';
+import PasswordGate from '@/components/common/PasswordGate';
 import Script from 'next/script';
 import './globals.css';
 
@@ -45,12 +46,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans`}>
-        <Providers>
-          {children}
-          <div className="fixed bottom-6 right-6 z-50">
-            <ThemeToggle />
-          </div>
-        </Providers>
+        <PasswordGate>
+          <Providers>
+            {children}
+            <div className="fixed bottom-6 right-6 z-50">
+              <ThemeToggle />
+            </div>
+          </Providers>
+        </PasswordGate>
       </body>
     </html>
   );

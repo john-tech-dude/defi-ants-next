@@ -26,17 +26,34 @@ interface NavbarProps {}
 export default function Navbar({}: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const { connected, publicKey, walletAddress } = useWalletConnection();
   const { setIsBuyPanelOpen } = useClientContext();
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Determine which section is currently in view
+      const sections = navLinks.filter(link => !link.isBuyButton);
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.querySelector(section.href);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section.name);
+            break;
+          }
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -88,12 +105,11 @@ export default function Navbar({}: NavbarProps) {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group
-                  ${link.name === 'NFTs' ? 'text-accent-400' : 'text-foreground/90 hover:text-primary-400'}`}
+                className="px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group text-foreground/90 hover:text-primary-400"
               >
                 {link.name}
-                <span className={`absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400
-                  transition-all duration-300 group-hover:w-4/5 -translate-x-1/2 ${link.name === 'NFTs' ? 'w-4/5' : ''}`} />
+                <span className={`absolute bottom-1 left-1/2 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400
+                  transition-all duration-300 -translate-x-1/2 ${activeSection === link.name ? 'w-4/5' : 'w-0 group-hover:w-4/5'}`} />
               </Link>
             )
           ))}
@@ -161,8 +177,8 @@ export default function Navbar({}: NavbarProps) {
                     key={link.name}
                     href={link.href}
                     className={`px-4 py-3 rounded-lg font-medium transition-colors ${
-                      link.name === 'NFTs'
-                        ? 'text-accent-400'
+                      activeSection === link.name
+                        ? 'text-primary-400 bg-gray-100 dark:bg-gray-800/50'
                         : 'text-foreground/90 hover:bg-gray-100 dark:hover:bg-gray-800/50'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
