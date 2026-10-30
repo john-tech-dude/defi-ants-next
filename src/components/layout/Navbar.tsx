@@ -14,7 +14,7 @@ import ThemeToggle from '../common/ThemeToggle';
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Tokenomics', href: '#tokenomics' },
-  { name: 'How to Buy', href: '#how-to-buy' },
+  { name: 'How to Buy', href: '#hero', isBuyButton: true },
   { name: 'NFTs', href: '#nft' },
   { name: 'Roadmap', href: '#roadmap' },
   { name: 'Community', href: '#community' },
@@ -75,16 +75,27 @@ export default function Navbar({}: NavbarProps) {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navLinks.map((link) => (
-            <Link 
-              key={link.name}
-              href={link.href}
-              className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group
-                ${link.name === 'NFTs' ? 'text-accent-400' : 'text-foreground/90 hover:text-primary-400'}`}
-            >
-              {link.name}
-              <span className={`absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400 
-                transition-all duration-300 group-hover:w-4/5 -translate-x-1/2 ${link.name === 'NFTs' ? 'w-4/5' : ''}`} />
-            </Link>
+            link.isBuyButton ? (
+              <button
+                key={link.name}
+                onClick={() => setIsBuyPanelOpen(true)}
+                className="px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group text-foreground/90 hover:text-primary-400"
+              >
+                {link.name}
+                <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400 transition-all duration-300 group-hover:w-4/5 -translate-x-1/2" />
+              </button>
+            ) : (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group
+                  ${link.name === 'NFTs' ? 'text-accent-400' : 'text-foreground/90 hover:text-primary-400'}`}
+              >
+                {link.name}
+                <span className={`absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400
+                  transition-all duration-300 group-hover:w-4/5 -translate-x-1/2 ${link.name === 'NFTs' ? 'w-4/5' : ''}`} />
+              </Link>
+            )
           ))}
         </div>
 
@@ -132,21 +143,36 @@ export default function Navbar({}: NavbarProps) {
           >
             <div className="flex flex-col space-y-1 py-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`px-4 py-3 rounded-lg font-medium transition-colors ${
-                    link.name === 'NFTs' 
-                      ? 'text-accent-400' 
-                      : 'text-foreground/90 hover:bg-gray-100 dark:hover:bg-gray-800/50'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <div className="flex items-center">
-                    {link.name === 'NFTs' && <Sparkles className="h-4 w-4 mr-2" />}
-                    {link.name}
-                  </div>
-                </Link>
+                link.isBuyButton ? (
+                  <button
+                    key={link.name}
+                    onClick={() => {
+                      setIsBuyPanelOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="px-4 py-3 rounded-lg font-medium transition-colors text-foreground/90 hover:bg-gray-100 dark:hover:bg-gray-800/50 text-left"
+                  >
+                    <div className="flex items-center">
+                      {link.name}
+                    </div>
+                  </button>
+                ) : (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`px-4 py-3 rounded-lg font-medium transition-colors ${
+                      link.name === 'NFTs'
+                        ? 'text-accent-400'
+                        : 'text-foreground/90 hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center">
+                      {link.name === 'NFTs' && <Sparkles className="h-4 w-4 mr-2" />}
+                      {link.name}
+                    </div>
+                  </Link>
+                )
               ))}
               
               {/* Mobile Wallet Button */}

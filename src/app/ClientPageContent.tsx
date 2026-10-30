@@ -57,13 +57,11 @@ const Roadmap = dynamic(
 export default function ClientPageContent() {
   return (
     <>
-      <section id="tokenomics" className="py-8 md:py-12 lg:py-16">
-        <Suspense fallback={<LoadingSkeleton />}>
-          <Tokenomics />
-        </Suspense>
-      </section>
-      
-      <section id="roadmap" className="py-8 md:py-12 lg:py-16">
+      <Suspense fallback={<LoadingSkeleton />}>
+        <Tokenomics />
+      </Suspense>
+
+      <section id="roadmap" className="py-16 md:py-20 lg:py-24">
         <Suspense fallback={<LoadingSkeleton />}>
           <Roadmap />
         </Suspense>

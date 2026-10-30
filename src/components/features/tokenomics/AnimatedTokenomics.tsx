@@ -102,8 +102,6 @@ const TOKEN_UTILITIES: TokenUtility[] = [
 const AnimatedPieChart = ({ data }: { data: { name: string; value: number; color: string }[] }) => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
 
   useEffect(() => {
     setMounted(true);
@@ -119,9 +117,8 @@ const AnimatedPieChart = ({ data }: { data: { name: string; value: number; color
 
   return (
     <motion.div
-      ref={containerRef}
       initial={{ opacity: 0, scale: 0.9 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="relative w-full h-[350px] md:h-[450px] lg:h-[500px]"
     >
@@ -137,10 +134,8 @@ const AnimatedPieChart = ({ data }: { data: { name: string; value: number; color
             dataKey="value"
             onMouseEnter={(_, index) => setActiveIndex(index)}
             onMouseLeave={() => setActiveIndex(null)}
-            animationBegin={isInView ? 0 : undefined}
             animationDuration={1500}
             animationEasing="ease-out"
-            isAnimationActive={isInView}
           >
             {data.map((entry, index) => (
               <Cell
@@ -295,8 +290,6 @@ const TokenUtilityCard = ({
 const AnimatedTokenomics = () => {
   const [activeAllocation, setActiveAllocation] = useState<number>(0);
   const [mounted, setMounted] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.1 });
 
   useEffect(() => {
     setMounted(true);
@@ -324,11 +317,7 @@ const AnimatedTokenomics = () => {
   }
 
   return (
-    <section
-      ref={containerRef}
-      id="tokenomics"
-      className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900/50 relative overflow-hidden"
-    >
+    <section className="relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-400/5 via-transparent to-transparent opacity-30" />
       <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:linear-gradient(180deg,white,transparent)] opacity-5" />
@@ -337,7 +326,7 @@ const AnimatedTokenomics = () => {
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-blue-500/10 mb-6">
@@ -363,7 +352,7 @@ const AnimatedTokenomics = () => {
               <div className="lg:col-span-5">
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">

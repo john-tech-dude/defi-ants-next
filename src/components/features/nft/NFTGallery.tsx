@@ -10,16 +10,17 @@ import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 export default function NFTGallery() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const controls = useAnimation()
+  const [hasTriggered, setHasTriggered] = useState(false)
   const [ref, inView] = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
+    threshold: 0.1,
   })
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !hasTriggered) {
+      setHasTriggered(true)
       controls.start('visible')
     }
-  }, [controls, inView])
+  }, [controls, inView, hasTriggered])
 
   const containerVariants = {
     hidden: {},
@@ -86,13 +87,12 @@ export default function NFTGallery() {
   ]
 
   return (
-    <section id="nft" className="py-32 bg-gradient-to-b from-background/95 to-background relative overflow-hidden">
+    <section id="nft" className="bg-gradient-to-b from-background/95 to-background relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-40 left-0 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl -z-10 animate-float" style={{ animationDelay: '1.5s' }} />
       <div className="absolute bottom-40 right-0 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl -z-10 animate-float" style={{ animationDelay: '2.8s' }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary-500/10 rounded-full blur-3xl -z-10 animate-pulse-slow" />
-      
-      {/* Floating elements removed */}
+
       <div className="container-custom relative z-10">
         <motion.div
           ref={ref}
@@ -115,10 +115,10 @@ export default function NFTGallery() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <motion.div 
+          <motion.div
             ref={ref}
             initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            animate={hasTriggered ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
             className="relative lg:col-span-7 xl:col-span-8"
           >
@@ -282,7 +282,7 @@ export default function NFTGallery() {
           <motion.div
             ref={ref}
             initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
+            animate={hasTriggered ? 'visible' : 'hidden'}
             variants={containerVariants}
             className="space-y-8 lg:col-span-5 xl:col-span-4"
           >
@@ -329,69 +329,31 @@ export default function NFTGallery() {
           </motion.div>
         </div>
 
+        {/* Community Stats Section */}
         <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20 p-8 meme-card shadow-xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-16"
         >
-          <h3 className="text-2xl font-bold mb-6 gradient-text inline-flex items-center justify-center w-full">
-            ANT Token Utility
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b-2 border-primary-500/30">
-                  <th className="text-left py-4 px-4 font-bold text-primary-500">Feature</th>
-                  <th className="text-left py-4 px-4 font-bold text-primary-500">Description</th>
-                  <th className="text-left py-4 px-4 font-bold text-primary-500">Status</th>
-                  <th className="text-left py-4 px-4 font-bold text-primary-500">Coolness</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-primary-500/10 hover:bg-primary-500/5 transition-colors">
-                  <td className="py-4 px-4 font-bold">Staking</td>
-                  <td className="py-4 px-4">Earn rewards by staking your ANT tokens</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs font-bold">
-                      Live
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 animate-pulse-slow">🔥🔥🔥</td>
-                </tr>
-                <tr className="border-b border-primary-500/10 hover:bg-primary-500/5 transition-colors">
-                  <td className="py-4 px-4 font-bold">NFT Minting</td>
-                  <td className="py-4 px-4">Create and trade ANT-themed NFTs</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs font-bold">
-                      Live
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 animate-pulse-slow" style={{ animationDelay: '0.2s' }}>🔥🔥🔥🔥</td>
-                </tr>
-                <tr className="border-b border-primary-500/10 hover:bg-primary-500/5 transition-colors">
-                  <td className="py-4 px-4 font-bold">Meme Contest</td>
-                  <td className="py-4 px-4">Weekly meme competitions with ANT token prizes</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-purple-500/20 text-purple-400 px-2 py-1 rounded-full text-xs font-bold">
-                      Weekly
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 animate-pulse-slow" style={{ animationDelay: '0.4s' }}>🔥🔥🔥🔥🔥</td>
-                </tr>
-                <tr className="hover:bg-primary-500/5 transition-colors">
-                  <td className="py-4 px-4 font-bold">DAO Voting</td>
-                  <td className="py-4 px-4">Vote on community proposals with your ANT tokens</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded-full text-xs font-bold">
-                      Live
-                    </span>
-                  </td>
-                  <td className="py-4 px-4 animate-pulse-slow" style={{ animationDelay: '0.6s' }}>🔥🔥</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { label: 'Total Holders', value: '15K+', icon: '👥' },
+              { label: 'Market Cap', value: '$2.5M', icon: '💰' },
+              { label: 'Transactions', value: '125K+', icon: '⚡' },
+              { label: 'Community', value: '25K+', icon: '🌍' },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                className="meme-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300"
+                whileHover={{ y: -5 }}
+              >
+                <div className="text-4xl mb-2">{stat.icon}</div>
+                <div className="text-2xl font-bold text-foreground mb-1">{stat.value}</div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

@@ -43,10 +43,16 @@ const MEMES = [
 export default function MemeGallery() {
   const [currentMeme, setCurrentMeme] = useState(0)
   const [liked, setLiked] = useState<number[]>([])
+  const [hasTriggered, setHasTriggered] = useState(false)
   const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
+    threshold: 0.05,
   })
+
+  useEffect(() => {
+    if (inView && !hasTriggered) {
+      setHasTriggered(true)
+    }
+  }, [inView, hasTriggered])
 
   // Animation variants
   const containerVariants = {
@@ -84,7 +90,7 @@ export default function MemeGallery() {
   }
 
   return (
-    <section id="memes" className="py-24 relative overflow-hidden">
+    <section id="memes" className="relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-background to-background/95 -z-10" />
       
@@ -92,7 +98,7 @@ export default function MemeGallery() {
         <motion.div
           ref={ref}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={hasTriggered ? "visible" : "hidden"}
           variants={containerVariants}
           className="text-center mb-16"
         >
@@ -110,7 +116,7 @@ export default function MemeGallery() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            animate={hasTriggered ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
@@ -158,7 +164,7 @@ export default function MemeGallery() {
 
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            animate={hasTriggered ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >

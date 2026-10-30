@@ -14,6 +14,9 @@ import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Container } from '@/components/ui/container';
 import BuyPanelWrapper from '@/components/features/swap/BuyPanelWrapper';
 
+// Import client components directly
+import ClientPageContent from './ClientPageContent';
+
 // Loading component
 const LoadingSkeleton = () => (
   <div className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-transparent to-gray-50 dark:to-gray-900/50">
@@ -36,31 +39,44 @@ export default function Home() {
     <div className="relative min-h-screen bg-background text-foreground">
       <Navbar />
       <BuyPanelWrapper />
-      <main className="space-y-8 md:space-y-12 lg:space-y-16 overflow-hidden">
-        <section id="hero" className="py-8 md:py-12 lg:py-16">
+      <main className="overflow-hidden">
+        <section id="hero" className="py-16 md:py-20 lg:py-24">
           <Hero />
         </section>
-        
-        <section id="about" className="py-8 md:py-12 lg:py-16">
+
+        <section id="about" className="py-16 md:py-20 lg:py-24">
           <About />
         </section>
 
         <section
           id="nft"
-          className="py-8 md:py-12 lg:py-16 relative overflow-hidden"
+          className="py-16 md:py-20 lg:py-24 relative overflow-hidden"
         >
           <NFTGallery />
         </section>
-        
-        <section id="community" className="py-8 md:py-12 lg:py-16">
+
+        <section
+          id="tokenomics"
+          className="py-16 md:py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-background via-background/80 to-background/50"
+        >
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-400/5 via-transparent to-transparent opacity-30" />
+            <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:linear-gradient(180deg,white,transparent)]" />
+          </div>
+          <Container>
+            <ClientPageContent />
+          </Container>
+        </section>
+
+        <section id="community" className="py-16 md:py-20 lg:py-24">
           <ErrorBoundary fallback={<div className="text-center">Error loading Community section</div>}>
             <Container>
               <Community />
             </Container>
           </ErrorBoundary>
         </section>
-        
-        <section id="faq" className="py-8 md:py-12 lg:py-16 bg-muted/50">
+
+        <section id="faq" className="py-16 md:py-20 lg:py-24 bg-muted/50">
           <ErrorBoundary fallback={<div className="text-center">Error loading FAQ section</div>}>
             <Container>
               <FAQ />
