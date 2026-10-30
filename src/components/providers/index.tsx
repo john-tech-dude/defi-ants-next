@@ -31,7 +31,26 @@ export function Providers({ children }: ProvidersProps) {
   // Only render UI after mounting to prevent hydration issues
   useEffect(() => {
     setMounted(true);
-    return () => setMounted(false);
+
+    // Suppress known browser extension errors
+    const originalError = console.error;
+    console.error = (...args) => {
+      const message = args[0]?.toString() || '';
+      // Filter out Phantom wallet extension errors
+      if (
+        message.includes('Unable to set window.solana') ||
+        message.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
+        message.includes('chrome-extension')
+      ) {
+        return; // Suppress these errors
+      }
+      originalError.apply(console, args);
+    };
+
+    return () => {
+      setMounted(false);
+      console.error = originalError;
+    };
   }, []);
 
   // Show loading state while mounting
