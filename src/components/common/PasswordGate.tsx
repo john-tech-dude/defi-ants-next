@@ -35,7 +35,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" suppressHydrationWarning>
       <div className="max-w-md w-full mx-4">
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
           <div className="flex flex-col items-center mb-8">
@@ -46,8 +46,8 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
             <p className="text-gray-400 text-center">Enter the password to access this site</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
+          <form onSubmit={handleSubmit} className="space-y-4" suppressHydrationWarning>
+            <div suppressHydrationWarning>
               <input
                 type="password"
                 value={password}
