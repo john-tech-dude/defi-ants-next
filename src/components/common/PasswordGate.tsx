@@ -9,20 +9,31 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Check if already authenticated in localStorage
-    const storedAuth = localStorage.getItem('site_authenticated');
-    if (storedAuth === 'true') {
-      setIsAuthenticated(true);
+    try {
+      const storedAuth = localStorage.getItem('site_authenticated');
+      if (storedAuth === 'true') {
+        setIsAuthenticated(true);
+      }
+    } catch (e) {
+      console.error('localStorage error:', e);
     }
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Password submitted:', password);
     if (password === CORRECT_PASSWORD) {
       setIsAuthenticated(true);
-      localStorage.setItem('site_authenticated', 'true');
+      try {
+        localStorage.setItem('site_authenticated', 'true');
+      } catch (e) {
+        console.error('localStorage error:', e);
+      }
       setError(false);
     } else {
       setError(true);
@@ -30,13 +41,17 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
     }
   };
 
+  if (!mounted) {
+    return null;
+  }
+
   if (isAuthenticated) {
     return <>{children}</>;
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" suppressHydrationWarning>
-      <div className="max-w-md w-full mx-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <div className="max-w-md w-full mx-4 relative z-50">
         <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
           <div className="flex flex-col items-center mb-8">
             <div className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mb-4">
@@ -46,8 +61,8 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
             <p className="text-gray-400 text-center">Enter the password to access this site</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4" suppressHydrationWarning>
-            <div suppressHydrationWarning>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
               <input
                 type="password"
                 value={password}
@@ -56,8 +71,9 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
                   setError(false);
                 }}
                 placeholder="Enter password"
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
                 autoFocus
+                style={{ zIndex: 60, position: 'relative' }}
               />
             </div>
 
@@ -68,6 +84,7 @@ export default function PasswordGate({ children }: { children: React.ReactNode }
             <button
               type="submit"
               className="w-full py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-primary-500/25"
+              style={{ zIndex: 60, position: 'relative' }}
             >
               Enter Site
             </button>

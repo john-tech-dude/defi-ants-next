@@ -91,17 +91,15 @@ export default function About() {
   return (
     <section id="about" className="py-32 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div 
-        className="absolute top-40 left-0 w-80 h-80 bg-gradient-to-br from-primary-500/30 to-primary-400/10 rounded-full blur-[100px] -z-10 animate-float will-change-transform opacity-0 md:opacity-100" 
-        style={optimizeAnimation} 
+      <div
+        className="absolute top-40 left-0 w-80 h-80 bg-gradient-to-br from-primary-500/30 to-primary-400/10 rounded-full blur-[100px] -z-10 animate-float will-change-transform opacity-0 md:opacity-100"
       />
-      <div 
-        className="absolute bottom-40 right-0 w-96 h-96 bg-gradient-to-tr from-accent-500/20 to-primary-500/10 rounded-full blur-[120px] -z-10 animate-float will-change-transform opacity-0 md:opacity-100" 
-        style={{ ...optimizeAnimation, animationDelay: '2s' }} 
+      <div
+        className="absolute bottom-40 right-0 w-96 h-96 bg-gradient-to-tr from-accent-500/20 to-primary-500/10 rounded-full blur-[120px] -z-10 animate-float will-change-transform opacity-0 md:opacity-100"
+        style={{ animationDelay: '2s' }}
       />
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-secondary-500/10 via-primary-500/5 to-secondary-500/10 rounded-full blur-[150px] -z-10 animate-pulse-slow will-change-transform opacity-0 md:opacity-100" 
-        style={optimizeAnimation} 
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-secondary-500/10 via-primary-500/5 to-secondary-500/10 rounded-full blur-[150px] -z-10 animate-pulse-slow will-change-transform opacity-0 md:opacity-100"
       />
       
       <div className="container-custom relative">
