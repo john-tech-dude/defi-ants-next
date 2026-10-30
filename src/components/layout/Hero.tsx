@@ -6,6 +6,22 @@ import { useTheme } from 'next-themes';
 import gsap from 'gsap';
 import { useGlowEffect } from '@/hooks/useGlowEffect';
 import { useClientContext } from '@/contexts/ClientContext';
+import {
+  fadeInUp,
+  fadeInDown,
+  scaleIn,
+  staggerContainer,
+  staggerItem,
+  cardHover,
+  magneticButton,
+  floating,
+  pulse,
+  shine,
+  springConfig,
+  springBouncy,
+  durations,
+  easings,
+} from '@/lib/animations';
 import { 
   // Navigation
   ArrowRight,
@@ -325,65 +341,51 @@ const Hero = ({ className }: HeroProps) => {
         <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-gradient-to-tr from-purple-500/10 to-transparent blur-3xl opacity-30 -z-10" />
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start relative">
           {/* Left Column - Text Content */}
-          <motion.div 
+          <motion.div
             className="flex flex-col justify-start z-20 text-center lg:text-left -mt-6 lg:-mt-8"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
           >
-            <motion.div 
+            <motion.div
               className="space-y-3 md:space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ 
-                opacity: 1, 
-                y: 0,
-                transition: { delay: 0.1, duration: 0.6 }
-              }}
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
             >
               <div className="text-center">
-                <motion.h1 
+                <motion.h1
                   className="text-6xl sm:text-7xl md:text-8xl lg:text-7xl font-bold tracking-tight inline-block"
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100, damping: 15 }}
+                  variants={scaleIn}
                 >
-                  <motion.span 
+                  <motion.span
                     className="inline-block text-blue-500 dark:text-blue-400"
                     whileHover={{ scale: 1.05 }}
+                    transition={springConfig}
                   >
                     DeFi
                   </motion.span>
-                  <motion.span 
+                  <motion.span
                     className="text-white dark:text-gray-100 relative inline-block"
                     whileHover={{ scale: 1.05 }}
+                    transition={springConfig}
                   >
                     ANT!
                   </motion.span>
                 </motion.h1>
-                <motion.h2 
+                <motion.h2
                   className="text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground leading-tight mt-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { 
-                      delay: 0.6, 
-                      duration: 0.7, 
-                      type: "spring", 
-                      stiffness: 100, 
-                      damping: 20 
-                    } 
-                  }}
+                  variants={fadeInDown}
                 >
                   Join the Revolution!
                 </motion.h2>
                 {/* Compact badge centered under heading */}
                 <div className="flex justify-center w-full">
-                  <motion.div 
+                  <motion.div
                     className={`${STYLES.GLASS_BADGE} px-3 py-1 mt-3 max-w-[180px] w-full text-center`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.8 } }}
+                    variants={fadeInUp}
                     whileHover={{ scale: 1.05 }}
+                    transition={springBouncy}
                   >
                     <span className="relative z-10 text-primary-500/90 dark:text-primary-300/90 text-xs font-medium flex items-center justify-center">
                       <Rocket className="w-2.5 h-2.5 mr-1.5 flex-shrink-0" />
@@ -392,68 +394,51 @@ const Hero = ({ className }: HeroProps) => {
                   </motion.div>
                 </div>
               </div>
-              <motion.h2 
-                className="text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground leading-tight"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.6, type: "spring", stiffness: 100, damping: 20 }}
-              >
-                {/* Tagline - No badges here anymore */}
-              </motion.h2>
             </motion.div>
-            
+
             {/* Description */}
-            <motion.p 
+            <motion.p
               className="text-base md:text-lg text-foreground/90 dark:text-muted-foreground mt-6 mb-8 leading-relaxed font-light"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ 
-                opacity: 1, 
-                y: 0,
-                transition: { delay: 0.7, duration: 0.7, type: "spring", stiffness: 100, damping: 20 }
-              }}
+              variants={fadeInUp}
             >
               Join the revolution that's redefining DeFi on Solana with{' '}
               <span className="font-medium text-foreground">institutional-grade security</span>,{' '}
               <span className="font-medium text-foreground">premium user experience</span>, and{' '}
               <span className="font-medium text-foreground">sustainable tokenomics</span>.
             </motion.p>
-            
+
             {/* CTA Buttons */}
             <div className="space-y-6">
-              <motion.div 
+              <motion.div
                 className="flex flex-col sm:flex-row gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { delay: 0.8, duration: 0.7, type: "spring", stiffness: 100, damping: 20 }
-                }}
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
               >
                 <motion.div
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 25px -5px rgba(255, 255, 255, 0.15)' }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                  {...magneticButton}
+                  variants={staggerItem}
                 >
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     onClick={() => setIsBuyPanelOpen(true)}
                     className={`group px-6 py-5 text-base font-medium bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white shadow-lg hover:shadow-blue-500/30 transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden border border-blue-500/20`}
                   >
-                    <motion.span 
+                    <motion.span
                       className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
                       initial={{ x: '-100%', opacity: 0.5 }}
                       whileHover={{ x: '100%', opacity: 1 }}
-                      transition={{ duration: 0.8, ease: 'easeInOut' }}
+                      transition={{ duration: 0.8, ease: easings.smooth }}
                     />
                     <span className="relative z-10 flex items-center">
                       Buy Now
-                      <motion.span 
+                      <motion.span
                         className="ml-2"
                         animate={{ x: [0, 4, 0] }}
-                        transition={{ 
-                          duration: 1.5, 
+                        transition={{
+                          duration: 1.5,
                           repeat: Infinity,
-                          repeatType: 'loop'
+                          ease: 'easeInOut',
                         }}
                       >
                         <ArrowRight className="h-4 w-4" />
@@ -462,12 +447,11 @@ const Hero = ({ className }: HeroProps) => {
                   </Button>
                 </motion.div>
                 <motion.div
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 25px -5px rgba(255, 255, 255, 0.15)' }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                  {...magneticButton}
+                  variants={staggerItem}
                 >
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="lg"
                     className={`px-6 py-5 text-base font-medium bg-white/80 hover:bg-white/90 text-gray-900 hover:text-gray-900 border-gray-300 hover:border-gray-400 shadow-sm transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden group`}
                   >
@@ -476,10 +460,10 @@ const Hero = ({ className }: HeroProps) => {
                       <motion.span
                         className="ml-2"
                         animate={{ y: [0, 2, 0] }}
-                        transition={{ 
-                          duration: 2, 
+                        transition={{
+                          duration: 2,
                           repeat: Infinity,
-                          ease: 'easeInOut'
+                          ease: 'easeInOut',
                         }}
                       >
                         <ChevronDown className="h-4 w-4 text-gray-700" />
