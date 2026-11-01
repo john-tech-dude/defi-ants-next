@@ -14,7 +14,7 @@ import ThemeToggle from '../common/ThemeToggle';
 const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Tokenomics', href: '#tokenomics' },
-  { name: 'How to Buy', href: '#hero', isBuyButton: true },
+  { name: 'Staking', href: '#staking', isBuyButton: true },
   { name: 'NFTs', href: '#nft' },
   { name: 'Roadmap', href: '#roadmap' },
   { name: 'Community', href: '#community' },
@@ -61,10 +61,10 @@ export default function Navbar({}: NavbarProps) {
 
   return (
     <motion.nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-9 w-full z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-background/70 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-primary-500/10' 
-          : 'bg-gradient-to-b from-background/80 to-transparent backdrop-blur-sm'
+          ? 'bg-background/80 backdrop-blur-xl border-b border-primary-500/20 shadow-2xl shadow-primary-500/10' 
+          : 'bg-gradient-to-b from-background/90 to-transparent backdrop-blur-sm'
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -73,18 +73,18 @@ export default function Navbar({}: NavbarProps) {
       <div className="container-custom py-3 md:py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center group relative">
-          <motion.span className="text-2xl font-bold font-display">
+          <motion.span className="text-2xl md:text-3xl font-display tracking-wide">
             <motion.span 
-              className="text-blue-500 dark:text-blue-400"
+              className="gold-foil"
               whileHover={{ scale: 1.05 }}
             >
-              DeFi 
+              DeFi
             </motion.span>
             <motion.span 
-              className="text-white dark:text-gray-100"
+              className="text-foreground"
               whileHover={{ scale: 1.05 }}
             >
-              ANT!
+              {' '}ANT!
             </motion.span>
           </motion.span>
         </Link>
@@ -96,7 +96,7 @@ export default function Navbar({}: NavbarProps) {
               <button
                 key={link.name}
                 onClick={() => setIsBuyPanelOpen(true)}
-                className="px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group text-foreground/90 hover:text-primary-400"
+                className="px-3 py-2 text-sm font-semibold uppercase tracking-wide rounded-lg transition-all duration-300 relative group text-foreground/80 hover:text-primary-400"
               >
                 {link.name}
                 <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400 transition-all duration-300 group-hover:w-4/5 -translate-x-1/2" />
@@ -105,7 +105,7 @@ export default function Navbar({}: NavbarProps) {
               <Link
                 key={link.name}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group text-foreground/90 hover:text-primary-400"
+                className="px-3 py-2 text-sm font-semibold uppercase tracking-wide rounded-lg transition-all duration-300 relative group text-foreground/80 hover:text-primary-400"
               >
                 {link.name}
                 <span className={`absolute bottom-1 left-1/2 h-0.5 bg-gradient-to-r from-primary-400 to-accent-400
@@ -120,9 +120,9 @@ export default function Navbar({}: NavbarProps) {
           <WalletConnectButton 
             className={cn(
               '!h-9 !px-4',
-              '!bg-primary-500 hover:!bg-primary-600',
-              '!text-white !font-medium',
-              '!rounded-full',
+              '!bg-primary-400 hover:!bg-primary-300',
+              '!text-primary-foreground !font-display !tracking-wide',
+              '!rounded-full !border !border-primary-200/40',
               'transition-all duration-200',
               'shadow-sm hover:shadow-md',
               'flex items-center justify-center',
@@ -196,8 +196,8 @@ export default function Navbar({}: NavbarProps) {
                 <WalletConnectButton 
                   className={cn(
                     '!h-10 !w-full',
-                    '!bg-primary-500 hover:!bg-primary-600',
-                    '!text-white !font-medium',
+                    '!bg-primary-400 hover:!bg-primary-300',
+                    '!text-primary-foreground !font-display !tracking-wide',
                     '!rounded-lg',
                     'transition-all duration-200',
                     'shadow-sm hover:shadow-md',

@@ -70,6 +70,63 @@ export default function Home() {
         </section>
 
         <section
+          id="staking"
+          className="py-16 md:py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-background via-background/80 to-background/50"
+        >
+          <Container>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4">Staking & Yield Farming</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Stake your ANTs to earn rewards or provide liquidity to generate yield
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-card rounded-xl p-6 border">
+                <h3 className="text-2xl font-bold mb-4">🔒 Staking</h3>
+                <p className="text-muted-foreground mb-4">
+                  Lock your ANTs to earn staking rewards. Coming Q3 2025.
+                </p>
+                <button className="w-full py-3 bg-primary text-white rounded-lg font-medium">
+                  Coming Soon
+                </button>
+              </div>
+              <div className="bg-card rounded-xl p-6 border">
+                <h3 className="text-2xl font-bold mb-4">🌾 Yield Farming</h3>
+                <p className="text-muted-foreground mb-4">
+                  Provide liquidity to earn APY rewards. Available on Raydium.
+                </p>
+                <button className="w-full py-3 bg-primary text-white rounded-lg font-medium">
+                  Add Liquidity
+                </button>
+              </div>
+            </div>
+          </Container>
+        </section>
+
+        <section
+          id="governance"
+          className="py-16 md:py-20 lg:py-24 relative overflow-hidden"
+        >
+          <Container>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4">Governance</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Vote on protocol decisions and shape the future of DeFi ANT
+              </p>
+            </div>
+            <div className="bg-card rounded-xl p-8 border max-w-2xl mx-auto text-center">
+              <h3 className="text-2xl font-bold mb-4">🗳️ DAO Governance</h3>
+              <p className="text-muted-foreground mb-6">
+                Hold ANTs to vote on proposals. Coming Q4 2025.
+              </p>
+              <button className="py-3 px-8 bg-primary text-white rounded-lg font-medium">
+                View Proposals
+              </button>
+            </div>
+          </Container>
+        </section>
+
+        <section
           id="roadmap"
           className="py-16 md:py-20 lg:py-24 relative overflow-hidden"
         >
