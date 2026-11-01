@@ -60,10 +60,10 @@ export default function Navbar({}: NavbarProps) {
   }, [connected]); // Close when wallet connects/disconnects
 
   return (
-    <motion.nav 
-      className={`fixed top-9 w-full z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-background/80 backdrop-blur-xl border-b border-primary-500/20 shadow-2xl shadow-primary-500/10' 
+    <motion.nav
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-background/80 backdrop-blur-xl border-b border-primary-500/20 shadow-2xl shadow-primary-500/10'
           : 'bg-gradient-to-b from-background/90 to-transparent backdrop-blur-sm'
       }`}
       initial={{ y: -100, opacity: 0 }}
