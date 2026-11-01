@@ -24,7 +24,7 @@ const JupiterTerminal = dynamic(
 );
 
 // Types
-type Tab = 'stripe' | 'swap' | 'stake';
+type Tab = 'swap' | 'stake';
 
 interface Rewards {
   sol: number;
@@ -61,13 +61,7 @@ interface BuyPanelProps {
   defaultTab?: Tab;
 }
 
-// Mock components
-const StripeCheckout: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => (
-  <div className="p-4">
-    <h3 className="text-lg font-medium mb-4">Buy ANTS with Card</h3>
-    <p className="text-gray-400">Stripe checkout will be implemented here.</p>
-  </div>
-);
+
 
 const StakingPanel: React.FC<{
   stakingData: StakingData;
@@ -180,7 +174,7 @@ const StakingPanel: React.FC<{
       <div className="bg-gray-800 rounded-xl p-6 shadow-lg">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Your Rewards</h3>
-          <div className="text-sm bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full">
+          <div className="text-sm bg-primary-900/30 text-primary-400 px-3 py-1 rounded-full">
             APY: {currentApy}%
           </div>
         </div>
@@ -240,12 +234,12 @@ const JupiterSwap: React.FC<JupiterSwapProps> = ({ onSuccess }) => {
 
 // Tabs configuration
 const TABS = [
-  { id: 'stripe' as const, label: 'Buy with Card', icon: <CreditCard className="h-4 w-4" /> },
+
   { id: 'swap' as const, label: 'Swap Tokens', icon: <ArrowLeftRight className="h-4 w-4" /> },
   { id: 'stake' as const, label: 'Stake ANTS', icon: <Zap className="h-4 w-4" /> },
 ];
 
-export default function BuyPanel({ onClose, defaultTab = 'stripe' }: BuyPanelProps) {
+export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps) {
   const { publicKey, connected, connect, disconnect, wallet, select, wallets } = useWallet();
   const { connection } = useConnection();
   const [activeTab, setActiveTab] = useState<Tab>(defaultTab);
@@ -587,8 +581,7 @@ export default function BuyPanel({ onClose, defaultTab = 'stripe' }: BuyPanelPro
         );
       case 'swap':
         return <JupiterSwapComponent onSuccess={onClose} />;
-      case 'stripe':
-        return <StripeCheckout onSuccess={onClose} />;
+
       default:
         return null;
     }
@@ -606,7 +599,7 @@ export default function BuyPanel({ onClose, defaultTab = 'stripe' }: BuyPanelPro
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-800">
           <h2 className="text-xl font-bold">
-            {activeTab === 'stripe' ? 'Buy with Card' : 'Stake'} ANTS
+            {activeTab === 'swap' ? 'Swap' : 'Stake'} ANTS
           </h2>
           <div className="flex items-center space-x-3">
             {/* Wallet Connection */}
@@ -673,7 +666,7 @@ export default function BuyPanel({ onClose, defaultTab = 'stripe' }: BuyPanelPro
                 onClick={() => handleTabChange(tab.id)}
                 className={`flex-1 py-3 px-4 text-center text-sm font-medium transition-colors ${
                   activeTab === tab.id
-                    ? 'text-blue-400 border-b-2 border-blue-500'
+                    ? 'text-primary-400 border-b-2 border-primary-500'
                     : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800/50'
                 }`}
               >
