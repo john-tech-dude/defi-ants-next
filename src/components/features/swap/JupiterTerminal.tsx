@@ -66,6 +66,7 @@ export function JupiterTerminal({
   const { publicKey, wallet, connect, connected, disconnect } = useWallet();
   const { connection } = useConnection();
   const [isLoading, setIsLoading] = useState(true);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
   const [terminal, setTerminal] = useState<any>(null);
 
   // Check if Jupiter script is loaded
@@ -83,7 +84,7 @@ export function JupiterTerminal({
 
     // If Jupiter is already loaded, set state immediately
     if (checkJupiterLoaded()) {
-      setIsLoading(false);
+      setScriptLoaded(true);
       return;
     }
 
@@ -96,7 +97,7 @@ export function JupiterTerminal({
 
       if (checkJupiterLoaded() || attempts >= maxAttempts) {
         clearInterval(intervalId);
-        setIsLoading(false);
+        setScriptLoaded(true);
 
         if (attempts >= maxAttempts && !window.Jupiter) {
           console.error('Jupiter script failed to load after multiple checks');
@@ -118,8 +119,6 @@ export function JupiterTerminal({
     }
   }, [wallet, connected, connect]);
 
-
-
   // Initialize Jupiter Terminal with better error handling
   useEffect(() => {
     if (!scriptLoaded || typeof window === 'undefined') return;
@@ -140,7 +139,7 @@ export function JupiterTerminal({
         const enableWalletPassthrough = !wallet || !connected;
 
         console.log('Initializing Jupiter Terminal with config:', {
-          displayMode: 'modal',
+          displayMode: 'integrated',
           endpoint: process.env.NEXT_PUBLIC_RPC_URL || 'https://api.mainnet-beta.solana.com',
           enableWalletPassthrough,
           defaultExplorer: 'Solscan',
@@ -156,7 +155,8 @@ export function JupiterTerminal({
 
         // Initialize Jupiter Terminal with wallet connection using v4 API
         const terminal = await window.Jupiter.init({
-          displayMode: 'modal',
+          displayMode: 'integrated',
+          integratedTargetId: 'jupiter-terminal-container',
           endpoint: process.env.NEXT_PUBLIC_RPC_URL || 'https://api.mainnet-beta.solana.com',
           passThroughWallet: walletAdapter,
           enableWalletPassthrough,
@@ -251,32 +251,17 @@ export function JupiterTerminal({
     );
   }
 
-  const openJupiterModal = () => {
-    if (terminal) {
-      terminal.open();
-    }
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center p-8 min-h-[400px]">
-      {isLoading ? (
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      ) : (
-        <>
-          <div className="text-center mb-6">
-            <ArrowLeftRight className="h-16 w-16 mx-auto mb-4 text-blue-500" />
-            <h3 className="text-xl font-semibold mb-2">Swap Tokens with Jupiter</h3>
-            <p className="text-gray-400">Trade ANTS and other tokens on Solana</p>
-          </div>
-          <button
-            onClick={openJupiterModal}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition-colors flex items-center"
-          >
-            <ArrowLeftRight className="mr-2 h-5 w-5" />
-            Open Jupiter Swap
-          </button>
-        </>
+    <div className="relative w-full min-h-[500px]">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/80 z-10">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
       )}
+      <div
+        id="jupiter-terminal-container"
+        className="w-full h-full min-h-[500px]"
+      />
     </div>
   );
 }
