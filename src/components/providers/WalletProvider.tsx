@@ -62,20 +62,22 @@ export function WalletProvider({ children }: WalletProviderProps) {
 
   // Handle wallet errors
   const onError = (error: any) => {
-    console.error('Wallet error:', error);
     const errorMessage = error?.message || 'Failed to connect wallet';
+    const errorName = error?.name || '';
 
-    // Don't show toast for Phantom extension conflicts or user rejection
+    // Don't log or show toast for Phantom extension conflicts or user rejection
     if (
       errorMessage.includes('Unable to set window.solana') ||
       errorMessage.includes('try uninstalling Phantom') ||
       errorMessage.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
       errorMessage.includes('User rejected') ||
-      errorMessage.includes('Unexpected error')
+      errorMessage.includes('Unexpected error') ||
+      errorName.includes('WalletConnectionError')
     ) {
       return;
     }
 
+    console.error('Wallet error:', error);
     toast.error(errorMessage);
   };
 

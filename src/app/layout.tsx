@@ -70,7 +70,9 @@ export default function RootLayout({
                     message.includes('Unable to set window.solana') ||
                     message.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
                     message.includes('chrome-extension') ||
-                    message.includes('try uninstalling Phantom')
+                    message.includes('try uninstalling Phantom') ||
+                    message.includes('WalletConnectionError') ||
+                    message.includes('Unexpected error')
                   ) {
                     return;
                   }
