@@ -306,12 +306,14 @@ export default function About() {
               variants={containerVariants}
               className="space-y-6"
             >
+              <span className="section-kicker mb-4">The colony</span>
               <Title 
                 as="h3" 
                 variant="h3"
-                className="text-3xl font-bold mb-4"
+                gradient="primary"
+                className="text-3xl mb-4"
               >
-                Why Choose DeFi ANT!?
+                Why ride with DeFi ANT!?
               </Title>
               
               <motion.p variants={itemVariants} className="text-muted-foreground leading-relaxed">
@@ -351,13 +353,13 @@ export default function About() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="p-6 card-hover backdrop-blur-sm group relative overflow-hidden rounded-xl"
+                    className="p-6 sticker-card group"
                   >
                     <div className="relative z-10">
                       <div className="w-12 h-12 flex items-center justify-center bg-primary-500/10 rounded-lg mb-4 group-hover:bg-primary-500/20 transition-colors">
                         {feature.icon}
                       </div>
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary-500 transition-colors">
+                      <h3 className="text-xl font-display tracking-wide mb-3 group-hover:text-primary-400 transition-colors">
                         {feature.title}
                       </h3>
                       <p className="text-muted-foreground leading-relaxed">

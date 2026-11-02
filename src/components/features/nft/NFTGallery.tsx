@@ -101,13 +101,11 @@ export default function NFTGallery() {
           variants={containerVariants}
           className="text-center mb-20"
         >
-          <motion.div variants={itemVariants} className="inline-block px-4 py-2 bg-primary-500/20 border border-primary-500/30 rounded-full mb-3 animate-pulse-slow">
-            <span className="text-primary-500 font-bold flex items-center justify-center">
-              Meme Gallery
-            </span>
+          <motion.div variants={itemVariants} className="section-kicker mb-3">
+            Meme Gallery
           </motion.div>
-          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            <span className="gradient-text">ANT Meme Collection</span>
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-display tracking-wide mb-6">
+            <span className="gold-foil">ANT Meme Collection</span>
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-3xl mx-auto">
             The best memes from the ANT community - because we're a meme token with actual utility!

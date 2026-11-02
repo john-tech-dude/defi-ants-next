@@ -93,7 +93,7 @@ export default function Roadmap() {
       phase: 'Phase 3 - Q4 2025',
       title: 'Utility Rollout 💰',
       status: 'upcoming',
-      statusColor: 'from-blue-400 to-blue-600',
+      statusColor: 'from-primary-400 to-primary-600',
       icon: Calendar,
       tasks: [
         'ANT staking with juicy APY',
@@ -106,7 +106,7 @@ export default function Roadmap() {
       phase: 'Phase 4 - Q1 2026',
       title: 'Meme Domination 👑',
       status: 'upcoming',
-      statusColor: 'from-purple-400 to-purple-600',
+      statusColor: 'from-secondary-400 to-secondary-600',
       icon: Target,
       tasks: [
         'Major CEX listings (we are coming for Binance!)',
@@ -294,9 +294,9 @@ export default function Roadmap() {
           <motion.div className="max-w-4xl mx-auto text-center">
             <motion.h2 
               variants={titleVariants}
-              className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 dark:from-white dark:to-gray-300"
+              className="text-4xl md:text-6xl font-display tracking-wide mb-4 md:mb-6"
             >
-              Meme Domination <span className="gradient-text">Roadmap</span>
+              Meme domination <span className="gold-foil">Roadmap</span>
             </motion.h2>
           </motion.div>
           

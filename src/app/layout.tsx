@@ -1,21 +1,32 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Space_Grotesk, Bangers } from 'next/font/google';
 import { Providers } from '@/components/providers';
 import ThemeToggle from '@/components/common/ThemeToggle';
-import PasswordGate from '@/components/common/PasswordGate';
 import Script from 'next/script';
 import './globals.css';
 
-// Load font with display swap to prevent layout shift
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
+});
+
+const bangers = Bangers({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display',
+});
+
 export const metadata: Metadata = {
-  title: 'DeFi ANT',
-  description: 'The Future of Decentralized Finance',
+  title: 'DeFi ANT! | $ANTS',
+  description: 'Premium meme coin on Solana. The colony takes over.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -34,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#ffffff',
+  themeColor: '#0c0907',
 };
 
 // This is a server component by default
@@ -44,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${bangers.variable}`} suppressHydrationWarning>
       <head>
         <Script
           id="suppress-extension-errors"
@@ -69,16 +80,18 @@ export default function RootLayout({
             `,
           }}
         />
+        <Script
+          src="https://terminal.jup.ag/main-v4.js"
+          strategy="afterInteractive"
+        />
       </head>
-      <body className={`${inter.variable} font-sans`}>
-        <PasswordGate>
-          <Providers>
-            {children}
-            <div className="fixed bottom-6 right-6 z-50">
-              <ThemeToggle />
-            </div>
-          </Providers>
-        </PasswordGate>
+      <body className="font-body antialiased">
+        <Providers>
+          {children}
+          <div className="fixed bottom-6 right-6 z-50">
+            <ThemeToggle />
+          </div>
+        </Providers>
       </body>
     </html>
   );

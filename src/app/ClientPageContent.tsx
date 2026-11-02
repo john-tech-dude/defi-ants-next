@@ -46,26 +46,10 @@ const Tokenomics = dynamic(
   }
 );
 
-const Roadmap = dynamic(
-  () => import('@/components/Roadmap').then(mod => mod.default),
-  { 
-    ssr: false,
-    loading: () => <LoadingSkeleton />
-  }
-);
-
 export default function ClientPageContent() {
   return (
-    <>
-      <Suspense fallback={<LoadingSkeleton />}>
-        <Tokenomics />
-      </Suspense>
-
-      <section id="roadmap" className="py-16 md:py-20 lg:py-24">
-        <Suspense fallback={<LoadingSkeleton />}>
-          <Roadmap />
-        </Suspense>
-      </section>
-    </>
+    <Suspense fallback={<LoadingSkeleton />}>
+      <Tokenomics />
+    </Suspense>
   );
 }

@@ -19,10 +19,10 @@ const navItems = [
     name: 'Metrics', 
     href: '#metrics', 
     icon: BarChart2,
-    iconColor: 'text-blue-400 dark:text-blue-500',
-    activeBg: 'bg-blue-500/10 dark:bg-blue-500/20',
-    textColor: 'text-foreground/90 dark:text-blue-50',
-    hoverText: 'hover:text-blue-500 dark:hover:text-blue-400'
+    iconColor: 'text-primary-400 dark:text-primary-500',
+    activeBg: 'bg-primary-500/10 dark:bg-primary-500/20',
+    textColor: 'text-foreground/90 dark:text-primary-50',
+    hoverText: 'hover:text-primary-500 dark:hover:text-primary-400'
   },
   { 
     name: 'Buy', 
@@ -37,10 +37,10 @@ const navItems = [
     name: 'Community', 
     href: '#community', 
     icon: Users,
-    iconColor: 'text-purple-400 dark:text-purple-500',
-    activeBg: 'bg-purple-500/10 dark:bg-purple-500/20',
-    textColor: 'text-foreground/90 dark:text-purple-50',
-    hoverText: 'hover:text-purple-500 dark:hover:text-purple-400'
+    iconColor: 'text-secondary-400 dark:text-secondary-500',
+    activeBg: 'bg-secondary-500/10 dark:bg-secondary-500/20',
+    textColor: 'text-foreground/90 dark:text-secondary-50',
+    hoverText: 'hover:text-secondary-500 dark:hover:text-secondary-400'
   },
   { 
     name: 'FAQ', 

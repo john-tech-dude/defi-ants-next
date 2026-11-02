@@ -5,8 +5,8 @@
 @layer base {
   :root {
     /* Light Theme - Enhanced for better contrast and visual hierarchy */
-    --background: 0 0% 99%;
-    --foreground: 222 47% 11%;
+    --background: 38 42% 94%;
+    --foreground: 22 32% 10%;
     
     /* Card and surface elements */
     --card: 0 0% 100%;
@@ -15,13 +15,13 @@
     --popover-foreground: 222 47% 11%;
     
     /* Primary colors */
-    --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 25 95% 48%;
+    --primary: 42 92% 48%;
+    --primary-foreground: 22 40% 8%;
+    --primary-hover: 42 92% 42%;
     
     /* Secondary colors */
-    --secondary: 258 90% 63%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 8 78% 48%;
+    --secondary-foreground: 40 50% 97%;
     
     /* Muted and accent colors */
     --muted: 210 40% 96.1%;
@@ -66,8 +66,8 @@
   
   .dark {
     /* Dark Theme - Enhanced for better contrast and visual hierarchy */
-    --background: 222 47% 4%;
-    --foreground: 210 40% 98%;
+    --background: 24 28% 5%;
+    --foreground: 40 32% 93%;
     
     /* Card and surface elements */
     --card: 222 47% 6%;
@@ -76,13 +76,13 @@
     --popover-foreground: 210 40% 98%;
     
     /* Primary colors */
-    --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 25 95% 58%;
+    --primary: 44 92% 56%;
+    --primary-foreground: 24 40% 8%;
+    --primary-hover: 44 92% 62%;
     
     /* Secondary colors */
-    --secondary: 258 90% 63%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 8 72% 52%;
+    --secondary-foreground: 40 40% 96%;
     
     /* Muted and accent colors */
     --muted: 217 33% 14%;

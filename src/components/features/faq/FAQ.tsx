@@ -272,11 +272,11 @@ export default function FAQ() {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="mb-10 text-center">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+        <div className="section-kicker mb-4">
           <HelpCircle className="h-4 w-4" aria-hidden="true" />
           FAQ
         </div>
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h2 className="text-3xl font-display tracking-wide text-foreground sm:text-4xl">
           Frequently asked questions
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground sm:text-lg">

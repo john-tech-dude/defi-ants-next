@@ -248,21 +248,21 @@ const SocialSection: FC = () => {
       description: 'Follow us for the latest updates and announcements',
       href: 'https://twitter.com/defiants',
       icon: <Twitter className="h-6 w-6" />,
-      color: 'from-blue-400 to-blue-600',
+      color: 'from-primary-400 to-primary-600',
     },
     {
       name: 'Discord',
       description: 'Join our community for discussions and support',
       href: 'https://discord.gg/defiants',
       icon: <MessagesSquare className="h-6 w-6" />,
-      color: 'from-indigo-400 to-indigo-600',
+      color: 'from-secondary-400 to-secondary-600',
     },
     {
       name: 'Telegram',
       description: 'Get instant notifications and chat with the team',
       href: 'https://t.me/defiants',
       icon: <Send className="h-6 w-6" />,
-      color: 'from-sky-400 to-sky-600',
+      color: 'from-primary-300 to-secondary-500',
     },
   ];
 
@@ -279,7 +279,7 @@ const SocialSection: FC = () => {
         }}
         className="text-center max-w-3xl mx-auto mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent mb-4">
+        <h2 className="text-3xl md:text-4xl font-display tracking-wide gold-foil mb-4">
           Join Our Community
         </h2>
         <p className="text-lg text-gray-300">
@@ -308,7 +308,7 @@ const SocialSection: FC = () => {
               boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)",
               transition: { type: "spring", stiffness: 400, damping: 10 }
             }}
-            className={`group relative overflow-hidden rounded-xl ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} shadow-lg hover:shadow-xl transition-all duration-300 p-6 cursor-pointer z-10`}
+            className="group sticker-card cursor-pointer z-10"
           >
             <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${link.color}`}></div>
             <div className="flex flex-col items-center text-center w-full h-full">
@@ -323,7 +323,7 @@ const SocialSection: FC = () => {
               <h3 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{link.name}</h3>
               <p className={`mt-2 text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{link.description}</p>
               <motion.span 
-                className="mt-4 inline-flex items-center text-sm font-medium text-blue-400 group-hover:underline"
+                className="mt-4 inline-flex items-center text-sm font-medium text-primary-400 group-hover:underline"
                 whileHover={{ x: 3 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
@@ -454,11 +454,11 @@ const Community: FC = () => {
   const rwaTooltip = (
     <div className={`w-72 rounded-lg p-4 border shadow-lg ${
       isDark 
-        ? 'bg-gray-800 border-blue-800/50' 
-        : 'bg-white border-blue-200'
+        ? 'bg-gray-800 border-primary-800/50' 
+        : 'bg-white border-primary-200'
     }`}>
       <h4 className={`font-semibold mb-3 flex items-center ${
-        isDark ? 'text-blue-400' : 'text-blue-600'
+        isDark ? 'text-primary-400' : 'text-primary-600'
       }`}>
         <Building className="h-4 w-4 mr-2" />
         Real-World Assets
@@ -468,7 +468,7 @@ const Community: FC = () => {
           <li key={asset.name} className="border-b border-gray-200 pb-2 last:border-0 last:pb-0">
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-900">{asset.name}</span>
-              <span className="text-blue-600 font-semibold">{asset.apy} APY</span>
+              <span className="text-primary-600 font-semibold">{asset.apy} APY</span>
             </div>
             <div className="text-xs text-gray-600 mt-1 line-clamp-2">{asset.description}</div>
           </li>
@@ -480,11 +480,11 @@ const Community: FC = () => {
   const aiTooltip = (
     <div className={`w-72 rounded-lg p-4 border shadow-lg ${
       isDark
-        ? 'bg-gray-800 border-purple-800/50'
-        : 'bg-white border-purple-200'
+        ? 'bg-gray-800 border-secondary-800/50'
+        : 'bg-white border-secondary-200'
     }`}>
       <h4 className={`font-semibold mb-3 flex items-center ${
-        isDark ? 'text-purple-400' : 'text-purple-600'
+        isDark ? 'text-secondary-400' : 'text-secondary-600'
       }`}>
         <Bot className="h-4 w-4 mr-2" />
         AI Strategy Options
@@ -494,11 +494,11 @@ const Community: FC = () => {
           <li key={strategy.name} className="border-b border-gray-200 pb-2 last:border-0 last:pb-0">
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-900">{strategy.name}</span>
-              <span className="text-purple-600 font-semibold">{strategy.expected}</span>
+              <span className="text-secondary-600 font-semibold">{strategy.expected}</span>
             </div>
             <div className="flex justify-between items-center text-xs mt-1">
               <span className="text-gray-600 flex items-center">
-                <TrendingUp className="h-3 w-3 mr-1 text-purple-500" /> Risk: {strategy.risk}
+                <TrendingUp className="h-3 w-3 mr-1 text-secondary-500" /> Risk: {strategy.risk}
               </span>
             </div>
           </li>
@@ -530,7 +530,7 @@ const Community: FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl md:text-4xl font-display tracking-wide gold-foil mb-4">
             DeFi ANT Staking Platform
           </h2>
           <p className={`text-lg ${
@@ -564,7 +564,7 @@ const Community: FC = () => {
             icon={<Building className="w-6 h-6 text-white" />}
             title="Real-World Assets"
             description="Access tokenized real estate, commodities, carbon credits, and more through our RWA farming pools."
-            color="from-blue-500 to-cyan-600"
+            color="from-primary-500 to-primary-700"
             buttonText="Start Farming"
             onClick={() => setIsBuyPanelOpen(true)}
             tooltipContent={rwaTooltip}
@@ -573,7 +573,7 @@ const Community: FC = () => {
             icon={<Bot className="w-6 h-6 text-white" />}
             title="AI-Optimized Strategies"
             description="Our AI constantly analyzes market conditions to adjust your portfolio for optimal risk-adjusted returns."
-            color="from-purple-500 to-pink-600"
+            color="from-secondary-500 to-secondary-700"
             buttonText="Explore Strategies"
             onClick={() => setIsBuyPanelOpen(true)}
             tooltipContent={aiTooltip}

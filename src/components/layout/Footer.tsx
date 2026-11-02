@@ -204,12 +204,12 @@ export default function Footer(): React.ReactElement {
                       initial="initial"
                       animate="animate"
                     >
-                      <span className="text-2xl font-bold font-display">
-                        <span className="text-blue-500 dark:text-blue-400">
+                      <span className="text-2xl font-display tracking-wide">
+                        <span className="gold-foil">
                           DeFi
                         </span>
-                        <span className="text-white dark:text-gray-100">
-                          ANT!
+                        <span className="text-foreground">
+                          {' '}ANT!
                         </span>
                       </span>
                     </motion.div>
@@ -219,7 +219,7 @@ export default function Footer(): React.ReactElement {
                     className="text-muted-foreground/90 leading-relaxed text-sm"
                     variants={itemVariants}
                   >
-                    A community-driven cryptocurrency with innovative tokenomics, NFT integration, and a mission to build a sustainable DeFi ecosystem on Solana.
+                    Premium meme coin energy with colony discipline. Tokenomics, NFTs, and a swarm that actually shows up.
                   </motion.p>
 
                   {/* Social Media */}

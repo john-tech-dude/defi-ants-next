@@ -37,22 +37,22 @@ const TOKEN_ALLOCATIONS: TokenAllocation[] = [
   {
     name: 'Community & Ecosystem',
     percentage: 35,
-    color: '#3B82F6',
-    gradient: 'from-blue-500 to-blue-600',
+    color: '#f5c518',
+    gradient: 'from-primary-400 to-primary-600',
     description: '8% at launch, 48-month linear vesting'
   },
   {
     name: 'Liquidity',
     percentage: 25,
-    color: '#10B981',
-    gradient: 'from-emerald-500 to-emerald-600',
+    color: '#d63b28',
+    gradient: 'from-secondary-400 to-secondary-600',
     description: 'Fully unlocked at launch for trading'
   },
   {
     name: 'Staking Rewards',
     percentage: 20,
-    color: '#8B5CF6',
-    gradient: 'from-violet-500 to-violet-600',
+    color: '#e8b30e',
+    gradient: 'from-primary-300 to-primary-500',
     description: 'Distributed over 4 years to stakers'
   },
   {
@@ -65,8 +65,8 @@ const TOKEN_ALLOCATIONS: TokenAllocation[] = [
   {
     name: 'Marketing & Partnerships',
     percentage: 8,
-    color: '#EC4899',
-    gradient: 'from-pink-500 to-pink-600',
+    color: '#e85a48',
+    gradient: 'from-accent-400 to-secondary-500',
     description: '5% at launch, 24-month linear vesting'
   }
 ];
@@ -76,7 +76,7 @@ const TOKEN_UTILITIES: TokenUtility[] = [
     icon: <Zap className="w-8 h-8" />,
     title: 'Fast Transactions',
     description: 'Low fees and instant settlement on Solana',
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: 'from-primary-400 to-primary-600',
   },
   {
     icon: <Shield className="w-8 h-8" />,
@@ -88,7 +88,7 @@ const TOKEN_UTILITIES: TokenUtility[] = [
     icon: <Coins className="w-8 h-8" />,
     title: 'Staking Rewards',
     description: 'Earn passive income by staking your tokens',
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: 'from-secondary-400 to-secondary-600',
   },
   {
     icon: <Users className="w-8 h-8" />,
@@ -232,7 +232,7 @@ const AnimatedTokenAllocation = ({
       </p>
       {isActive && (
         <motion.div
-          className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+          className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary-400 to-secondary-500 rounded-full"
           initial={{ width: 0 }}
           animate={{ width: '100%' }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -260,7 +260,7 @@ const TokenUtilityCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-6 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-xl transition-all duration-300 group"
+      className="p-6 sticker-card group"
     >
       <div
         className={cn(
@@ -278,7 +278,7 @@ const TokenUtilityCard = ({
       <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
         {utility.description}
       </p>
-      <div className="flex items-center text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+      <div className="flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:text-primary-500 transition-colors">
         Learn more
         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
       </div>
@@ -319,7 +319,7 @@ const AnimatedTokenomics = () => {
   return (
     <section className="relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-400/5 via-transparent to-transparent opacity-30" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-400/10 via-transparent to-transparent opacity-40" />
       <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:linear-gradient(180deg,white,transparent)] opacity-5" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -329,11 +329,11 @@ const AnimatedTokenomics = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-blue-500/10 mb-6">
-              <PieChartIcon className="w-5 h-5 mr-2 text-blue-500" />
-              <span className="text-sm font-medium text-blue-500">Tokenomics</span>
+            <div className="section-kicker mb-6">
+              <PieChartIcon className="w-4 h-4" />
+              Tokenomics
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+            <h2 className="text-4xl md:text-5xl font-display tracking-wide mb-4 gold-foil">
               Token Distribution
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -356,7 +356,7 @@ const AnimatedTokenomics = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
-                    <TrendingUp className="w-6 h-6 mr-2 text-blue-500" />
+                    <TrendingUp className="w-6 h-6 mr-2 text-primary-500" />
                     Allocation Breakdown
                   </h3>
                   <div className="grid grid-cols-1 gap-3">

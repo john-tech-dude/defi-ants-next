@@ -16,36 +16,36 @@ module.exports = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         
-        // Primary color - Vibrant blue
+        // Primary color - Honey gold
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
-          50: '#f0f7ff',
-          100: '#e0f0ff',
-          200: '#bad8ff',
-          300: '#7eb8ff',
-          400: '#3b82f6', // Base primary
-          500: '#2563eb', // Main primary
-          600: '#1d4ed8',
-          700: '#1e40af',
-          800: '#1e3a8a',
-          900: '#1e3a8a',
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#f6d36a',
+          400: '#f5c518',
+          500: '#e8b30e',
+          600: '#c49208',
+          700: '#9a6f09',
+          800: '#7a560e',
+          900: '#654712',
         },
         
-        // Secondary color - Vibrant purple
+        // Secondary color - Colony crimson
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6', // Main secondary
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
+          50: '#fff1f0',
+          100: '#ffd9d4',
+          200: '#ffb3aa',
+          300: '#f58375',
+          400: '#e85a48',
+          500: '#d63b28',
+          600: '#b92c1d',
+          700: '#962418',
+          800: '#7a2118',
+          900: '#66211a',
         },
         
         // Destructive color - Red
@@ -126,9 +126,9 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-        body: ['Space Grotesk', 'ui-sans-serif', 'system-ui'],
-        display: ['Bangers', 'sans-serif'],
+        sans: ['var(--font-body)', 'Space Grotesk', 'ui-sans-serif', 'system-ui'],
+        body: ['var(--font-body)', 'Space Grotesk', 'ui-sans-serif', 'system-ui'],
+        display: ['var(--font-display)', 'Bangers', 'Impact', 'sans-serif'],
       },
       typography: {
         DEFAULT: {

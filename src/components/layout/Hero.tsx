@@ -284,7 +284,7 @@ const Hero = ({ className }: HeroProps) => {
         {Array.from({ length: 30 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full bg-gradient-to-r from-primary-500/20 to-purple-500/20"
+            className="absolute rounded-full bg-gradient-to-r from-primary-500/25 to-secondary-500/20"
             initial={{
               x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,
@@ -310,7 +310,7 @@ const Hero = ({ className }: HeroProps) => {
   };
 
   return (
-    <div className={cn('relative min-h-screen flex items-start pt-12 lg:pt-16 justify-center overflow-hidden group', className)}>
+    <div className={cn('relative min-h-screen flex items-start pt-24 lg:pt-28 justify-center overflow-hidden group', className)}>
       {renderParticles()}
       {/* Aurora Background with Animation */}
       <motion.div 
@@ -320,7 +320,7 @@ const Hero = ({ className }: HeroProps) => {
         transition={{ duration: 1 }}
       >
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-purple-900/20 to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-primary-500/15 via-secondary-900/25 to-transparent"
           animate={{
             backgroundPosition: ['0% 0%', '100% 100%'],
             scale: [1, 1.05, 1],
@@ -338,7 +338,7 @@ const Hero = ({ className }: HeroProps) => {
       <div className="relative z-10 container mx-auto px-6 py-8 lg:py-12">
         {/* Floating glass orbs */}
         <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary-500/10 to-transparent blur-3xl opacity-30 -z-10" />
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-gradient-to-tr from-purple-500/10 to-transparent blur-3xl opacity-30 -z-10" />
+        <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-gradient-to-tr from-secondary-500/15 to-transparent blur-3xl opacity-30 -z-10" />
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start relative">
           {/* Left Column - Text Content */}
           <motion.div
@@ -355,42 +355,39 @@ const Hero = ({ className }: HeroProps) => {
             >
               <div className="text-center">
                 <motion.h1
-                  className="text-6xl sm:text-7xl md:text-8xl lg:text-7xl font-bold tracking-tight inline-block"
+                  className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl font-display tracking-wide inline-block ink-outline"
                   variants={scaleIn}
                 >
                   <motion.span
-                    className="inline-block text-blue-500 dark:text-blue-400"
+                    className="inline-block gold-foil"
                     whileHover={{ scale: 1.05 }}
                     transition={springConfig}
                   >
                     DeFi
                   </motion.span>
                   <motion.span
-                    className="text-white dark:text-gray-100 relative inline-block"
+                    className="text-foreground relative inline-block"
                     whileHover={{ scale: 1.05 }}
                     transition={springConfig}
                   >
-                    ANT!
+                    {' '}ANT!
                   </motion.span>
                 </motion.h1>
                 <motion.h2
-                  className="text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground leading-tight mt-4"
+                  className="text-xl md:text-2xl lg:text-3xl font-display tracking-wide text-primary-400 leading-tight mt-4"
                   variants={fadeInDown}
                 >
-                  Join the Revolution!
+                  The colony takes over
                 </motion.h2>
-                {/* Compact badge centered under heading */}
                 <div className="flex justify-center w-full">
                   <motion.div
-                    className={`${STYLES.GLASS_BADGE} px-3 py-1 mt-3 max-w-[180px] w-full text-center`}
+                    className="section-kicker mt-4"
                     variants={fadeInUp}
                     whileHover={{ scale: 1.05 }}
                     transition={springBouncy}
                   >
-                    <span className="relative z-10 text-primary-500/90 dark:text-primary-300/90 text-xs font-medium flex items-center justify-center">
-                      <Rocket className="w-2.5 h-2.5 mr-1.5 flex-shrink-0" />
-                      <span>Solana DeFi</span>
-                    </span>
+                    <Rocket className="w-3 h-3" />
+                    <span>$ANTS • Solana meme</span>
                   </motion.div>
                 </div>
               </div>
@@ -401,10 +398,8 @@ const Hero = ({ className }: HeroProps) => {
               className="text-base md:text-lg text-foreground/90 dark:text-muted-foreground mt-6 mb-8 leading-relaxed font-light"
               variants={fadeInUp}
             >
-              Join the revolution that's redefining DeFi on Solana with{' '}
-              <span className="font-medium text-foreground">institutional-grade security</span>,{' '}
-              <span className="font-medium text-foreground">premium user experience</span>, and{' '}
-              <span className="font-medium text-foreground">sustainable tokenomics</span>.
+              A luxury meme with colony energy. Swarm the chart, stake the drip, and flex the NFTs —{' '}
+              <span className="font-medium text-primary-400">gold-standard chaos</span> on Solana.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -422,7 +417,7 @@ const Hero = ({ className }: HeroProps) => {
                   <Button
                     size="lg"
                     onClick={() => setIsBuyPanelOpen(true)}
-                    className={`group px-6 py-5 text-base font-medium bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 text-white shadow-lg hover:shadow-blue-500/30 transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden border border-blue-500/20`}
+                    className={`group px-6 py-5 text-base font-display tracking-wide bg-gradient-to-r from-primary-400 to-primary-500 hover:from-primary-300 hover:to-primary-400 text-primary-foreground shadow-lg hover:shadow-primary-500/40 transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden border border-primary-200/30`}
                   >
                     <motion.span
                       className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
@@ -431,7 +426,7 @@ const Hero = ({ className }: HeroProps) => {
                       transition={{ duration: 0.8, ease: easings.smooth }}
                     />
                     <span className="relative z-10 flex items-center">
-                      Buy Now
+                      Buy $ANTS
                       <motion.span
                         className="ml-2"
                         animate={{ x: [0, 4, 0] }}
@@ -453,7 +448,7 @@ const Hero = ({ className }: HeroProps) => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className={`px-6 py-5 text-base font-medium bg-white/80 hover:bg-white/90 text-gray-900 hover:text-gray-900 border-gray-300 hover:border-gray-400 shadow-sm transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden group`}
+                    className={`px-6 py-5 text-base font-display tracking-wide bg-transparent hover:bg-primary-500/10 text-foreground border-primary-500/40 hover:border-primary-400 shadow-sm transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden group`}
                   >
                     <span className="relative z-10 flex items-center">
                       Learn More
@@ -751,8 +746,8 @@ const Hero = ({ className }: HeroProps) => {
                       whileHover={{ scale: 1.03, y: -1 }}
                       title="KYC Verified"
                     >
-                      <Check className="w-3 h-3 inline-block mr-1 text-blue-500" />
-                      <span className="text-foreground/90 dark:text-blue-200/90 group-hover/kyc:text-blue-400 dark:group-hover/kyc:text-blue-200 transition-colors">
+                      <Check className="w-3 h-3 inline-block mr-1 text-primary-500" />
+                      <span className="text-foreground/90 dark:text-primary-200/90 group-hover/kyc:text-primary-400 dark:group-hover/kyc:text-primary-200 transition-colors">
                         KYC Verified
                       </span>
                     </motion.div>
@@ -811,10 +806,10 @@ const Hero = ({ className }: HeroProps) => {
                         boxShadow: '0 4px 24px -1px rgba(0, 0, 0, 0.1)'
                       }}
                     >
-                      <span className="text-purple-500/90 dark:text-purple-300/90 group-hover/featured:text-purple-400 transition-colors">
+                      <span className="text-secondary-500/90 dark:text-secondary-300/90 group-hover/featured:text-secondary-400 transition-colors">
                         <span className="inline-block group-hover/featured:animate-pulse">✨</span>
                       </span>
-                      <span className="text-foreground/80 dark:text-purple-100/80 ml-1 group-hover/featured:text-purple-400 dark:group-hover/featured:text-purple-200 transition-colors">
+                      <span className="text-foreground/80 dark:text-secondary-100/80 ml-1 group-hover/featured:text-secondary-400 dark:group-hover/featured:text-secondary-200 transition-colors">
                         {outlet}
                       </span>
                     </motion.div>
@@ -859,7 +854,7 @@ const Hero = ({ className }: HeroProps) => {
                     href="https://twitter.com/yourtwitter" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-foreground/60 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 p-2 rounded-full hover:bg-blue-500/10 dark:hover:bg-blue-500/20"
+                    className="text-foreground/60 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-300 p-2 rounded-full hover:bg-primary-500/10 dark:hover:bg-primary-500/20"
                     whileHover={{ y: -3, scale: 1.15 }}
                     whileTap={{ scale: 0.95 }}
                     title="Twitter"
@@ -870,7 +865,7 @@ const Hero = ({ className }: HeroProps) => {
                     href="https://discord.gg/yourdiscord" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-foreground/60 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-300 p-2 rounded-full hover:bg-indigo-500/10 dark:hover:bg-indigo-500/20"
+                    className="text-foreground/60 hover:text-secondary-500 dark:hover:text-secondary-400 transition-colors duration-300 p-2 rounded-full hover:bg-secondary-500/10 dark:hover:bg-secondary-500/20"
                     whileHover={{ y: -3, scale: 1.15 }}
                     whileTap={{ scale: 0.95 }}
                     title="Discord"

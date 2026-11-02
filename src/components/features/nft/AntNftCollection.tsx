@@ -71,8 +71,8 @@ export default function AntNftCollection() {
           <span className="text-sm uppercase tracking-wider text-primary-500 font-medium mb-3 block">
             Digital Collectibles
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            ANT <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500">NFT Collection</span>
+          <h2 className="text-4xl md:text-5xl font-display tracking-wide mb-6">
+            ANT <span className="gold-foil">NFT Collection</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Exclusive digital collectibles on the Solana blockchain. Own a piece of the ANT ecosystem.
