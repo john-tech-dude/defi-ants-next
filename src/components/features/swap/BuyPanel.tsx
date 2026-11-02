@@ -1,27 +1,11 @@
 'use client';
 
-import { useState, useCallback, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
-import { PublicKey } from '@solana/web3.js';
-import { ArrowLeftRight, RefreshCw, Wallet as WalletIcon, X } from 'lucide-react';
-import { toast } from 'sonner';
-import dynamic from 'next/dynamic';
+import { X } from 'lucide-react';
 import JupiterSwapComponent from './JupiterSwap';
-
-// Import JupiterTerminal with no SSR
-const JupiterTerminal = dynamic(
-  () => import('./JupiterTerminal').then(mod => mod.default),
-  { 
-    ssr: false,
-    loading: () => (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    )
-  }
-);
 
 // Types
 type Tab = 'swap' | 'stake';
@@ -31,45 +15,10 @@ interface BuyPanelProps {
   defaultTab?: Tab;
 }
 
-const JupiterSwap: React.FC<{ onSuccess: () => void }> = ({ onSuccess }) => {
-  return <JupiterSwapComponent onSuccess={onSuccess} />;
-};
-
 export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps) {
   const { publicKey, wallet, connect, connected, disconnect } = useWallet();
   const { connection } = useConnection();
   const [activeTab, setActiveTab] = useState<Tab>(defaultTab);
-  const [isProcessing, setIsProcessing] = useState(false);
-
-  const handleConnect = useCallback(async () => {
-    if (wallet && !connected) {
-      setIsProcessing(true);
-      try {
-        await connect();
-        toast.success('Wallet connected successfully');
-      } catch (error) {
-        console.error('Failed to connect wallet:', error);
-        toast.error('Failed to connect wallet');
-      } finally {
-        setIsProcessing(false);
-      }
-    }
-  }, [wallet, connected, connect]);
-
-  const handleDisconnect = useCallback(async () => {
-    if (wallet && connected) {
-      setIsProcessing(true);
-      try {
-        await disconnect();
-        toast.success('Wallet disconnected');
-      } catch (error) {
-        console.error('Failed to disconnect wallet:', error);
-        toast.error('Failed to disconnect wallet');
-      } finally {
-        setIsProcessing(false);
-      }
-    }
-  }, [wallet, connected, disconnect]);
 
   // Memoize tab content to prevent unnecessary re-renders
   const tabContent = useMemo(() => {
@@ -99,47 +48,7 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
           </h2>
           <div className="flex items-center space-x-3">
             {/* Wallet Connection */}
-            <div className="relative">
-              {!connected ? (
-                <button
-                  onClick={handleConnect}
-                  disabled={isProcessing}
-                  className={`text-sm ${
-                    isProcessing ? 'bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'
-                  } text-white px-4 py-1.5 rounded-md transition-colors flex items-center`}
-                >
-                  {isProcessing ? (
-                    <>
-                      <RefreshCw className="mr-1.5 h-3.5 w-3.5 animate-spin" />
-                      Connecting...
-                    </>
-                  ) : (
-                    <>
-                      <WalletIcon className="mr-1.5 h-3.5 w-3.5" />
-                      Connect Wallet
-                    </>
-                  )}
-                </button>
-              ) : (
-                <button
-                  onClick={handleDisconnect}
-                  disabled={isProcessing}
-                  className="text-sm bg-red-600 hover:bg-red-700 text-white px-4 py-1.5 rounded-md transition-colors flex items-center"
-                >
-                  {isProcessing ? (
-                    <>
-                      <RefreshCw className="mr-1.5 h-3.5 w-3.5 animate-spin" />
-                      Disconnecting...
-                    </>
-                  ) : (
-                    <>
-                      <WalletIcon className="mr-1.5 h-3.5 w-3.5" />
-                      Disconnect
-                    </>
-                  )}
-                </button>
-              )}
-            </div>
+            <WalletMultiButton className="!bg-blue-600 hover:!bg-blue-700 !text-white !text-sm !px-4 !py-1.5 !rounded-md transition-colors" />
 
             {/* Close Button */}
             <button
