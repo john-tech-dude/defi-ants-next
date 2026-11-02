@@ -1,14 +1,10 @@
 'use client';
 
-import { ReactNode, useEffect, useState, useMemo } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { ThemeProvider } from 'next-themes';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { ClientProvider } from '@/contexts/ClientContext';
 import { WalletProvider } from './WalletProvider';
-import { ConnectionProvider } from '@solana/wallet-adapter-react';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { clusterApiUrl } from '@solana/web3.js';
-import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -19,14 +15,6 @@ interface ProvidersProps {
  */
 export function Providers({ children }: ProvidersProps) {
   const [mounted, setMounted] = useState(false);
-  
-  // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
-  const network = process.env.NEXT_PUBLIC_SOLANA_NETWORK as WalletAdapterNetwork || WalletAdapterNetwork.Devnet;
-  
-  // You can also provide a custom RPC endpoint
-  const endpoint = useMemo(() => {
-    return process.env.NEXT_PUBLIC_SOLANA_RPC_URL || clusterApiUrl(network);
-  }, [network]);
 
   // Only render UI after mounting to prevent hydration issues
   useEffect(() => {
@@ -73,13 +61,9 @@ export function Providers({ children }: ProvidersProps) {
     >
       <TooltipProvider>
         <ClientProvider>
-          <ConnectionProvider endpoint={endpoint}>
-            <ErrorBoundary>
-              <WalletProvider>
-                {children}
-              </WalletProvider>
-            </ErrorBoundary>
-          </ConnectionProvider>
+          <WalletProvider>
+            {children}
+          </WalletProvider>
         </ClientProvider>
       </TooltipProvider>
     </ThemeProvider>

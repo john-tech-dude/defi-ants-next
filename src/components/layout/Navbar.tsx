@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import FallbackImage from '../common/FallbackImage';
-import WalletConnectButton from '@/components/features/wallet/WalletConnectButton';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useClientContext } from '@/contexts/ClientContext';
 import { useWalletConnection } from '@/hooks/useWalletConnection';
 import { cn } from '@/lib/utils';
@@ -117,7 +117,7 @@ export default function Navbar({}: NavbarProps) {
 
         {/* Wallet Connect Button - Desktop Only */}
         <div className="hidden md:flex items-center ml-4">
-          <WalletConnectButton 
+          <WalletMultiButton
             className={cn(
               '!h-9 !px-4',
               '!bg-primary-400 hover:!bg-primary-300',
@@ -126,9 +126,8 @@ export default function Navbar({}: NavbarProps) {
               'transition-all duration-200',
               'shadow-sm hover:shadow-md',
               'flex items-center justify-center',
-              'text-sm md:text-base',
-              connected ? '!px-3' : '!px-4'
-            )} 
+              'text-sm md:text-base'
+            )}
           />
         </div>
 
@@ -193,7 +192,7 @@ export default function Navbar({}: NavbarProps) {
               
               {/* Mobile Wallet Button */}
               <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-                <WalletConnectButton 
+                <WalletMultiButton
                   className={cn(
                     '!h-10 !w-full',
                     '!bg-primary-400 hover:!bg-primary-300',
@@ -202,9 +201,8 @@ export default function Navbar({}: NavbarProps) {
                     'transition-all duration-200',
                     'shadow-sm hover:shadow-md',
                     'flex items-center justify-center',
-                    'text-base',
-                    connected ? '!px-3' : '!px-4'
-                  )} 
+                    'text-base'
+                  )}
                 />
               </div>
             </div>
