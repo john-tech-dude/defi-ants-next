@@ -261,6 +261,7 @@ export function JupiterTerminal({
       <div
         id="jupiter-terminal-container"
         className="w-full h-full min-h-[500px]"
+        style={{ minHeight: '500px' }}
       />
     </div>
   );

@@ -86,6 +86,10 @@ export default function RootLayout({
           src="https://terminal.jup.ag/main-v4.js"
           strategy="afterInteractive"
         />
+        <Script
+          src="https://unpkg.com/@jup-ag/react-hook@latest/dist/index.js"
+          strategy="afterInteractive"
+        />
       </head>
       <body className="font-body antialiased">
         <Providers>
