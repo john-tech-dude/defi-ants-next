@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { useWallet } from '@solana/wallet-adapter-react';
+import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { X } from 'lucide-react';
 import JupiterSwapComponent from './JupiterSwap';
@@ -17,7 +17,6 @@ interface BuyPanelProps {
 
 export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps) {
   const { publicKey, wallet, connect, connected, disconnect } = useWallet();
-  const { connection } = useConnection();
   const [activeTab, setActiveTab] = useState<Tab>(defaultTab);
 
   // Memoize tab content to prevent unnecessary re-renders
