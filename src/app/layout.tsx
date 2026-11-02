@@ -58,6 +58,29 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${bangers.variable}`} suppressHydrationWarning>
       <head>
         <Script
+          id="suppress-extension-errors"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const originalError = console.error;
+                console.error = function(...args) {
+                  const message = args[0]?.toString() || '';
+                  if (
+                    message.includes('Unable to set window.solana') ||
+                    message.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
+                    message.includes('chrome-extension') ||
+                    message.includes('try uninstalling Phantom')
+                  ) {
+                    return;
+                  }
+                  originalError.apply(console, args);
+                };
+              })();
+            `,
+          }}
+        />
+        <Script
           src="https://terminal.jup.ag/main-v4.js"
           strategy="afterInteractive"
         />
