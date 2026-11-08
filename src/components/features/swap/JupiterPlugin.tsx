@@ -31,24 +31,47 @@ export default function JupiterPlugin({
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [jupiterReady, setJupiterReady] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+
+    // Check if Jupiter is already loaded
+    if (window.Jupiter) {
+      console.log('Jupiter already loaded');
+      setJupiterReady(true);
+      setIsLoaded(true);
+      return;
+    }
 
     // Load Jupiter Terminal script (v4 API)
     const script = document.createElement('script');
     script.src = 'https://terminal.jup.ag/main-v2.js';
     script.async = true;
+
     script.onload = () => {
       console.log('Jupiter Terminal script loaded');
-      setIsLoaded(true);
-      initPlugin();
+      // Wait a bit for Jupiter to initialize
+      setTimeout(() => {
+        if (window.Jupiter) {
+          console.log('Jupiter object detected');
+          setJupiterReady(true);
+          setIsLoaded(true);
+          initPlugin();
+        } else {
+          console.error('Jupiter object not found after script load');
+          setError('Jupiter Swap failed to initialize');
+          toast.error('Jupiter Swap failed to initialize');
+        }
+      }, 1000);
     };
+
     script.onerror = () => {
       console.error('Failed to load Jupiter Terminal script');
       setError('Failed to load Jupiter Swap');
       toast.error('Failed to load Jupiter Swap');
     };
+
     document.head.appendChild(script);
 
     return () => {
@@ -58,9 +81,15 @@ export default function JupiterPlugin({
     };
   }, [connected, wallet]);
 
+  useEffect(() => {
+    if (jupiterReady && connected) {
+      initPlugin();
+    }
+  }, [jupiterReady, connected, wallet, inputMint, outputMint]);
+
   const initPlugin = async () => {
     if (!containerRef.current || !window.Jupiter) {
-      console.error('Jupiter not available');
+      console.error('Jupiter not available:', { containerRef: !!containerRef.current, Jupiter: !!window.Jupiter });
       setError('Jupiter Swap not available');
       return;
     }
