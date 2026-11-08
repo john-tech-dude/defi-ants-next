@@ -59,6 +59,7 @@ import {
 } from 'lucide-react';
 import Button from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import BlockchainMesh from '@/components/features/threejs/BlockchainMesh';
 
 // Types
 interface HeroProps {
@@ -311,6 +312,8 @@ const Hero = ({ className }: HeroProps) => {
 
   return (
     <div className={cn('relative min-h-screen flex items-center justify-center overflow-hidden group', className)}>
+      {/* 3D Blockchain Mesh Network Visualization */}
+      <BlockchainMesh className="opacity-30 dark:opacity-20" />
       {renderParticles()}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-6 lg:py-10">
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center relative">
