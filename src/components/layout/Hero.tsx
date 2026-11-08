@@ -354,7 +354,7 @@ const Hero = ({ className }: HeroProps) => {
                   className="text-base md:text-lg lg:text-xl font-display tracking-wide text-foreground leading-tight mt-2"
                   variants={fadeInDown}
                 >
-                  The colony takes over
+                  Join the Revolution!
                 </motion.h2>
                 <div className="flex justify-center w-full">
                   <motion.div

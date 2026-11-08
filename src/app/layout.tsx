@@ -26,7 +26,7 @@ const bangers = Bangers({
 
 export const metadata: Metadata = {
   title: 'DeFi ANT! | $ANTS',
-  description: 'Premium meme coin on Solana. The colony takes over.',
+  description: 'Premium meme coin on Solana. Join the Revolution!',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
