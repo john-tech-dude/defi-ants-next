@@ -310,13 +310,13 @@ const Hero = ({ className }: HeroProps) => {
   };
 
   return (
-    <div className={cn('relative min-h-screen flex items-start pt-20 lg:pt-24 justify-center overflow-hidden group', className)}>
+    <div className={cn('relative min-h-screen flex items-center justify-center overflow-hidden group', className)}>
       {renderParticles()}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 py-6 lg:py-10">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start relative">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center relative">
           {/* Left Column - Text Content */}
           <motion.div
-            className="flex flex-col justify-start z-20 text-center lg:text-left -mt-4 lg:-mt-6"
+            className="flex flex-col justify-center z-20 text-center lg:text-left"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
@@ -882,7 +882,7 @@ const Hero = ({ className }: HeroProps) => {
 
           {/* Video Content - Hidden on mobile, shown on lg screens */}
           <motion.div
-            className="relative w-full h-full flex-col items-center justify-center -mt-6 lg:-mt-2 hidden lg:flex"
+            className="relative w-full h-full flex-col items-center justify-center hidden lg:flex"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
