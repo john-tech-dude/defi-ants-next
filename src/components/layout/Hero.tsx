@@ -217,10 +217,29 @@ const Hero = ({ className }: HeroProps) => {
 
   const handleVideoEnd = useCallback(() => {
     if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(handleVideoError);
+      // Reverse playback instead of resetting
+      const video = videoRef.current;
+      const isPlayingForward = video.playbackRate > 0;
+
+      if (isPlayingForward) {
+        // If playing forward and reached end, reverse
+        video.playbackRate = -0.8; // Reverse at 0.8x speed
+      } else {
+        // If playing backward and reached start, play forward
+        video.playbackRate = 0.8; // Forward at 0.8x speed
+      }
     }
   }, [handleVideoError]);
+
+  const handleTimeUpdate = useCallback(() => {
+    if (videoRef.current) {
+      const video = videoRef.current;
+      // Check if reverse playback reached the beginning
+      if (video.currentTime <= 0 && video.playbackRate < 0) {
+        video.playbackRate = 0.8; // Switch to forward playback
+      }
+    }
+  }, []);
 
   // Effect for mobile detection and scroll
   useEffect(() => {
@@ -242,6 +261,7 @@ const Hero = ({ className }: HeroProps) => {
       video.addEventListener('play', () => setIsPlaying(true));
       video.addEventListener('pause', () => setIsPlaying(false));
       video.addEventListener('ended', handleVideoEnd);
+      video.addEventListener('timeupdate', handleTimeUpdate);
       video.addEventListener('error', handleVideoError);
       video.addEventListener('loadeddata', handleVideoLoaded);
       
@@ -271,11 +291,12 @@ const Hero = ({ className }: HeroProps) => {
         video.removeEventListener('play', () => setIsPlaying(true));
         video.removeEventListener('pause', () => setIsPlaying(false));
         video.removeEventListener('ended', handleVideoEnd);
+        video.removeEventListener('timeupdate', handleTimeUpdate);
         video.removeEventListener('error', handleVideoError);
         video.removeEventListener('loadeddata', handleVideoLoaded);
       }
     };
-  }, [handleVideoEnd, handleVideoError, handleVideoLoaded]);
+  }, [handleVideoEnd, handleVideoError, handleVideoLoaded, handleTimeUpdate]);
 
   const renderParticles = () => {
     if (typeof window === 'undefined') return null;
