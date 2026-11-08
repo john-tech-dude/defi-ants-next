@@ -38,17 +38,17 @@ export const GlassCard: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   );
 };
 
-export const PremiumHeading: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({ 
-  className, 
-  children, 
-  ...props 
+export const PremiumHeading: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({
+  className,
+  children,
+  ...props
 }) => {
   return (
-    <h2 
+    <h2
       className={cn(
-        'font-bold tracking-tight bg-clip-text text-transparent bg-gradient-gold',
+        'font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -56,17 +56,17 @@ export const PremiumHeading: React.FC<React.HTMLAttributes<HTMLHeadingElement>> 
   );
 };
 
-export const PremiumButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({ 
-  className, 
-  children, 
-  ...props 
+export const PremiumButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  className,
+  children,
+  ...props
 }) => {
   return (
-    <button 
+    <button
       className={cn(
-        'relative overflow-hidden rounded-lg px-6 py-3 font-medium transition-all bg-gradient-gold text-gray-900 hover:shadow-lg hover:shadow-amber-500/20 hover:-translate-y-0.5 active:translate-y-0',
+        'relative overflow-hidden rounded-lg px-6 py-3 font-medium transition-all bg-gradient-to-r from-primary-500 to-secondary-500 text-white hover:shadow-lg hover:shadow-primary-500/20 hover:-translate-y-0.5 active:translate-y-0',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -110,35 +110,35 @@ export const PremiumTooltip: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   );
 };
 
-export const PremiumInput: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({ 
-  className, 
-  ...props 
+export const PremiumInput: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
+  className,
+  ...props
 }) => {
   return (
-    <input 
+    <input
       className={cn(
-        'flex h-10 w-full rounded-lg border border-border-highlight bg-gray-900/40 backdrop-blur-sm text-white placeholder:text-gray-400 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/30 transition-all duration-200',
+        'flex h-10 w-full rounded-lg border border-border-highlight bg-gray-900/40 backdrop-blur-sm text-white placeholder:text-gray-400 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/30 transition-all duration-200',
         className
-      )} 
+      )}
       {...props}
     />
   );
 };
 
-export const PremiumGradientBorder: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ 
-  className, 
-  children, 
-  ...props 
+export const PremiumGradientBorder: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  className,
+  children,
+  ...props
 }) => {
   return (
-    <div 
+    <div
       className={cn(
         'relative rounded-xl p-[1px] overflow-hidden',
         className
-      )} 
+      )}
       {...props}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 opacity-70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-500 via-secondary-500 to-primary-400 opacity-70" />
       <div className="relative bg-gray-900 rounded-[calc(0.75rem-1px)] p-4">
         {children}
       </div>
@@ -147,17 +147,17 @@ export const PremiumGradientBorder: React.FC<React.HTMLAttributes<HTMLDivElement
 };
 
 // Premium Text Effects
-export const GradientText: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({ 
-  className, 
-  children, 
-  ...props 
+export const GradientText: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
+  className,
+  children,
+  ...props
 }) => {
   return (
-    <span 
+    <span
       className={cn(
-        'bg-clip-text text-transparent bg-gradient-gold',
+        'bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500',
         className
-      )} 
+      )}
       {...props}
     >
       {children}
@@ -185,17 +185,17 @@ export const HoverScaleWrapper: React.FC<React.HTMLAttributes<HTMLDivElement>> =
 };
 
 // Premium Focus States
-export const PremiumFocusWrapper: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ 
-  className, 
-  children, 
-  ...props 
+export const PremiumFocusWrapper: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  className,
+  children,
+  ...props
 }) => {
   return (
-    <div 
+    <div
       className={cn(
-        'focus-within:ring-2 focus-within:ring-amber-500/30 focus-within:ring-offset-2 focus-within:ring-offset-gray-900 rounded-lg',
+        'focus-within:ring-2 focus-within:ring-primary-500/30 focus-within:ring-offset-2 focus-within:ring-offset-gray-900 rounded-lg',
         className
-      )} 
+      )}
       {...props}
     >
       {children}

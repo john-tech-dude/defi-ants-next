@@ -205,7 +205,7 @@ export default function Footer(): React.ReactElement {
                       animate="animate"
                     >
                       <span className="text-2xl font-display tracking-wide">
-                        <span className="gold-foil">
+                        <span className="gradient-text">
                           DeFi
                         </span>
                         <span className="text-foreground">
@@ -291,7 +291,7 @@ export default function Footer(): React.ReactElement {
                 viewport={{ once: true, margin: '-50px' }}
               >
                 <div className="text-sm text-muted-foreground">
-                  &copy; 2026 <span className="font-medium text-foreground">DeFi ANT!</span> All rights reserved.
+                  &copy; 2026 <span className="font-medium gradient-text">DeFiANT!</span> All rights reserved.
                 </div>
 
                 <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
@@ -328,7 +328,7 @@ export default function Footer(): React.ReactElement {
               >
                 <p className="text-xs text-center text-muted-foreground/60 leading-relaxed">
                   <span className="font-medium text-foreground/80">Disclaimer:</span> Cryptocurrency investments are subject to high market risk.
-                  DeFi ANT! is not a financial advisor. Please make your investments cautiously.
+                  <span className="gradient-text">DeFiANT!</span> is not a financial advisor. Please make your investments cautiously.
                   Never invest money you cannot afford to lose.
                 </p>
               </motion.div>

@@ -67,29 +67,29 @@ export default function About() {
   // Features array
   const features: Feature[] = [
     {
-      icon: <Shield className="h-8 w-8 text-primary-500 group-hover:text-primary-600 transition-colors" />,
+      icon: <Shield className="h-8 w-8 text-foreground dark:text-primary-500 group-hover:text-foreground dark:group-hover:text-primary-600 transition-colors" />,
       title: 'Secure & Transparent',
       description: 'Built on Solana blockchain with smart contracts audited for security and transparency.',
     },
     {
-      icon: <Zap className="h-8 w-8 text-primary-500 group-hover:text-primary-600 transition-colors" />,
+      icon: <Zap className="h-8 w-8 text-foreground dark:text-primary-500 group-hover:text-foreground dark:group-hover:text-primary-600 transition-colors" />,
       title: 'Lightning Fast',
       description: 'Experience near-instant transactions with Solana\'s high-performance blockchain.',
     },
     {
-      icon: <Users className="h-8 w-8 text-primary-500 group-hover:text-primary-600 transition-colors" />,
+      icon: <Users className="h-8 w-8 text-foreground dark:text-primary-500 group-hover:text-foreground dark:group-hover:text-primary-600 transition-colors" />,
       title: 'Community Driven',
       description: 'Governed by our community with a focus on decentralization and collective decision making.',
     },
     {
-      icon: <Rocket className="h-8 w-8 text-primary-500 group-hover:text-primary-600 transition-colors" />,
+      icon: <Rocket className="h-8 w-8 text-foreground dark:text-primary-500 group-hover:text-foreground dark:group-hover:text-primary-600 transition-colors" />,
       title: 'Meme Utility',
       description: 'Staking rewards, NFT integration, and community incentives that give real value to our meme token.',
     },
   ];
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
       {/* Decorative background elements */}
       <div
         className="absolute top-40 left-0 w-80 h-80 bg-gradient-to-br from-primary-500/30 to-primary-400/10 rounded-full blur-[100px] -z-10 animate-float will-change-transform opacity-0 md:opacity-100"
@@ -129,7 +129,7 @@ export default function About() {
           />
         ))}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Left Column - Image */}
           <motion.div 
             className="relative"
@@ -138,8 +138,8 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <motion.div 
-              className="relative w-full h-[600px] rounded-3xl overflow-hidden border border-white/10 bg-background/80 shadow-2xl group"
+            <motion.div
+              className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-background/80 shadow-2xl group"
               whileHover={{ 
                 y: -5,
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -198,22 +198,22 @@ export default function About() {
                           ease: 'easeInOut'
                         }}
                       />
-                      <motion.div 
-                        className="absolute inset-0 p-8 text-white flex flex-col justify-center"
+                      <motion.div
+                        className="absolute inset-0 p-4 sm:p-6 lg:p-8 text-white flex flex-col justify-center"
                         initial={{ y: 20, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       >
-                        <motion.h3 
-                          className="text-3xl font-bold mb-3"
+                        <motion.h3
+                          className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3"
                           whileHover={{ x: 5 }}
                           transition={{ type: 'spring', stiffness: 300 }}
                         >
                           Our Vision
                         </motion.h3>
-                        <motion.p 
-                          className="text-lg opacity-90 leading-relaxed"
+                        <motion.p
+                          className="text-base sm:text-lg opacity-90 leading-relaxed"
                           whileHover={{ x: 5 }}
                           transition={{ type: 'spring', stiffness: 300, delay: 0.1 }}
                         >
@@ -293,8 +293,8 @@ export default function About() {
           </motion.div>
 
           {/* Right Column - Content */}
-          <motion.div 
-            className="space-y-8"
+          <motion.div
+            className="space-y-6 sm:space-y-8"
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -304,28 +304,28 @@ export default function About() {
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
               variants={containerVariants}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
-              <span className="section-kicker mb-4">The colony</span>
-              <Title 
-                as="h3" 
+              <span className="section-kicker mb-3 sm:mb-4">The colony</span>
+              <Title
+                as="h3"
                 variant="h3"
                 gradient="primary"
-                className="text-3xl mb-4"
+                className="text-2xl sm:text-3xl mb-3 sm:mb-4"
               >
-                Why ride with DeFi ANT!?
+                Why ride with <span className="gradient-text">DeFiANT!</span>?
               </Title>
-              
-              <motion.p variants={itemVariants} className="text-muted-foreground leading-relaxed">
-                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, DeFi ANT! launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
+
+              <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, <span className="gradient-text">DeFiANT!</span> launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
               </motion.p>
-              
-              <motion.p variants={itemVariants} className="text-muted-foreground leading-relaxed mb-8">
+
+              <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 sm:mb-8">
                 Our token combines the viral appeal of meme culture with real DeFi functionality, leveraging Solana's fast and low-cost blockchain to provide staking, NFTs, and community governance to our ANT army.
               </motion.p>
               
-              <motion.div 
-                className="h-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-transparent w-48 mx-auto mb-8 rounded-full relative overflow-hidden"
+              <motion.div
+                className="h-0.5 bg-gradient-to-r from-primary-500 via-accent-500 to-transparent w-32 sm:w-48 mx-auto mb-6 sm:mb-8 rounded-full relative overflow-hidden"
                 variants={itemVariants}
               >
                 <motion.div 
@@ -345,24 +345,24 @@ export default function About() {
                 />
               </motion.div>
               
-              <motion.div 
+              <motion.div
                 variants={containerVariants}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8"
               >
                 {features.map((feature, index) => (
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="p-6 sticker-card group"
+                    className="p-4 sm:p-6 sticker-card group"
                   >
                     <div className="relative z-10">
-                      <div className="w-12 h-12 flex items-center justify-center bg-primary-500/10 rounded-lg mb-4 group-hover:bg-primary-500/20 transition-colors">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-primary-500/10 rounded-lg mb-3 sm:mb-4 group-hover:bg-primary-500/20 transition-colors">
                         {feature.icon}
                       </div>
-                      <h3 className="text-xl font-display tracking-wide mb-3 group-hover:text-primary-400 transition-colors">
+                      <h3 className="text-base sm:text-lg font-display tracking-wide mb-2 sm:mb-3 group-hover:text-foreground dark:group-hover:text-primary-400 transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -373,8 +373,8 @@ export default function About() {
                 ))}
               </motion.div>
               
-              <motion.div variants={itemVariants} className="mt-8">
-                <Button href="#tokenomics" className="btn-outline">
+              <motion.div variants={itemVariants} className="mt-6 sm:mt-8">
+                <Button href="#tokenomics" className="btn-outline text-sm sm:text-base">
                   Explore Tokenomics <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </motion.div>

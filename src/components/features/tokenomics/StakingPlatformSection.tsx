@@ -37,7 +37,7 @@ const StakingTier: React.FC<StakingTierProps> = ({
     >
       {isPopular && (
         <div className="absolute -top-3 left-0 right-0 flex justify-center">
-          <span className="bg-gradient-gold text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+          <span className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
             Most Popular
           </span>
         </div>
@@ -165,8 +165,8 @@ const StakingPlatformSection: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="flex flex-col items-center text-center"
         >
-          <div className="p-3 rounded-full bg-gradient-gold mb-4">
-            <Coins className="h-6 w-6 sm:h-7 sm:w-7 text-gray-900" />
+          <div className="p-3 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 mb-4">
+            <Coins className="h-6 w-6 sm:h-7 sm:w-7 text-white" />
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3">Multi-Tier Staking</h3>
           <p className="text-gray-300 mb-6 sm:mb-8 max-w-lg mx-auto">

@@ -105,7 +105,7 @@ export default function NFTGallery() {
             Meme Gallery
           </motion.div>
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-display tracking-wide mb-6">
-            <span className="gold-foil">ANT Meme Collection</span>
+            <span className="gradient-text">ANT Meme Collection</span>
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-muted-foreground max-w-3xl mx-auto">
             The best memes from the ANT community - because we're a meme token with actual utility!

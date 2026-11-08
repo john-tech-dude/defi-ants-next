@@ -224,7 +224,7 @@ const Hero = ({ className }: HeroProps) => {
   // Effect for mobile detection and scroll
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
+      setIsMobile(window.innerWidth < 768); // Updated breakpoint for better mobile detection
     };
     
     checkIfMobile();
@@ -310,78 +310,45 @@ const Hero = ({ className }: HeroProps) => {
   };
 
   return (
-    <div className={cn('relative min-h-screen flex items-start pt-24 lg:pt-28 justify-center overflow-hidden group', className)}>
+    <div className={cn('relative min-h-screen flex items-start pt-20 lg:pt-24 justify-center overflow-hidden group', className)}>
       {renderParticles()}
-      {/* Aurora Background with Animation */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-primary-500/15 via-secondary-900/25 to-transparent"
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%'],
-            scale: [1, 1.05, 1],
-            opacity: [0.8, 1, 0.8]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            ease: 'easeInOut',
-          }}
-        />
-      </motion.div>
-      
-      <div className="relative z-10 container mx-auto px-6 py-8 lg:py-12">
-        {/* Floating glass orbs */}
-        <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-primary-500/10 to-transparent blur-3xl opacity-30 -z-10" />
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-gradient-to-tr from-secondary-500/15 to-transparent blur-3xl opacity-30 -z-10" />
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start relative">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 py-6 lg:py-10">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start relative">
           {/* Left Column - Text Content */}
           <motion.div
-            className="flex flex-col justify-start z-20 text-center lg:text-left -mt-6 lg:-mt-8"
+            className="flex flex-col justify-start z-20 text-center lg:text-left -mt-4 lg:-mt-6"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
           >
             <motion.div
-              className="space-y-3 md:space-y-4"
+              className="space-y-2 md:space-y-3"
               variants={staggerContainer}
               initial="hidden"
               animate="visible"
             >
               <div className="text-center">
                 <motion.h1
-                  className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl font-display tracking-wide inline-block ink-outline"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display tracking-wide inline-block"
                   variants={scaleIn}
                 >
                   <motion.span
-                    className="inline-block gold-foil"
+                    className="inline-block gradient-text"
                     whileHover={{ scale: 1.05 }}
                     transition={springConfig}
                   >
-                    DeFi
-                  </motion.span>
-                  <motion.span
-                    className="text-foreground relative inline-block"
-                    whileHover={{ scale: 1.05 }}
-                    transition={springConfig}
-                  >
-                    {' '}ANT!
+                    DeFiANT!
                   </motion.span>
                 </motion.h1>
                 <motion.h2
-                  className="text-xl md:text-2xl lg:text-3xl font-display tracking-wide text-primary-400 leading-tight mt-4"
+                  className="text-base md:text-lg lg:text-xl font-display tracking-wide text-foreground leading-tight mt-2"
                   variants={fadeInDown}
                 >
                   The colony takes over
                 </motion.h2>
                 <div className="flex justify-center w-full">
                   <motion.div
-                    className="section-kicker mt-4"
+                    className="section-kicker mt-2"
                     variants={fadeInUp}
                     whileHover={{ scale: 1.05 }}
                     transition={springBouncy}
@@ -395,17 +362,17 @@ const Hero = ({ className }: HeroProps) => {
 
             {/* Description */}
             <motion.p
-              className="text-base md:text-lg text-foreground/90 dark:text-muted-foreground mt-6 mb-8 leading-relaxed font-light"
+              className="text-xs sm:text-sm md:text-base text-foreground/90 dark:text-muted-foreground mt-3 mb-4 leading-relaxed font-light"
               variants={fadeInUp}
             >
               A luxury meme with colony energy. Swarm the chart, stake the drip, and flex the NFTs —{' '}
-              <span className="font-medium text-primary-400">gold-standard chaos</span> on Solana.
+              <span className="font-medium text-foreground dark:text-primary-400">gold-standard chaos</span> on Solana.
             </motion.p>
 
             {/* CTA Buttons */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               <motion.div
-                className="flex flex-col sm:flex-row gap-4"
+                className="flex flex-col sm:flex-row gap-2 sm:gap-4"
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
@@ -415,9 +382,9 @@ const Hero = ({ className }: HeroProps) => {
                   variants={staggerItem}
                 >
                   <Button
-                    size="lg"
+                    size="md"
                     onClick={() => setIsBuyPanelOpen(true)}
-                    className={`group px-6 py-5 text-base font-display tracking-wide bg-gradient-to-r from-primary-400 to-primary-500 hover:from-primary-300 hover:to-primary-400 text-primary-foreground shadow-lg hover:shadow-primary-500/40 transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden border border-primary-200/30`}
+                    className={`group px-4 py-3 text-xs sm:text-sm md:text-base font-display tracking-wide bg-gradient-to-r from-primary-400 to-primary-500 hover:from-primary-300 hover:to-primary-400 text-primary-foreground shadow-lg hover:shadow-primary-500/40 transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden border border-primary-200/30`}
                   >
                     <motion.span
                       className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
@@ -441,38 +408,73 @@ const Hero = ({ className }: HeroProps) => {
                     </span>
                   </Button>
                 </motion.div>
-                <motion.div
-                  {...magneticButton}
-                  variants={staggerItem}
-                >
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className={`px-6 py-5 text-base font-display tracking-wide bg-transparent hover:bg-primary-500/10 text-foreground border-primary-500/40 hover:border-primary-400 shadow-sm transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden group`}
-                  >
-                    <span className="relative z-10 flex items-center">
-                      Learn More
-                      <motion.span
-                        className="ml-2"
-                        animate={{ y: [0, 2, 0] }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                        }}
-                      >
-                        <ChevronDown className="h-4 w-4 text-gray-700" />
-                      </motion.span>
-                    </span>
-                  </Button>
-                </motion.div>
               </motion.div>
 
-              {/* Token Metrics */}
-            <div className="mt-8">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-medium text-muted-foreground">Live Metrics</h3>
-                <button 
+              {/* Learn More - Only show on larger screens, on mobile it's a subtle link */}
+              <motion.div
+                className="hidden sm:flex justify-center"
+                variants={staggerItem}
+              >
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-sm text-muted-foreground hover:text-foreground"
+                >
+                  Learn More
+                  <ChevronDown className="h-4 w-4 ml-1" />
+                </Button>
+              </motion.div>
+
+              {/* Mobile-only: Simple stats toggle */}
+              <motion.div
+                className="sm:hidden flex justify-center mt-4"
+                variants={staggerItem}
+              >
+                <button
+                  onClick={() => setShowMetrics(!showMetrics)}
+                  className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+                >
+                  {showMetrics ? 'Hide Stats' : 'View Stats'}
+                  <ChevronDown className={`w-3 h-3 transition-transform ${showMetrics ? 'rotate-180' : ''}`} />
+                </button>
+              </motion.div>
+
+              {/* Mobile-only: Collapsible metrics */}
+              <AnimatePresence>
+                {showMetrics && (
+                  <motion.div
+                    className="sm:hidden mt-3"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                  >
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="text-center p-2 bg-card rounded-lg border">
+                        <div className="text-sm font-bold">${MOCK_DATA.price.toFixed(6)}</div>
+                        <div className="text-[10px] text-muted-foreground">Price</div>
+                      </div>
+                      <div className="text-center p-2 bg-card rounded-lg border">
+                        <div className="text-sm font-bold">{MOCK_DATA.holders.toLocaleString()}</div>
+                        <div className="text-[10px] text-muted-foreground">Holders</div>
+                      </div>
+                      <div className="text-center p-2 bg-card rounded-lg border">
+                        <div className="text-sm font-bold">${(MOCK_DATA.marketCap / 1000000).toFixed(1)}M</div>
+                        <div className="text-[10px] text-muted-foreground">Market Cap</div>
+                      </div>
+                      <div className="text-center p-2 bg-card rounded-lg border">
+                        <div className="text-sm font-bold">1M+</div>
+                        <div className="text-[10px] text-muted-foreground">Supply</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Token Metrics - Hidden on mobile by default, shown on larger screens */}
+            <div className="hidden sm:block mt-4">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-xs sm:text-sm font-medium text-muted-foreground">Live Metrics</h3>
+                <button
                   onClick={() => setShowMetrics(!showMetrics)}
                   className="text-xs text-primary-500 hover:text-primary-400 transition-colors flex items-center"
                 >
@@ -480,20 +482,20 @@ const Hero = ({ className }: HeroProps) => {
                   <ChevronDown className={`w-3 h-3 ml-1 transition-transform ${showMetrics ? 'rotate-180' : ''}`} />
                 </button>
               </div>
-              
-              <motion.div 
-                className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4 overflow-hidden relative"
+
+              <motion.div
+                className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-3 mb-2 overflow-hidden relative"
                 initial={{ opacity: 0, height: 0 }}
-                animate={{ 
-                  opacity: 1, 
+                animate={{
+                  opacity: 1,
                   height: 'auto',
                   transition: { duration: 0.6, type: "spring", stiffness: 70, damping: 20 }
                 }}
               >
                 <div className="relative group cursor-pointer">
                   {/* Glow layer */}
-                  <div 
-                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-500/30 to-primary-600/30 dark:from-primary-400/40 dark:to-primary-500/40 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
+                  <div
+                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-gray-500/20 to-gray-600/20 dark:from-gray-400/30 dark:to-gray-500/30 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
                     style={{
                       filter: 'blur(20px)',
                       transform: 'translateZ(0)',
@@ -504,11 +506,11 @@ const Hero = ({ className }: HeroProps) => {
                     }}
                   />
                   {/* Card content */}
-                  <motion.div 
-                    className={`p-3 sm:p-4 rounded-xl ${STYLES.GLASS_METRIC} text-center min-w-0 relative z-10 h-full`}
-                    whileHover={{ 
+                  <motion.div
+                    className={`p-1.5 sm:p-3 rounded-lg ${STYLES.GLASS_METRIC} text-center min-w-0 relative z-10 h-full`}
+                    whileHover={{
                       y: -4,
-                      transition: { 
+                      transition: {
                         type: 'spring',
                         stiffness: 400,
                         damping: 15
@@ -523,10 +525,10 @@ const Hero = ({ className }: HeroProps) => {
                   >
                     <div className="relative z-10 flex flex-col items-center">
                       <div className="flex flex-col items-center">
-                        <div className="text-xl sm:text-2xl font-bold text-primary-600 dark:text-primary-300 whitespace-nowrap transition-colors group-hover:text-primary-500 dark:group-hover:text-primary-200">
+                        <div className="text-sm sm:text-lg sm:text-xl font-bold text-foreground dark:text-foreground whitespace-nowrap transition-colors group-hover:text-foreground/80 dark:group-hover:text-foreground/90">
                           ${MOCK_DATA.price.toFixed(6)}
                         </div>
-                        <div className={`text-xs font-medium flex items-center ${MOCK_DATA.priceChange24h >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                        <div className={`text-[10px] sm:text-xs font-medium flex items-center ${MOCK_DATA.priceChange24h >= 0 ? 'text-green-500' : 'text-red-500'}`}>
                           {MOCK_DATA.priceChange24h >= 0 ? (
                             <ArrowUp className="w-3 h-3 mr-0.5" />
                           ) : (
@@ -535,18 +537,18 @@ const Hero = ({ className }: HeroProps) => {
                           {Math.abs(MOCK_DATA.priceChange24h).toFixed(2)}% (24h)
                         </div>
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         Price
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-gray-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </motion.div>
                 </div>
                 
                 <div className="relative group cursor-pointer">
                   {/* Glow layer */}
-                  <div 
-                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-500/30 to-primary-600/30 dark:from-primary-400/40 dark:to-primary-500/40 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
+                  <div
+                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-gray-500/20 to-gray-600/20 dark:from-gray-400/30 dark:to-gray-500/30 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
                     style={{
                       filter: 'blur(20px)',
                       transform: 'translateZ(0)',
@@ -557,11 +559,11 @@ const Hero = ({ className }: HeroProps) => {
                     }}
                   />
                   {/* Card content */}
-                  <motion.div 
-                    className={`p-4 rounded-xl ${STYLES.GLASS_METRIC} text-center relative z-10 h-full`}
-                    whileHover={{ 
+                  <motion.div
+                    className={`p-1.5 sm:p-3 rounded-lg ${STYLES.GLASS_METRIC} text-center relative z-10 h-full`}
+                    whileHover={{
                       y: -4,
-                      transition: { 
+                      transition: {
                         type: 'spring',
                         stiffness: 400,
                         damping: 15
@@ -575,22 +577,22 @@ const Hero = ({ className }: HeroProps) => {
                     }}
                   >
                     <div className="relative z-10">
-                      <div className="text-2xl font-bold text-primary-600 dark:text-primary-500 flex items-center justify-center group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
-                        <Users className="w-4 h-4 mr-1.5 text-primary-500 group-hover:scale-110 transition-transform" />
+                      <div className="text-sm sm:text-lg sm:text-xl font-bold text-foreground dark:text-foreground flex items-center justify-center transition-colors group-hover:text-foreground/80 dark:group-hover:text-foreground/90">
+                        <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 text-gray-500 dark:text-gray-400 group-hover:scale-110 transition-transform" />
                         {MOCK_DATA.holders.toLocaleString()}
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         Holders
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-gray-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </motion.div>
                 </div>
                 
                 <div className="relative group cursor-pointer">
                   {/* Glow layer */}
-                  <div 
-                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-500/30 to-primary-600/30 dark:from-primary-400/40 dark:to-primary-500/40 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
+                  <div
+                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-gray-500/20 to-gray-600/20 dark:from-gray-400/30 dark:to-gray-500/30 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
                     style={{
                       filter: 'blur(20px)',
                       transform: 'translateZ(0)',
@@ -601,11 +603,11 @@ const Hero = ({ className }: HeroProps) => {
                     }}
                   />
                   {/* Card content */}
-                  <motion.div 
-                    className={`p-4 rounded-xl ${STYLES.GLASS_METRIC} text-center relative z-10 h-full`}
-                    whileHover={{ 
+                  <motion.div
+                    className={`p-2 sm:p-3 rounded-lg ${STYLES.GLASS_METRIC} text-center relative z-10 h-full`}
+                    whileHover={{
                       y: -4,
-                      transition: { 
+                      transition: {
                         type: 'spring',
                         stiffness: 400,
                         damping: 15
@@ -619,21 +621,21 @@ const Hero = ({ className }: HeroProps) => {
                     }}
                   >
                     <div className="relative z-10">
-                      <div className="text-2xl font-bold text-primary-600 dark:text-primary-500 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
+                      <div className="text-sm sm:text-lg sm:text-xl font-bold text-foreground dark:text-foreground transition-colors group-hover:text-foreground/80 dark:group-hover:text-foreground/90">
                         ${(MOCK_DATA.marketCap / 1000000).toFixed(1)}M
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                      <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         Market Cap
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-gray-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </motion.div>
                 </div>
                 
                 <div className="relative group cursor-pointer">
                   {/* Glow layer */}
-                  <div 
-                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-500/30 to-primary-600/30 dark:from-primary-400/40 dark:to-primary-500/40 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
+                  <div
+                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-gray-500/20 to-gray-600/20 dark:from-gray-400/30 dark:to-gray-500/30 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl scale-95 group-hover:scale-100 z-0"
                     style={{
                       filter: 'blur(20px)',
                       transform: 'translateZ(0)',
@@ -644,11 +646,11 @@ const Hero = ({ className }: HeroProps) => {
                     }}
                   />
                   {/* Card content */}
-                  <motion.div 
-                    className={`p-4 rounded-xl ${STYLES.GLASS_METRIC} text-center relative z-10 h-full`}
-                    whileHover={{ 
+                  <motion.div
+                    className={`p-1.5 sm:p-3 rounded-lg ${STYLES.GLASS_METRIC} text-center relative z-10 h-full`}
+                    whileHover={{
                       y: -4,
-                      transition: { 
+                      transition: {
                         type: 'spring',
                         stiffness: 400,
                         damping: 15
@@ -662,215 +664,208 @@ const Hero = ({ className }: HeroProps) => {
                     }}
                   >
                     <div className="relative z-10">
-                      <div className="text-2xl font-bold text-primary-600 dark:text-primary-500 group-hover:text-primary-500 dark:group-hover:text-primary-400 transition-colors">
+                      <div className="text-sm sm:text-lg sm:text-xl font-bold text-foreground dark:text-foreground transition-colors group-hover:text-foreground/80 dark:group-hover:text-foreground/90">
                         1M+
                       </div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                      <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         Total Supply
                       </div>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-gray-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </motion.div>
                 </div>
               </motion.div>
               
               <AnimatePresence>
                 {showMetrics && (
-                  <motion.div 
-                    className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3"
+                  <motion.div
+                    className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-3 mt-2"
                     initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                    animate={{ 
-                      opacity: 1, 
+                    animate={{
+                      opacity: 1,
                       height: 'auto',
-                      marginTop: '0.75rem',
+                      marginTop: '0.5rem',
                       transition: { duration: 0.4 }
                     }}
-                    exit={{ 
-                      opacity: 0, 
-                      height: 0, 
+                    exit={{
+                      opacity: 0,
+                      height: 0,
                       marginTop: 0,
                       transition: { duration: 0.3 }
                     }}
                   >
-                    <div className={`p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
-                      <div className="text-lg font-bold text-foreground">0.1%</div>
-                      <div className="text-xs text-muted-foreground">Tax</div>
+                    <div className={`p-2 sm:p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
+                      <div className="text-sm sm:text-lg font-bold text-foreground">0.1%</div>
+                      <div className="text-[10px] sm:text-xs text-muted-foreground">Tax</div>
                     </div>
-                    <div className={`p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
-                      <div className="text-lg font-bold text-foreground">50%</div>
-                      <div className="text-xs text-muted-foreground">Staking APY</div>
+                    <div className={`p-2 sm:p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
+                      <div className="text-sm sm:text-lg font-bold text-foreground">50%</div>
+                      <div className="text-[10px] sm:text-xs text-muted-foreground">Staking APY</div>
                     </div>
-                    <div className={`p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
-                      <div className="text-lg font-bold text-foreground">10%</div>
-                      <div className="text-xs text-muted-foreground">Reflections</div>
+                    <div className={`p-2 sm:p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
+                      <div className="text-sm sm:text-lg font-bold text-foreground">10%</div>
+                      <div className="text-[10px] sm:text-xs text-muted-foreground">Reflections</div>
                     </div>
-                    <div className={`p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
-                      <div className="text-lg font-bold text-foreground">90%</div>
-                      <div className="text-xs text-muted-foreground">Liquidity Locked</div>
+                    <div className={`p-2 sm:p-3 rounded-xl ${STYLES.GLASS_METRIC} text-center`}>
+                      <div className="text-sm sm:text-lg font-bold text-foreground">90%</div>
+                      <div className="text-[10px] sm:text-xs text-muted-foreground">Liquidity Locked</div>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
               
-              {/* Trust & Community Badges */}
-              <div className="mt-4 flex flex-col gap-2">
-                {/* Trust Badges - Moved under Live Metrics */}
-                <div className="flex flex-wrap gap-2">
-                  {MOCK_DATA.isAudited && (
-                    <motion.div 
-                      className={`${STYLES.GLASS_FEATURED} px-3 py-1.5 text-xs font-medium group/audit`}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { duration: 0.3, delay: 0.2 }
-                      }}
-                      whileHover={{ scale: 1.03, y: -1 }}
-                      title="Smart Contract Audited"
-                    >
-                      <ShieldCheck className="w-3 h-3 inline-block mr-1 text-green-500" />
-                      <span className="text-foreground/90 dark:text-green-200/90 group-hover/audit:text-green-400 dark:group-hover/audit:text-green-200 transition-colors">
-                        Audited
-                      </span>
-                    </motion.div>
-                  )}
-                  {MOCK_DATA.isKYC && (
-                    <motion.div 
-                      className={`${STYLES.GLASS_FEATURED} px-3 py-1.5 text-xs font-medium group/kyc`}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { duration: 0.3, delay: 0.3 }
-                      }}
-                      whileHover={{ scale: 1.03, y: -1 }}
-                      title="KYC Verified"
-                    >
-                      <Check className="w-3 h-3 inline-block mr-1 text-primary-500" />
-                      <span className="text-foreground/90 dark:text-primary-200/90 group-hover/kyc:text-primary-400 dark:group-hover/kyc:text-primary-200 transition-colors">
-                        KYC Verified
-                      </span>
-                    </motion.div>
-                  )}
-                </div>
-                
-                {/* Trending & Featured Badges */}
-                <div className="flex flex-wrap gap-2">
-                  {MOCK_DATA.trendingOn.map((platform: string, i: number) => (
-                    <motion.div 
-                      key={platform}
-                      className={`${STYLES.GLASS_FEATURED} px-3 py-1.5 text-xs font-medium group/trending`}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { 
-                          delay: 0.4 + (i * 0.1),
-                          type: 'spring',
-                          stiffness: 300,
-                          damping: 12
-                        }
-                      }}
-                      whileHover={{ 
-                        scale: 1.03,
-                        y: -1,
-                        boxShadow: '0 4px 24px -1px rgba(0, 0, 0, 0.1)'
-                      }}
-                    >
-                      <span className="text-yellow-500/90 dark:text-yellow-300/90 group-hover/trending:text-yellow-400 transition-colors">
-                        <span className="inline-block group-hover/trending:animate-pulse">🔥</span>
-                      </span>
-                      <span className="text-foreground/80 dark:text-yellow-100/80 ml-1 group-hover/trending:text-yellow-400 dark:group-hover/trending:text-yellow-200 transition-colors">
-                        {platform}
-                      </span>
-                    </motion.div>
-                  ))}
-                  {MOCK_DATA.featuredIn.map((outlet, i) => (
-                    <motion.div 
-                      key={outlet}
-                      className={`${STYLES.GLASS_FEATURED} px-3 py-1.5 text-xs font-medium group/featured`}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { 
-                          delay: 0.5 + (i * 0.1),
-                          type: 'spring',
-                          stiffness: 300,
-                          damping: 12
-                        }
-                      }}
-                      whileHover={{ 
-                        scale: 1.03,
-                        y: -1,
-                        boxShadow: '0 4px 24px -1px rgba(0, 0, 0, 0.1)'
-                      }}
-                    >
-                      <span className="text-secondary-500/90 dark:text-secondary-300/90 group-hover/featured:text-secondary-400 transition-colors">
-                        <span className="inline-block group-hover/featured:animate-pulse">✨</span>
-                      </span>
-                      <span className="text-foreground/80 dark:text-secondary-100/80 ml-1 group-hover/featured:text-secondary-400 dark:group-hover/featured:text-secondary-200 transition-colors">
-                        {outlet}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+              {/* Trust & Community Badges - Hidden on mobile, single row on desktop */}
+              <div className="hidden sm:flex mt-3 flex-wrap gap-1.5 items-center">
+                {MOCK_DATA.isAudited && (
+                  <motion.div
+                    className={`${STYLES.GLASS_FEATURED} px-2 py-1 text-[10px] sm:text-xs font-medium group/audit`}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.3, delay: 0.2 }
+                    }}
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    title="Smart Contract Audited"
+                  >
+                    <ShieldCheck className="w-2.5 h-2.5 inline-block mr-1 text-green-500" />
+                    <span className="text-foreground/90 dark:text-green-200/90 group-hover/audit:text-green-400 dark:group-hover/audit:text-green-200 transition-colors">
+                      Audited
+                    </span>
+                  </motion.div>
+                )}
+                {MOCK_DATA.isKYC && (
+                  <motion.div
+                    className={`${STYLES.GLASS_FEATURED} px-2 py-1 text-[10px] sm:text-xs font-medium group/kyc`}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.3, delay: 0.3 }
+                    }}
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    title="KYC Verified"
+                  >
+                    <Check className="w-2.5 h-2.5 inline-block mr-1 text-primary-500" />
+                    <span className="text-foreground/90 dark:text-primary-200/90 group-hover/kyc:text-primary-400 dark:group-hover/kyc:text-primary-200 transition-colors">
+                      KYC Verified
+                    </span>
+                  </motion.div>
+                )}
+                {MOCK_DATA.trendingOn.map((platform: string, i: number) => (
+                  <motion.div
+                    key={platform}
+                    className={`${STYLES.GLASS_FEATURED} px-2 py-1 text-[10px] sm:text-xs font-medium group/trending`}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        delay: 0.4 + (i * 0.1),
+                        type: 'spring',
+                        stiffness: 300,
+                        damping: 12
+                      }
+                    }}
+                    whileHover={{
+                      scale: 1.03,
+                      y: -1,
+                      boxShadow: '0 4px 24px -1px rgba(0, 0, 0, 0.1)'
+                    }}
+                  >
+                    <span className="text-yellow-500/90 dark:text-yellow-300/90 group-hover/trending:text-yellow-400 transition-colors">
+                      <span className="inline-block group-hover/trending:animate-pulse">🔥</span>
+                    </span>
+                    <span className="text-foreground/80 dark:text-yellow-100/80 ml-1 group-hover/trending:text-yellow-400 dark:group-hover/trending:text-yellow-200 transition-colors">
+                      {platform}
+                    </span>
+                  </motion.div>
+                ))}
+                {MOCK_DATA.featuredIn.map((outlet, i) => (
+                  <motion.div
+                    key={outlet}
+                    className={`${STYLES.GLASS_FEATURED} px-2 py-1 text-[10px] sm:text-xs font-medium group/featured`}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        delay: 0.5 + (i * 0.1),
+                        type: 'spring',
+                        stiffness: 300,
+                        damping: 12
+                      }
+                    }}
+                    whileHover={{
+                      scale: 1.03,
+                      y: -1,
+                      boxShadow: '0 4px 24px -1px rgba(0, 0, 0, 0.1)'
+                    }}
+                  >
+                    <span className="text-secondary-500/90 dark:text-secondary-300/90 group-hover/featured:text-secondary-400 transition-colors">
+                      <span className="inline-block group-hover/featured:animate-pulse">✨</span>
+                    </span>
+                    <span className="text-foreground/80 dark:text-secondary-100/80 ml-1 group-hover/featured:text-secondary-400 dark:group-hover/featured:text-secondary-200 transition-colors">
+                      {outlet}
+                    </span>
+                  </motion.div>
+                ))}
               </div>
               
-              {/* Join our Community - Social Media Icons */}
-              <div className="mt-8 mb-4">
-                <motion.h3 
-                  className="text-center text-sm font-medium text-muted-foreground mb-3"
+              {/* Join our Community - Social Media Icons - Hidden on mobile */}
+              <div className="hidden sm:block mt-4 mb-2">
+                <motion.h3
+                  className="text-center text-xs sm:text-sm font-medium text-muted-foreground mb-2"
                   initial={{ opacity: 0, y: 5 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     y: 0,
                     transition: { duration: 0.3, delay: 0.5 }
                   }}
                 >
                   Join our Community
                 </motion.h3>
-                <motion.div 
-                  className="flex justify-center gap-6"
+                <motion.div
+                  className="flex justify-center gap-4 sm:gap-6"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ 
+                  animate={{
                     opacity: 1,
                     y: 0,
                     transition: { delay: 0.6, duration: 0.5 }
                   }}
                 >
-                  <motion.a 
-                    href="https://t.me/yourtelegram" 
-                    target="_blank" 
+                  <motion.a
+                    href="https://t.me/yourtelegram"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground/60 hover:text-amber-500 dark:hover:text-amber-400 transition-colors duration-300 p-2 rounded-full hover:bg-amber-500/10 dark:hover:bg-amber-500/20"
+                    className="text-foreground/60 hover:text-amber-500 dark:hover:text-amber-400 transition-colors duration-300 p-1.5 sm:p-2 rounded-full hover:bg-amber-500/10 dark:hover:bg-amber-500/20"
                     whileHover={{ y: -3, scale: 1.15 }}
                     whileTap={{ scale: 0.95 }}
                     title="Telegram"
                   >
-                    <Send className="w-5 h-5" />
+                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                   </motion.a>
-                  <motion.a 
-                    href="https://twitter.com/yourtwitter" 
-                    target="_blank" 
+                  <motion.a
+                    href="https://twitter.com/yourtwitter"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground/60 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-300 p-2 rounded-full hover:bg-primary-500/10 dark:hover:bg-primary-500/20"
+                    className="text-foreground/60 hover:text-primary-500 dark:hover:text-primary-400 transition-colors duration-300 p-1.5 sm:p-2 rounded-full hover:bg-primary-500/10 dark:hover:bg-primary-500/20"
                     whileHover={{ y: -3, scale: 1.15 }}
                     whileTap={{ scale: 0.95 }}
                     title="Twitter"
                   >
-                    <Twitter className="w-5 h-5" />
+                    <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
                   </motion.a>
-                  <motion.a 
-                    href="https://discord.gg/yourdiscord" 
-                    target="_blank" 
+                  <motion.a
+                    href="https://discord.gg/yourdiscord"
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground/60 hover:text-secondary-500 dark:hover:text-secondary-400 transition-colors duration-300 p-2 rounded-full hover:bg-secondary-500/10 dark:hover:bg-secondary-500/20"
+                    className="text-foreground/60 hover:text-secondary-500 dark:hover:text-secondary-400 transition-colors duration-300 p-1.5 sm:p-2 rounded-full hover:bg-secondary-500/10 dark:hover:bg-secondary-500/20"
                     whileHover={{ y: -3, scale: 1.15 }}
                     whileTap={{ scale: 0.95 }}
                     title="Discord"
                   >
-                    <MessageCircle className="w-5 h-5" />
+                    <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                   </motion.a>
                 </motion.div>
               </div>
@@ -880,12 +875,12 @@ const Hero = ({ className }: HeroProps) => {
 
           {/* Video Content - Hidden on mobile, shown on lg screens */}
           <motion.div
-            className="relative w-full h-full flex-col items-center justify-center -mt-8 lg:-mt-4 hidden lg:flex"
+            className="relative w-full h-full flex-col items-center justify-center -mt-6 lg:-mt-2 hidden lg:flex"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative w-full max-w-[360px] mx-auto aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+            <div className="relative w-full max-w-[320px] mx-auto aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
               <VideoComponent
                 videoRef={videoRef}
                 handleVideoLoaded={handleVideoLoaded}
@@ -902,7 +897,7 @@ const Hero = ({ className }: HeroProps) => {
       </div>
 
       {/* Mobile Video - Only shown on mobile */}
-      <div className="lg:hidden w-full container mx-auto px-4 -mt-2">
+      <div className="lg:hidden w-full container mx-auto px-4 sm:px-6 -mt-2">
         <div className="w-full flex justify-center">
           <VideoComponent
             videoRef={videoRef}
@@ -980,10 +975,10 @@ const VideoComponent: React.FC<VideoComponentProps> = ({
   // Don't render video on server-side to prevent hydration mismatch
   if (!isClient) {
     return (
-      <div 
+      <div
         className="relative w-full max-w-full mx-auto aspect-[9/16] rounded-2xl overflow-hidden border shadow-2xl bg-gray-100 dark:bg-gray-800"
         style={{
-          maxWidth: isMobile ? '280px' : '360px',
+          maxWidth: isMobile ? '240px' : '320px',
         }}
       />
     );
@@ -993,7 +988,7 @@ const VideoComponent: React.FC<VideoComponentProps> = ({
     <motion.div
       className="relative w-full max-w-full mx-auto aspect-[9/16] rounded-2xl overflow-hidden border shadow-2xl group"
       style={{
-        maxWidth: isMobile ? '280px' : '360px',
+        maxWidth: isMobile ? '240px' : '320px',
         borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
       }}
     >

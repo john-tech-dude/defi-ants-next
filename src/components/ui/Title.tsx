@@ -15,7 +15,7 @@ const titleVariants = cva(
         h6: 'text-base sm:text-lg md:text-xl font-medium font-body tracking-tight',
       },
       gradient: {
-        primary: 'gold-foil',
+        primary: 'gradient-text',
         secondary: 'bg-clip-text text-transparent bg-gradient-to-r from-secondary-500 to-primary-400',
         accent: 'bg-clip-text text-transparent bg-gradient-to-r from-accent-500 to-primary-400',
         none: '',

@@ -32,41 +32,41 @@ interface TokenUtility {
   gradient: string;
 }
 
-// Tokenomics data - updated with modern vesting info
+// Tokenomics data - updated with modern vesting info and distinct colors
 const TOKEN_ALLOCATIONS: TokenAllocation[] = [
   {
     name: 'Community & Ecosystem',
     percentage: 35,
-    color: '#f5c518',
-    gradient: 'from-primary-400 to-primary-600',
+    color: '#10B981', // Emerald green - represents growth and community
+    gradient: 'from-emerald-400 to-emerald-600',
     description: '8% at launch, 48-month linear vesting'
   },
   {
     name: 'Liquidity',
     percentage: 25,
-    color: '#d63b28',
-    gradient: 'from-secondary-400 to-secondary-600',
+    color: '#3B82F6', // Blue - represents trust and stability
+    gradient: 'from-blue-400 to-blue-600',
     description: 'Fully unlocked at launch for trading'
   },
   {
     name: 'Staking Rewards',
     percentage: 20,
-    color: '#e8b30e',
-    gradient: 'from-primary-300 to-primary-500',
+    color: '#8B5CF6', // Purple - represents rewards and value
+    gradient: 'from-purple-400 to-purple-600',
     description: 'Distributed over 4 years to stakers'
   },
   {
     name: 'Team & Advisors',
     percentage: 12,
-    color: '#F59E0B',
+    color: '#F59E0B', // Amber - represents team and energy
     gradient: 'from-amber-500 to-amber-600',
     description: '12-month cliff, 36-month linear vesting'
   },
   {
     name: 'Marketing & Partnerships',
     percentage: 8,
-    color: '#e85a48',
-    gradient: 'from-accent-400 to-secondary-500',
+    color: '#EC4899', // Pink - represents marketing and action
+    gradient: 'from-pink-400 to-pink-600',
     description: '5% at launch, 24-month linear vesting'
   }
 ];
@@ -333,7 +333,7 @@ const AnimatedTokenomics = () => {
               <PieChartIcon className="w-4 h-4" />
               Tokenomics
             </div>
-            <h2 className="text-4xl md:text-5xl font-display tracking-wide mb-4 gold-foil">
+            <h2 className="text-4xl md:text-5xl font-display tracking-wide mb-4 gradient-text">
               Token Distribution
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -388,7 +388,7 @@ const AnimatedTokenomics = () => {
             Token Utilities
           </h3>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Powering the DeFiANT ecosystem with multiple use cases
+            Powering the <span className="gradient-text">DeFiANT!</span> ecosystem with multiple use cases
           </p>
         </motion.div>
 

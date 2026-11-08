@@ -75,7 +75,7 @@ export default function Navbar({}: NavbarProps) {
         <Link href="/" className="flex items-center group relative">
           <motion.span className="text-2xl md:text-3xl font-display tracking-wide">
             <motion.span 
-              className="gold-foil"
+              className="gradient-text"
               whileHover={{ scale: 1.05 }}
             >
               DeFi
@@ -128,6 +128,7 @@ export default function Navbar({}: NavbarProps) {
               'flex items-center justify-center',
               'text-sm md:text-base'
             )}
+            startIcon={null}
           />
         </div>
 
@@ -203,6 +204,7 @@ export default function Navbar({}: NavbarProps) {
                     'flex items-center justify-center',
                     'text-base'
                   )}
+                  startIcon={null}
                 />
               </div>
             </div>

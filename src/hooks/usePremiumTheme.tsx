@@ -4,7 +4,7 @@ export interface PremiumThemeOptions {
   enableGlassmorphism?: boolean;
   enablePremiumAnimations?: boolean;
   enableGradientBorders?: boolean;
-  accentColor?: 'gold' | 'blue' | 'purple' | 'teal';
+  accentColor?: 'primary' | 'blue' | 'purple' | 'teal';
 }
 
 export const usePremiumTheme = (options: PremiumThemeOptions = {}) => {
@@ -12,7 +12,7 @@ export const usePremiumTheme = (options: PremiumThemeOptions = {}) => {
     enableGlassmorphism = true,
     enablePremiumAnimations = true,
     enableGradientBorders = true,
-    accentColor = 'gold'
+    accentColor = 'primary'
   } = options;
   
   const [mounted, setMounted] = useState(false);
@@ -55,7 +55,7 @@ export const usePremiumTheme = (options: PremiumThemeOptions = {}) => {
         };
       default:
         return {
-          gradient: 'bg-gradient-gold',
+          gradient: 'bg-gradient-to-r from-primary-500 to-secondary-500',
           solid: 'bg-primary',
           text: 'text-primary',
           border: 'border-primary',
@@ -100,8 +100,8 @@ export const usePremiumTheme = (options: PremiumThemeOptions = {}) => {
   // Get gradient border classes if enabled
   const getGradientBorderClasses = () => {
     if (!enableGradientBorders) return 'border border-border-highlight';
-    
-    return 'relative before:absolute before:inset-0 before:-z-10 before:rounded-xl before:p-[1px] before:bg-gradient-to-r before:from-amber-500/70 before:via-amber-400/70 before:to-amber-600/70';
+
+    return 'relative before:absolute before:inset-0 before:-z-10 before:rounded-xl before:p-[1px] before:bg-gradient-to-r before:from-primary-500/70 before:via-secondary-500/70 before:to-primary-400/70';
   };
   
   return {

@@ -24,7 +24,7 @@ import usePremiumTheme from '@/hooks/usePremiumTheme';
 
 const PremiumThemeShowcase: React.FC = () => {
   const { accent, glassMedium, hoverAnimation, entranceAnimation } = usePremiumTheme({
-    accentColor: 'gold'
+    accentColor: 'primary'
   });
   
   const [activeTab, setActiveTab] = useState('cards');
@@ -63,7 +63,7 @@ const PremiumThemeShowcase: React.FC = () => {
             <HoverScaleWrapper>
               <PremiumCard className="p-6 h-full">
                 <div className="flex items-center mb-4">
-                  <Gem className="h-6 w-6 text-amber-500 mr-2" />
+                  <Gem className="h-6 w-6 text-primary-500 mr-2" />
                   <h3 className="text-xl font-semibold text-white">Premium Card</h3>
                 </div>
                 <p className="text-gray-300 mb-4">
@@ -71,7 +71,7 @@ const PremiumThemeShowcase: React.FC = () => {
                 </p>
                 <div className="mt-auto pt-4 border-t border-gray-800">
                   <div className="flex justify-between items-center">
-                    <span className="text-amber-500 font-medium">12.5% APY</span>
+                    <span className="text-primary-500 font-medium">12.5% APY</span>
                     <div className="flex items-center text-gray-400">
                       <Lock className="h-4 w-4 mr-1" />
                       <span className="text-sm">Secure</span>
@@ -107,7 +107,7 @@ const PremiumThemeShowcase: React.FC = () => {
             <HoverScaleWrapper>
               <PremiumGradientBorder className="h-full">
                 <div className="flex items-center mb-4">
-                  <Star className="h-6 w-6 text-amber-500 mr-2" />
+                  <Star className="h-6 w-6 text-primary-500 mr-2" />
                   <h3 className="text-xl font-semibold text-white">Gradient Border</h3>
                 </div>
                 <p className="text-gray-300 mb-4">
@@ -115,7 +115,7 @@ const PremiumThemeShowcase: React.FC = () => {
                 </p>
                 <div className="mt-auto pt-4 border-t border-gray-800">
                   <div className="flex justify-between items-center">
-                    <span className="text-amber-500 font-medium">Featured</span>
+                    <span className="text-primary-500 font-medium">Featured</span>
                     <div className="flex items-center text-gray-400">
                       <Rocket className="h-4 w-4 mr-1" />
                       <span className="text-sm">Trending</span>
@@ -248,12 +248,12 @@ const PremiumThemeShowcase: React.FC = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button className="rounded-full bg-gray-800 p-3 hover:bg-gray-700 transition-colors">
-                        <Info className="h-5 w-5 text-amber-500" />
+                        <Info className="h-5 w-5 text-primary-500" />
                       </button>
                     </TooltipTrigger>
                     <TooltipContent variant="premium" side="top" className="w-64">
                       <div>
-                        <h4 className="font-semibold text-amber-400 mb-2 flex items-center">
+                        <h4 className="font-semibold text-primary-400 mb-2 flex items-center">
                           <Gem className="h-4 w-4 mr-2" />
                           Premium Staking
                         </h4>
@@ -319,12 +319,12 @@ const PremiumThemeShowcase: React.FC = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button className="rounded-full bg-gray-800 p-3 hover:bg-gray-700 transition-colors">
-                        <Star className="h-5 w-5 text-amber-500" />
+                        <Star className="h-5 w-5 text-primary-500" />
                       </button>
                     </TooltipTrigger>
                     <TooltipContent variant="glass" side="bottom" className="w-64">
                       <div>
-                        <h4 className="font-semibold text-amber-500 mb-2 flex items-center">
+                        <h4 className="font-semibold text-primary-500 mb-2 flex items-center">
                           <Star className="h-4 w-4 mr-2" />
                           ANT Ambassador Program
                         </h4>

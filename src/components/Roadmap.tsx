@@ -296,7 +296,7 @@ export default function Roadmap() {
               variants={titleVariants}
               className="text-4xl md:text-6xl font-display tracking-wide mb-4 md:mb-6"
             >
-              Meme domination <span className="gold-foil">Roadmap</span>
+              Meme domination <span className="gradient-text">Roadmap</span>
             </motion.h2>
           </motion.div>
           

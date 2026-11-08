@@ -94,7 +94,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
       {/* Decorative background elements */}
       <div 
         className="absolute top-40 left-0 w-80 h-80 bg-gradient-to-br from-primary-500/30 to-primary-400/10 rounded-full blur-[100px] -z-10 animate-float will-change-transform opacity-0 md:opacity-100" 
@@ -115,7 +115,7 @@ export default function About() {
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="text-center mb-20 relative"
+          className="text-center mb-12 sm:mb-16 lg:mb-20 relative"
         >
           <motion.div 
             variants={{
@@ -171,12 +171,12 @@ export default function About() {
                     rotate: { repeat: Infinity, duration: 2, ease: 'easeInOut' }
                   }
                 }}
-              >DeFi ANT!</motion.span> Vision
+              >DeFiANT!</motion.span> Vision
             </Title>
           </motion.div>
           
-          <motion.p 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+          <motion.p
+            className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -193,7 +193,7 @@ export default function About() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24"
+          className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-16 sm:mb-20 lg:mb-24"
         >
           {stats.map((stat, index) => (
             <motion.div 
@@ -216,7 +216,7 @@ export default function About() {
                 y: -5,
                 transition: { duration: 0.3, ease: 'easeOut' }
               }}
-              className="relative p-6 rounded-xl group bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary-500/30 transition-all duration-300 overflow-hidden"
+              className="relative p-4 sm:p-6 rounded-xl group bg-background/50 backdrop-blur-sm border border-border/50 hover:border-primary-500/30 transition-all duration-300 overflow-hidden"
             >
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100"
@@ -224,15 +224,15 @@ export default function About() {
                 whileHover={{ scale: 1, opacity: 1 }}
               />
               <div className="relative z-10">
-                <Title 
-                  as="h3" 
-                  variant="h3" 
-                  className="relative mb-2 text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-400"
+                <Title
+                  as="h3"
+                  variant="h3"
+                  className="relative mb-1 sm:mb-2 text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-400"
                 >
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </Title>
-                <motion.p 
-                  className="text-sm font-medium text-muted-foreground group-hover:text-primary-500 transition-colors"
+                <motion.p
+                  className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-primary-500 transition-colors"
                   initial={{ x: 0 }}
                   whileHover={{ x: 5 }}
                   transition={{ type: 'spring', stiffness: 300 }}
@@ -246,12 +246,12 @@ export default function About() {
       </div>
 
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Left Column - Image */}
           <div className="relative">
-            <div 
+            <div
               ref={containerRef}
-              className="relative w-full h-[600px] rounded-3xl overflow-hidden border border-white/10 bg-background/80 shadow-2xl group"
+              className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-background/80 shadow-2xl group"
             >
               {/* Main image with GSAP animations */}
               <div 
@@ -278,22 +278,22 @@ export default function About() {
               </div>
               
               {/* Content overlay with GSAP animations */}
-              <div 
+              <div
                 ref={contentRef}
-                className="absolute inset-0 z-20 p-8 flex flex-col justify-end pointer-events-none"
+                className="absolute inset-0 z-20 p-4 sm:p-6 lg:p-8 flex flex-col justify-end pointer-events-none"
               >
                 <div className="pointer-events-auto">
-                  <div 
+                  <div
                     ref={titleRef}
-                    className="text-2xl md:text-3xl font-bold text-white mb-3"
+                    className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 sm:mb-3"
                     style={{ opacity: 0, transform: 'translateY(40px)' }}
                   >
                     <Title as="h3" variant="h3">
                       Our Vision for DeFi
                     </Title>
                   </div>
-                  <p 
-                    className="text-white/80 mb-4 max-w-md"
+                  <p
+                    className="text-sm sm:text-base text-white/80 mb-3 sm:mb-4 max-w-md"
                     ref={textRef}
                     style={{ opacity: 0, transform: 'translateY(30px)' }}
                   >
@@ -383,8 +383,8 @@ export default function About() {
           </div>
 
           {/* Right Column - Content */}
-          <motion.div 
-            className="space-y-8"
+          <motion.div
+            className="space-y-6 sm:space-y-8"
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -394,41 +394,41 @@ export default function About() {
               initial="hidden"
               animate={inView ? 'visible' : 'hidden'}
               variants={containerVariants}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
-              <Title 
-                as="h3" 
+              <Title
+                as="h3"
                 variant="h3"
-                className="text-3xl font-bold mb-4"
+                className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
               >
-                Why Choose DeFi ANT!?
+                Why Choose <span className="gradient-text">DeFiANT!</span>?
               </Title>
-              
-              <motion.p variants={itemVariants} className="text-muted-foreground leading-relaxed">
-                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, DeFi ANT! launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
+
+              <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, <span className="gradient-text">DeFiANT!</span> launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
               </motion.p>
-              
-              <motion.p variants={itemVariants} className="text-muted-foreground leading-relaxed">
+
+              <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 Our token combines the viral appeal of meme culture with real DeFi functionality, leveraging Solana's fast and low-cost blockchain to provide staking, NFTs, and community governance to our ANT army.
               </motion.p>
               
-              <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+              <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
                 {features.map((feature, index) => (
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="p-6 card-hover backdrop-blur-sm group relative overflow-hidden rounded-xl"
+                    className="p-4 sm:p-6 card-hover backdrop-blur-sm group relative overflow-hidden rounded-xl"
                   >
                     {/* Decorative accent */}
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-400/0 via-primary-500/80 to-primary-400/0 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                     
-                    <div className="relative z-10 mb-5 bg-primary-500/10 p-3 rounded-xl inline-block group-hover:bg-primary-500/20 transition-colors">
+                    <div className="relative z-10 mb-3 sm:mb-4 bg-primary-500/10 p-2 sm:p-3 rounded-lg sm:rounded-xl inline-block group-hover:bg-primary-500/20 transition-colors">
                       {feature.icon}
                     </div>
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary-500 transition-colors">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 group-hover:text-primary-500 transition-colors">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
                     
@@ -438,8 +438,8 @@ export default function About() {
                 ))}
               </motion.div>
               
-              <motion.div variants={itemVariants} className="mt-8">
-                <Button href="#tokenomics" className="btn-outline">
+              <motion.div variants={itemVariants} className="mt-6 sm:mt-8">
+                <Button href="#tokenomics" className="btn-outline text-sm sm:text-base">
                   Explore Tokenomics <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </motion.div>
