@@ -171,7 +171,7 @@ export default function About() {
                     rotate: { repeat: Infinity, duration: 2, ease: 'easeInOut' }
                   }
                 }}
-              >DeFiANT!</motion.span> Vision
+              ><span className="gradient-text">DeFi</span>ANT!</motion.span> Vision
             </Title>
           </motion.div>
           
@@ -401,11 +401,11 @@ export default function About() {
                 variant="h3"
                 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4"
               >
-                Why Choose <span className="gradient-text">DeFiANT!</span>?
+                Why Choose <span className="gradient-text">DeFi</span>ANT!?
               </Title>
 
               <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, <span className="gradient-text">DeFiANT!</span> launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
+                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, <span className="gradient-text">DeFi</span>ANT! launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
               </motion.p>
 
               <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed">

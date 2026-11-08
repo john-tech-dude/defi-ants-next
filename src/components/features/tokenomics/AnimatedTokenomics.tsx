@@ -388,7 +388,7 @@ const AnimatedTokenomics = () => {
             Token Utilities
           </h3>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Powering the <span className="gradient-text">DeFiANT!</span> ecosystem with multiple use cases
+            Powering the <span className="gradient-text">DeFi</span>ANT! ecosystem with multiple use cases
           </p>
         </motion.div>
 

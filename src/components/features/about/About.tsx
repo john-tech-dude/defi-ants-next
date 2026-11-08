@@ -313,11 +313,11 @@ export default function About() {
                 gradient="primary"
                 className="text-2xl sm:text-3xl mb-3 sm:mb-4"
               >
-                Why ride with <span className="gradient-text">DeFiANT!</span>?
+                Why ride with <span className="gradient-text">DeFi</span>ANT!?
               </Title>
 
               <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, <span className="gradient-text">DeFiANT!</span> launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
+                We are a meme token with utility on Solana! Created by a team of crypto enthusiasts and meme lovers, <span className="gradient-text">DeFi</span>ANT! launched in 2023 with a mission to bring fun, community, and actual utility to the meme token space.
               </motion.p>
 
               <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6 sm:mb-8">

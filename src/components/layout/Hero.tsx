@@ -337,7 +337,14 @@ const Hero = ({ className }: HeroProps) => {
                     whileHover={{ scale: 1.05 }}
                     transition={springConfig}
                   >
-                    DeFiANT!
+                    DeFi
+                  </motion.span>
+                  <motion.span
+                    className="text-foreground relative inline-block"
+                    whileHover={{ scale: 1.05 }}
+                    transition={springConfig}
+                  >
+                    {' '}ANT!
                   </motion.span>
                 </motion.h1>
                 <motion.h2
