@@ -120,6 +120,10 @@ export function WalletProvider({ children }: WalletProviderProps) {
             .wallet-adapter-modal-list-more-button {
               display: none !important;
             }
+            /* Hide wallet icon from connect button */
+            .wallet-adapter-button:not(.wallet-adapter-button-connected) .wallet-adapter-button-icon {
+              display: none !important;
+            }
           `}</style>
           {children}
         </WalletModalProvider>
