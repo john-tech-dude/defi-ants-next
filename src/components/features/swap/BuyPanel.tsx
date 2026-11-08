@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { X } from 'lucide-react';
-import JupiterSwapComponent from './JupiterSwap';
+import JupiterPlugin from './JupiterPlugin';
 
 // Types
 type Tab = 'swap' | 'stake';
@@ -23,9 +23,9 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
   const tabContent = useMemo(() => {
     switch (activeTab) {
       case 'stake':
-        return <JupiterSwapComponent onSuccess={onClose} />;
+        return <JupiterPlugin onSuccess={onClose} />;
       case 'swap':
-        return <JupiterSwapComponent onSuccess={onClose} />;
+        return <JupiterPlugin onSuccess={onClose} />;
       default:
         return null;
     }

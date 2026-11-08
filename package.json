@@ -11,6 +11,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@heroicons/react": "^2.2.0",
+    "@jup-ag/plugin": "^1.0.18",
     "@jup-ag/react-hook": "^6.2.0",
     "@jup-ag/terminal": "^4.4.3",
     "@jup-ag/wallet-adapter": "^0.2.3",
