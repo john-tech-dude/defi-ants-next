@@ -24,11 +24,12 @@ export function Providers({ children }: ProvidersProps) {
     const originalError = console.error;
     console.error = (...args) => {
       const message = args[0]?.toString() || '';
-      // Filter out Phantom wallet extension errors
+      // Filter out Phantom wallet extension errors and wallet adapter errors
       if (
         message.includes('Unable to set window.solana') ||
         message.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
-        message.includes('chrome-extension')
+        message.includes('chrome-extension') ||
+        message.includes('window.navigator.wallets is not an array')
       ) {
         return; // Suppress these errors
       }
