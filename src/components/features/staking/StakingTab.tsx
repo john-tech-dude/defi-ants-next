@@ -135,7 +135,7 @@ export function StakingTab({
   const [txStatus, setTxStatus] = useState<TransactionStatus>({ status: 'idle', message: '' });
   const [selectedGoal, setSelectedGoal] = useState<StakingGoal | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [showGoals, setShowGoals] = useState(false);
+  const [showGoals, setShowGoals] = useState(true);
   const [isLoading, setIsLoading] = useState(propIsLoading);
   const [error, setError] = useState<string | null>(propError);
   const [errors, setErrors] = useState<{ amount?: string }>({});
