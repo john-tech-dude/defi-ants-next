@@ -221,9 +221,8 @@ export function UnifiedWalletButton({ className }: UnifiedWalletButtonProps) {
             {publicKey.toBase58().slice(0, 4)}...{publicKey.toBase58().slice(-4)}
           </span>
         ) : (
-          <span className="flex items-center gap-2 text-sm">
-            <Wallet className="h-3.5 w-3.5" />
-            <span>Connect Wallet</span>
+          <span className="text-sm">
+            Connect Wallet
           </span>
         )}
       </button>
