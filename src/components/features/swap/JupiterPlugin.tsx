@@ -5,6 +5,13 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { toast } from 'sonner';
 import { Wallet as WalletIcon } from 'lucide-react';
 
+// Define Jupiter Plugin types
+declare global {
+  interface Window {
+    Jupiter: any;
+  }
+}
+
 interface JupiterPluginProps {
   onSuccess?: () => void;
   inputMint?: string;
@@ -28,17 +35,19 @@ export default function JupiterPlugin({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Load Jupiter Plugin script
+    // Load Jupiter Terminal script (v4 API)
     const script = document.createElement('script');
-    script.src = 'https://unpkg.com/@jup-ag/plugin@latest/dist/index.js';
+    script.src = 'https://terminal.jup.ag/main-v2.js';
     script.async = true;
     script.onload = () => {
+      console.log('Jupiter Terminal script loaded');
       setIsLoaded(true);
       initPlugin();
     };
     script.onerror = () => {
-      setError('Failed to load Jupiter Plugin');
-      toast.error('Failed to load Jupiter Plugin');
+      console.error('Failed to load Jupiter Terminal script');
+      setError('Failed to load Jupiter Swap');
+      toast.error('Failed to load Jupiter Swap');
     };
     document.head.appendChild(script);
 
@@ -47,16 +56,35 @@ export default function JupiterPlugin({
         script.parentNode.removeChild(script);
       }
     };
-  }, []);
+  }, [connected, wallet]);
 
   const initPlugin = async () => {
-    if (!containerRef.current || !window.JupiterPlugin) return;
+    if (!containerRef.current || !window.Jupiter) {
+      console.error('Jupiter not available');
+      setError('Jupiter Swap not available');
+      return;
+    }
 
     try {
       const walletAdapter = wallet?.adapter || null;
 
-      await window.JupiterPlugin.init({
-        container: containerRef.current,
+      console.log('Initializing Jupiter Terminal with config:', {
+        displayMode: 'integrated',
+        integratedTargetId: 'jupiter-terminal',
+        endpoint: process.env.NEXT_PUBLIC_RPC_URL || 'https://api.mainnet-beta.solana.com',
+        enableWalletPassthrough: !connected,
+        passThroughWallet: walletAdapter,
+        formProps: {
+          initialInputMint: inputMint,
+          initialOutputMint: outputMint,
+          fixedInputMint,
+          fixedOutputMint,
+        }
+      });
+
+      const terminal = await window.Jupiter.init({
+        displayMode: 'integrated',
+        integratedTargetId: 'jupiter-terminal',
         endpoint: process.env.NEXT_PUBLIC_RPC_URL || 'https://api.mainnet-beta.solana.com',
         enableWalletPassthrough: !connected,
         passThroughWallet: walletAdapter,
@@ -77,10 +105,12 @@ export default function JupiterPlugin({
           toast.error(errorMessage);
         },
       });
+
+      console.log('Jupiter Terminal initialized successfully');
     } catch (err) {
-      console.error('Failed to initialize Jupiter Plugin:', err);
-      setError('Failed to initialize Jupiter Plugin');
-      toast.error('Failed to initialize Jupiter Plugin');
+      console.error('Failed to initialize Jupiter Terminal:', err);
+      setError('Failed to initialize Jupiter Swap');
+      toast.error('Failed to initialize Jupiter Swap');
     }
   };
 
@@ -110,7 +140,7 @@ export default function JupiterPlugin({
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
         </div>
       )}
-      <div ref={containerRef} className="w-full min-h-[500px]" />
+      <div id="jupiter-terminal" ref={containerRef} className="w-full min-h-[500px]" />
     </div>
   );
 }
