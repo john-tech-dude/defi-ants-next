@@ -6,6 +6,7 @@ import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { X } from 'lucide-react';
 import JupiterPlugin from './JupiterPlugin';
+import { StakingTab } from '@/components/features/staking/StakingTab';
 
 // Types
 type Tab = 'swap' | 'stake';
@@ -19,17 +20,54 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
   const { publicKey, wallet, connect, connected, disconnect } = useWallet();
   const [activeTab, setActiveTab] = useState<Tab>(defaultTab);
 
+  // Mock staking data - replace with real data from your staking program
+  const stakingData = useMemo(() => ({
+    userBalance: 10000, // Mock balance
+    stakedAmount: 5000, // Mock staked amount
+    rewards: 250, // Mock rewards
+    apy: 15, // Mock APY in percentage
+    totalStaked: 1000000, // Mock total staked
+  }), []);
+
+  // Mock staking functions - replace with real staking program calls
+  const handleStake = async (amount: number) => {
+    console.log('Staking', amount, 'tokens');
+    // Implement real staking logic here
+  };
+
+  const handleUnstake = async (amount: number) => {
+    console.log('Unstaking', amount, 'tokens');
+    // Implement real unstaking logic here
+  };
+
+  const handleClaim = async () => {
+    console.log('Claiming rewards');
+    // Implement real claim logic here
+  };
+
   // Memoize tab content to prevent unnecessary re-renders
   const tabContent = useMemo(() => {
     switch (activeTab) {
       case 'stake':
-        return <JupiterPlugin onSuccess={onClose} />;
+        return (
+          <StakingTab
+            publicKey={publicKey?.toString()}
+            onStake={handleStake}
+            onUnstake={handleUnstake}
+            onClaim={handleClaim}
+            userBalance={stakingData.userBalance}
+            stakedAmount={stakingData.stakedAmount}
+            rewards={stakingData.rewards}
+            apy={stakingData.apy}
+            totalStaked={stakingData.totalStaked}
+          />
+        );
       case 'swap':
         return <JupiterPlugin onSuccess={onClose} />;
       default:
         return null;
     }
-  }, [activeTab, onClose]);
+  }, [activeTab, onClose, publicKey, stakingData, handleStake, handleUnstake, handleClaim]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
@@ -84,7 +122,7 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
         </div>
 
         {/* Content */}
-        <div className="p-4">
+        <div className="p-4 max-h-[600px] overflow-y-auto">
           {tabContent}
         </div>
       </motion.div>
