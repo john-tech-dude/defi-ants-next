@@ -60,6 +60,7 @@ import {
 import Button from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import BlockchainMesh from '@/components/features/threejs/BlockchainMesh';
+import TitleGlow from '@/components/features/threejs/TitleGlow';
 
 // Types
 interface HeroProps {
@@ -330,9 +331,14 @@ const Hero = ({ className }: HeroProps) => {
               initial="hidden"
               animate="visible"
             >
-              <div className="text-center">
+              <div className="text-center relative">
+                {/* 3D Title Glow Effect */}
+                <div className="absolute inset-0 -mt-20 -mb-20 -ml-40 -mr-40">
+                  <TitleGlow className="opacity-40 dark:opacity-50" />
+                </div>
+
                 <motion.h1
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display tracking-wide inline-block"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display tracking-wide inline-block relative z-10"
                   variants={scaleIn}
                 >
                   <motion.span
