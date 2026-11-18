@@ -327,9 +327,7 @@ export default function Footer(): React.ReactElement {
                 viewport={{ once: true, margin: '-50px' }}
               >
                 <p className="text-xs text-center text-muted-foreground/60 leading-relaxed">
-                  <span className="font-medium text-foreground/80">Disclaimer:</span> Cryptocurrency investments are subject to high market risk.
-                  <span className="gradient-text">DeFi</span>ANT! is not a financial advisor. Please make your investments cautiously.
-                  Never invest money you cannot afford to lose.
+                  <span className="font-medium text-foreground/80">Disclaimer:</span> $ANTS is a meme token with no intrinsic value or expectation of financial return. Nothing on this site is financial, investment, or legal advice. Staking rewards are variable and not guaranteed. Cryptocurrency is high risk; do not invest more than you can afford to lose. This site is not directed at residents of the United States or other restricted jurisdictions.
                 </p>
               </motion.div>
             </div>

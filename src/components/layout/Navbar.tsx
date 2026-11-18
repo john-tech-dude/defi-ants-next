@@ -117,19 +117,24 @@ export default function Navbar({}: NavbarProps) {
 
         {/* Wallet Connect Button - Desktop Only */}
         <div className="hidden md:flex items-center ml-4">
-          <WalletMultiButton
-            className={cn(
-              '!h-9 !px-4',
-              '!bg-primary-400 hover:!bg-primary-300',
-              '!text-primary-foreground !font-display !tracking-wide',
-              '!rounded-full !border !border-primary-200/40',
-              'transition-all duration-200',
-              'shadow-sm hover:shadow-md',
-              'flex items-center justify-center',
-              'text-sm md:text-base'
-            )}
-            startIcon={null}
-          />
+          <div className="flex flex-col items-end">
+            <WalletMultiButton
+              className={cn(
+                '!h-9 !px-4',
+                '!bg-primary-400 hover:!bg-primary-300',
+                '!text-primary-foreground !font-display !tracking-wide',
+                '!rounded-full !border !border-primary-200/40',
+                'transition-all duration-200',
+                'shadow-sm hover:shadow-md',
+                'flex items-center justify-center',
+                'text-sm md:text-base'
+              )}
+              startIcon={null}
+            />
+            <p className="text-[10px] text-muted-foreground mt-1 text-right">
+              Not available in restricted jurisdictions
+            </p>
+          </div>
         </div>
 
         <div className="flex items-center md:hidden space-x-2">
@@ -206,6 +211,9 @@ export default function Navbar({}: NavbarProps) {
                   )}
                   startIcon={null}
                 />
+                <p className="text-[10px] text-muted-foreground mt-1 text-center">
+                  Not available in restricted jurisdictions
+                </p>
               </div>
             </div>
           </motion.div>

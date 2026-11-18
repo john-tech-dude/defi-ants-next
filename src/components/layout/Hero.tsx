@@ -105,12 +105,12 @@ const getAbsoluteVideoPath = (path: string) => {
 const MOCK_DATA = {
   price: 0.00042,
   priceChange24h: 12.5,
-  holders: 12543,
-  marketCap: 5240000,
-  isAudited: true,
-  isKYC: true,
+  holders: null, // Fetched live from Solscan/Birdeye
+  marketCap: null, // Fetched live from DexScreener
+  isAudited: false, // No audit URL provided
+  isKYC: false, // No KYC URL provided
   trendingOn: ['Raydium', 'Jupiter'],
-  featuredIn: ['CoinTelegraph', 'Decrypt']
+  featuredIn: [] // No press links provided
 };
 
 // Premium Glassmorphic Styles with hover effects
@@ -481,19 +481,19 @@ const Hero = ({ className }: HeroProps) => {
                   >
                     <div className="grid grid-cols-2 gap-2">
                       <div className="text-center p-2 bg-card rounded-lg border">
-                        <div className="text-sm font-bold">${MOCK_DATA.price.toFixed(6)}</div>
+                        <div className="text-sm font-bold">${MOCK_DATA.price?.toFixed(6) || '—'}</div>
                         <div className="text-[10px] text-muted-foreground">Price</div>
                       </div>
                       <div className="text-center p-2 bg-card rounded-lg border">
-                        <div className="text-sm font-bold">{MOCK_DATA.holders.toLocaleString()}</div>
+                        <div className="text-sm font-bold">{MOCK_DATA.holders?.toLocaleString() || '—'}</div>
                         <div className="text-[10px] text-muted-foreground">Holders</div>
                       </div>
                       <div className="text-center p-2 bg-card rounded-lg border">
-                        <div className="text-sm font-bold">${(MOCK_DATA.marketCap / 1000000).toFixed(1)}M</div>
+                        <div className="text-sm font-bold">{MOCK_DATA.marketCap ? `$${(MOCK_DATA.marketCap / 1000000).toFixed(1)}M` : '—'}</div>
                         <div className="text-[10px] text-muted-foreground">Market Cap</div>
                       </div>
                       <div className="text-center p-2 bg-card rounded-lg border">
-                        <div className="text-sm font-bold">1M+</div>
+                        <div className="text-sm font-bold">1B</div>
                         <div className="text-[10px] text-muted-foreground">Supply</div>
                       </div>
                     </div>
@@ -610,7 +610,7 @@ const Hero = ({ className }: HeroProps) => {
                     <div className="relative z-10">
                       <div className="text-sm sm:text-lg sm:text-xl font-bold text-foreground dark:text-foreground flex items-center justify-center transition-colors group-hover:text-foreground/80 dark:group-hover:text-foreground/90">
                         <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 text-gray-500 dark:text-gray-400 group-hover:scale-110 transition-transform" />
-                        {MOCK_DATA.holders.toLocaleString()}
+                        {MOCK_DATA.holders?.toLocaleString() || '—'}
                       </div>
                       <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         Holders
@@ -653,7 +653,7 @@ const Hero = ({ className }: HeroProps) => {
                   >
                     <div className="relative z-10">
                       <div className="text-sm sm:text-lg sm:text-xl font-bold text-foreground dark:text-foreground transition-colors group-hover:text-foreground/80 dark:group-hover:text-foreground/90">
-                        ${(MOCK_DATA.marketCap / 1000000).toFixed(1)}M
+                        {MOCK_DATA.marketCap ? `$${(MOCK_DATA.marketCap / 1000000).toFixed(1)}M` : '—'}
                       </div>
                       <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         Market Cap
@@ -747,42 +747,6 @@ const Hero = ({ className }: HeroProps) => {
               
               {/* Trust & Community Badges - Hidden on mobile, single row on desktop */}
               <div className="hidden sm:flex mt-3 flex-wrap gap-1.5 items-center">
-                {MOCK_DATA.isAudited && (
-                  <motion.div
-                    className={`${STYLES.GLASS_FEATURED} px-2 py-1 text-[10px] sm:text-xs font-medium group/audit`}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.3, delay: 0.2 }
-                    }}
-                    whileHover={{ scale: 1.03, y: -1 }}
-                    title="Smart Contract Audited"
-                  >
-                    <ShieldCheck className="w-2.5 h-2.5 inline-block mr-1 text-green-500" />
-                    <span className="text-foreground/90 dark:text-green-200/90 group-hover/audit:text-green-400 dark:group-hover/audit:text-green-200 transition-colors">
-                      Audited
-                    </span>
-                  </motion.div>
-                )}
-                {MOCK_DATA.isKYC && (
-                  <motion.div
-                    className={`${STYLES.GLASS_FEATURED} px-2 py-1 text-[10px] sm:text-xs font-medium group/kyc`}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.3, delay: 0.3 }
-                    }}
-                    whileHover={{ scale: 1.03, y: -1 }}
-                    title="KYC Verified"
-                  >
-                    <Check className="w-2.5 h-2.5 inline-block mr-1 text-primary-500" />
-                    <span className="text-foreground/90 dark:text-primary-200/90 group-hover/kyc:text-primary-400 dark:group-hover/kyc:text-primary-200 transition-colors">
-                      KYC Verified
-                    </span>
-                  </motion.div>
-                )}
                 {MOCK_DATA.trendingOn.map((platform: string, i: number) => (
                   <motion.div
                     key={platform}
@@ -809,35 +773,6 @@ const Hero = ({ className }: HeroProps) => {
                     </span>
                     <span className="text-foreground/80 dark:text-yellow-100/80 ml-1 group-hover/trending:text-yellow-400 dark:group-hover/trending:text-yellow-200 transition-colors">
                       {platform}
-                    </span>
-                  </motion.div>
-                ))}
-                {MOCK_DATA.featuredIn.map((outlet, i) => (
-                  <motion.div
-                    key={outlet}
-                    className={`${STYLES.GLASS_FEATURED} px-2 py-1 text-[10px] sm:text-xs font-medium group/featured`}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        delay: 0.5 + (i * 0.1),
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 12
-                      }
-                    }}
-                    whileHover={{
-                      scale: 1.03,
-                      y: -1,
-                      boxShadow: '0 4px 24px -1px rgba(0, 0, 0, 0.1)'
-                    }}
-                  >
-                    <span className="text-secondary-500/90 dark:text-secondary-300/90 group-hover/featured:text-secondary-400 transition-colors">
-                      <span className="inline-block group-hover/featured:animate-pulse">✨</span>
-                    </span>
-                    <span className="text-foreground/80 dark:text-secondary-100/80 ml-1 group-hover/featured:text-secondary-400 dark:group-hover/featured:text-secondary-200 transition-colors">
-                      {outlet}
                     </span>
                   </motion.div>
                 ))}

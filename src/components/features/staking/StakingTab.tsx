@@ -57,43 +57,27 @@ interface FormData {
 const STAKING_GOALS: StakingGoal[] = [
   { 
     id: 'bronze', 
-    name: 'Bronze', 
-    target: 1000, 
-    rewardMultiplier: 1,
-    color: 'from-amber-600 to-amber-800', 
-    apy: 5 
+    name: 'Explorer',
+    target: 0,
+    rewardMultiplier: 1.0,
+    color: 'from-amber-600 to-amber-800',
+    apy: null // Variable, not fixed
   },
-  { 
-    id: 'silver', 
-    name: 'Silver', 
-    target: 5000, 
+  {
+    id: 'pioneer',
+    name: 'Pioneer',
+    target: 0,
     rewardMultiplier: 1.5,
-    color: 'from-gray-400 to-gray-600', 
-    apy: 7.5 
+    color: 'from-gray-400 to-gray-600',
+    apy: null // Variable, not fixed
   },
-  { 
-    id: 'gold', 
-    name: 'Gold', 
-    target: 10000, 
-    rewardMultiplier: 2,
-    color: 'from-yellow-400 to-amber-500', 
-    apy: 10 
-  },
-  { 
-    id: 'platinum', 
-    name: 'Platinum', 
-    target: 25000, 
+  {
+    id: 'visionary',
+    name: 'Visionary',
+    target: 0,
     rewardMultiplier: 2.5,
-    color: 'from-blue-400 to-indigo-600', 
-    apy: 12.5 
-  },
-  { 
-    id: 'diamond', 
-    name: 'Diamond', 
-    target: 50000, 
-    rewardMultiplier: 3,
-    color: 'from-purple-400 to-pink-600', 
-    apy: 15 
+    color: 'from-purple-400 to-pink-600',
+    apy: null // Variable, not fixed
   },
 ];
 

@@ -560,24 +560,7 @@ const Community: FC = () => {
             onClick={() => setIsBuyPanelOpen(true)}
             tooltipContent={multiTierTooltip}
           />
-          <FeatureCard 
-            icon={<Building className="w-6 h-6 text-white" />}
-            title="Real-World Assets"
-            description="Access tokenized real estate, commodities, carbon credits, and more through our RWA farming pools."
-            color="from-primary-500 to-primary-700"
-            buttonText="Start Farming"
-            onClick={() => setIsBuyPanelOpen(true)}
-            tooltipContent={rwaTooltip}
-          />
-          <FeatureCard 
-            icon={<Bot className="w-6 h-6 text-white" />}
-            title="AI-Optimized Strategies"
-            description="Our AI constantly analyzes market conditions to adjust your portfolio for optimal risk-adjusted returns."
-            color="from-secondary-500 to-secondary-700"
-            buttonText="Explore Strategies"
-            onClick={() => setIsBuyPanelOpen(true)}
-            tooltipContent={aiTooltip}
-          />
+
         </div>
 
         {/* CTA */}

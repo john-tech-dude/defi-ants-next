@@ -32,42 +32,28 @@ interface TokenUtility {
   gradient: string;
 }
 
-// Tokenomics data - updated with modern vesting info and distinct colors
+// Tokenomics data - Path A: pump.fun fair launch
 const TOKEN_ALLOCATIONS: TokenAllocation[] = [
   {
-    name: 'Community & Ecosystem',
-    percentage: 35,
-    color: '#10B981', // Emerald green - represents growth and community
+    name: 'Public (bonding curve + PumpSwap liquidity)',
+    percentage: 90,
+    color: '#10B981', // Emerald green - represents public access
     gradient: 'from-emerald-400 to-emerald-600',
-    description: '8% at launch, 48-month linear vesting'
+    description: 'Open market. After graduation, liquidity is permanently locked via burned LP tokens.'
   },
   {
-    name: 'Liquidity',
-    percentage: 25,
-    color: '#3B82F6', // Blue - represents trust and stability
-    gradient: 'from-blue-400 to-blue-600',
-    description: 'Fully unlocked at launch for trading'
-  },
-  {
-    name: 'Staking Rewards',
-    percentage: 20,
-    color: '#8B5CF6', // Purple - represents rewards and value
-    gradient: 'from-purple-400 to-purple-600',
-    description: 'Distributed over 4 years to stakers'
-  },
-  {
-    name: 'Team & Advisors',
-    percentage: 12,
-    color: '#F59E0B', // Amber - represents team and energy
+    name: 'Team (bought on the curve at launch)',
+    percentage: 5,
+    color: '#F59E0B', // Amber - represents team
     gradient: 'from-amber-500 to-amber-600',
-    description: '12-month cliff, 36-month linear vesting'
+    description: '12-month cliff, then 24-month linear vesting, locked in Streamflow'
   },
   {
-    name: 'Marketing & Partnerships',
-    percentage: 8,
-    color: '#EC4899', // Pink - represents marketing and action
-    gradient: 'from-pink-400 to-pink-600',
-    description: '5% at launch, 24-month linear vesting'
+    name: 'Staking rewards reserve (bought on the curve at launch)',
+    percentage: 5,
+    color: '#8B5CF6', // Purple - represents rewards
+    gradient: 'from-purple-400 to-purple-600',
+    description: 'Locked in the Streamflow pool, released over 24 months'
   }
 ];
 
@@ -227,9 +213,18 @@ const AnimatedTokenAllocation = ({
           {allocation.percentage}%
         </span>
       </div>
-      <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+      <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-2">
         {allocation.description}
       </p>
+      {(allocation.name.includes('Team') || allocation.name.includes('Staking')) && (
+        <a
+          href="#"
+          className="text-xs text-primary-600 dark:text-primary-400 hover:underline"
+          onClick={(e) => e.preventDefault()}
+        >
+          Lock address published at launch
+        </a>
+      )}
       {isActive && (
         <motion.div
           className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary-400 to-secondary-500 rounded-full"
@@ -337,7 +332,10 @@ const AnimatedTokenomics = () => {
               Token <span className="gradient-text">Distribution</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A fair and sustainable token distribution designed for long-term growth with transparent vesting schedules
+              Total supply: 1,000,000,000 $ANTS. Fair launch on pump.fun.
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 max-w-3xl mx-auto">
+              Team and staking allocations are purchased on the bonding curve at the same price as every other buyer.
             </p>
           </motion.div>
         </div>

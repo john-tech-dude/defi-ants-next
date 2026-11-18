@@ -88,26 +88,26 @@ export default function Home() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-display tracking-wide mb-4">Staking & Yield <span className="gradient-text">Farming</span></h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Stake your ANTs to earn rewards or provide liquidity to generate yield
+                Stake $ANTS to earn rewards from a fixed, published reward pool
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-card rounded-xl p-6 border shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="text-2xl font-bold mb-4 text-foreground">🔒 Staking</h3>
                 <p className="text-muted-foreground mb-4">
-                  Lock your ANTs to earn staking rewards. Coming Q3 2027.
+                  Streamflow pool with fixed emission schedule. 50M $ANTS rewards over 24 months.
                 </p>
                 <button
                   onClick={handleStake}
                   className="w-full py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md"
                 >
-                  Stake Now
+                  Join Waitlist
                 </button>
               </div>
               <div className="bg-card rounded-xl p-6 border shadow-md hover:shadow-lg transition-shadow">
-                <h3 className="text-2xl font-bold mb-4 text-foreground">🌾 Yield Farming</h3>
+                <h3 className="text-2xl font-bold mb-4 text-foreground">💧 Liquidity</h3>
                 <p className="text-muted-foreground mb-4">
-                  Provide liquidity to earn APY rewards. Available on Raydium.
+                  Add liquidity on PumpSwap or Raydium to earn trading fees. Providers face impermanent loss.
                 </p>
                 <button
                   onClick={handleAddLiquidity}
@@ -132,9 +132,9 @@ export default function Home() {
               </p>
             </div>
             <div className="bg-card rounded-xl p-8 border shadow-md max-w-2xl mx-auto text-center">
-              <h3 className="text-2xl font-bold mb-4 text-foreground">🗳️ DAO Governance</h3>
+              <h3 className="text-2xl font-bold mb-4 text-foreground">🗳️ Governance</h3>
               <p className="text-muted-foreground mb-6">
-                Hold ANTs to vote on proposals. Coming Q4 2025.
+                Hold ANTs to vote on proposals. TBA after staking launches.
               </p>
               <button className="py-3 px-8 bg-primary text-white rounded-lg font-medium shadow-sm hover:shadow-md transition-shadow">
                 View Proposals

@@ -64,8 +64,8 @@ export default function Roadmap() {
 
   const phases = [
     {
-      phase: 'Phase 1 - Q2 2025',
-      title: 'Meme Launch 🚀',
+      phase: 'Phase 1',
+      title: 'Launch and Graduation 🚀',
       status: 'completed',
       statusColor: 'from-green-400 to-green-600',
       icon: CheckCircle,
@@ -73,11 +73,11 @@ export default function Roadmap() {
         'Token launch on Pump.fun',
         'Meme website and social media launch',
         'Initial liquidity pool creation',
-        'Meme contest kickoff'
+        'Graduation to PumpSwap with burned LP'
       ]
     },
     {
-      phase: 'Phase 2 - Q3 2025',
+      phase: 'Phase 2',
       title: 'Community Growth',
       status: 'in-progress',
       statusColor: 'from-yellow-400 to-orange-500',
@@ -90,27 +90,28 @@ export default function Roadmap() {
       ]
     },
     {
-      phase: 'Phase 3 - Q4 2025',
-      title: 'Utility Rollout 💰',
+      phase: 'Phase 3',
+      title: 'Staking Waitlist & Pool Launch 💰',
       status: 'upcoming',
       statusColor: 'from-primary-400 to-primary-600',
       icon: Calendar,
       tasks: [
-        'ANT staking with juicy APY',
-        'NFT collection with holder benefits',
+        'Staking waitlist opens (target: ~30 days after graduation)',
+        'Streamflow pool launch with fixed emission schedule',
+        '50M $ANTS rewards over 24 months',
+        'Explorer, Pioneer, and Visionary staking tiers'
         'Community treasury for meme development',
         'ANT merch store launch'
       ]
     },
     {
-      phase: 'Phase 4 - Q1 2026',
-      title: 'Meme Domination 👑',
+      phase: 'Phase 4',
+      title: 'Governance 👑',
       status: 'upcoming',
       statusColor: 'from-secondary-400 to-secondary-600',
       icon: Target,
       tasks: [
-        'Major CEX listings (we are coming for Binance!)',
-        'ANT meme token governance',
+        'Governance (TBA after staking launches)',
         'IRL ANT community events',
         'Partnerships with other meme projects'
       ]
