@@ -99,7 +99,7 @@ export default function Roadmap() {
         'Staking waitlist opens (target: ~30 days after graduation)',
         'Streamflow pool launch with fixed emission schedule',
         '50M $ANTS rewards over 24 months',
-        'Explorer, Pioneer, and Visionary staking tiers'
+        'Explorer, Pioneer, and Visionary staking tiers',
         'Community treasury for meme development',
         'ANT merch store launch'
       ]
