@@ -414,7 +414,7 @@ const Hero = ({ className }: HeroProps) => {
                 >
                   <Button
                     size="md"
-                    onClick={() => setIsBuyPanelOpen(true)}
+                    onClick={() => setIsBuyPanelOpen(true, 'swap')}
                     className={`group px-4 py-3 text-xs sm:text-sm md:text-base font-display tracking-wide bg-gradient-to-r from-primary-400 to-primary-500 hover:from-primary-300 hover:to-primary-400 text-primary-foreground shadow-lg hover:shadow-primary-500/40 transition-all duration-300 rounded-xl w-full sm:w-auto relative overflow-hidden border border-primary-200/30`}
                   >
                     <motion.span
@@ -424,7 +424,7 @@ const Hero = ({ className }: HeroProps) => {
                       transition={{ duration: 0.8, ease: easings.smooth }}
                     />
                     <span className="relative z-10 flex items-center">
-                      Buy $ANTS
+                      Swap $ANTS
                       <motion.span
                         className="ml-2"
                         animate={{ x: [0, 4, 0] }}

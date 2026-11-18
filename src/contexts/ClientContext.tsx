@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useMemo, ReactNode } from 'react';
 
 // Define the shape of the context data
-type BuyPanelTab = 'stripe' | 'swap' | 'stake' | 'farm';
+type BuyPanelTab = 'swap' | 'stake' | 'farm';
 
 interface ClientContextType {
   isBuyPanelOpen: boolean;
@@ -18,7 +18,7 @@ const ClientContext = createContext<ClientContextType | undefined>(undefined);
 // Create a provider component
 export const ClientProvider = ({ children }: { children: ReactNode }) => {
   const [isBuyPanelOpen, setIsBuyPanelOpen] = useState(false);
-  const [activeBuyPanelTab, setActiveBuyPanelTab] = useState<BuyPanelTab>('stripe');
+  const [activeBuyPanelTab, setActiveBuyPanelTab] = useState<BuyPanelTab>('swap');
 
   // Handle opening with optional default tab
   const handleSetIsBuyPanelOpen = (isOpen: boolean, defaultTab?: BuyPanelTab) => {
