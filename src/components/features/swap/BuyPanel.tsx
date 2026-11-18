@@ -53,15 +53,15 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
       <motion.div
-        className="relative w-full max-w-2xl mx-4 bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-800"
+        className="relative w-full max-w-2xl mx-4 bg-gray-900 dark:bg-gray-900 bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-800 dark:border-gray-800 border-gray-200"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ type: 'spring', damping: 30, stiffness: 400 }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-800">
-          <h2 className="text-xl font-bold">
+        <div className="flex items-center justify-between p-4 border-b border-gray-800 dark:border-gray-800 border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white">
             {activeTab === 'swap' ? 'Swap SOL for USDC' : activeTab === 'stake' ? 'Stake SOL' : 'RWA Yield Farming'}
           </h2>
           <div className="flex items-center space-x-3">
@@ -71,21 +71,21 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-800 dark:hover:bg-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              <X className="h-5 w-5" />
+              <X className="h-5 w-5 text-gray-900 dark:text-white" />
             </button>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-gray-800">
+        <div className="flex border-b border-gray-800 dark:border-gray-800 border-gray-200">
           <button
             onClick={() => setActiveTab('swap')}
             className={`flex-1 py-3 px-4 text-sm font-medium transition-colors ${
               activeTab === 'swap'
-                ? 'bg-gray-800 text-white border-b-2 border-blue-500'
-                : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                ? 'bg-gray-800 dark:bg-gray-800 bg-amber-500 text-white border-b-2 border-blue-500 dark:border-blue-500 border-amber-600'
+                : 'text-gray-400 dark:text-gray-400 text-gray-600 hover:text-white dark:hover:text-white hover:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-800 hover:bg-gray-100'
             }`}
           >
             Swap
@@ -94,8 +94,8 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
             onClick={() => setActiveTab('stake')}
             className={`flex-1 py-3 px-4 text-sm font-medium transition-colors ${
               activeTab === 'stake'
-                ? 'bg-gray-800 text-white border-b-2 border-blue-500'
-                : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                ? 'bg-gray-800 dark:bg-gray-800 bg-amber-500 text-white border-b-2 border-blue-500 dark:border-blue-500 border-amber-600'
+                : 'text-gray-400 dark:text-gray-400 text-gray-600 hover:text-white dark:hover:text-white hover:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-800 hover:bg-gray-100'
             }`}
           >
             Stake
@@ -104,8 +104,8 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
             onClick={() => setActiveTab('farm')}
             className={`flex-1 py-3 px-4 text-sm font-medium transition-colors ${
               activeTab === 'farm'
-                ? 'bg-gray-800 text-white border-b-2 border-blue-500'
-                : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                ? 'bg-gray-800 dark:bg-gray-800 bg-amber-500 text-white border-b-2 border-blue-500 dark:border-blue-500 border-amber-600'
+                : 'text-gray-400 dark:text-gray-400 text-gray-600 hover:text-white dark:hover:text-white hover:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-800 hover:bg-gray-100'
             }`}
           >
             Farm

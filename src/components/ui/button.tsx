@@ -62,11 +62,11 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps | L
 
     // Enhanced variant styles with modern gradients and hover effects
     const variants: Record<ButtonVariant, string> = {
-      primary: 'bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary hover:to-primary/80 shadow-lg hover:shadow-primary/20 dark:shadow-primary/20',
-      secondary: 'bg-gradient-to-r from-secondary to-secondary/90 text-secondary-foreground hover:from-secondary hover:to-secondary/80 shadow-md hover:shadow-secondary/20 dark:shadow-secondary/20',
-      outline: 'border border-border/50 bg-background/80 backdrop-blur-sm hover:bg-accent/20 hover:text-accent-foreground hover:border-accent/50 transition-all',
-      ghost: 'hover:bg-accent/10 hover:text-accent-foreground hover:shadow-sm',
-      default: 'bg-background/80 backdrop-blur-sm text-foreground hover:bg-accent/10 hover:shadow-sm transition-all',
+      primary: 'bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary hover:to-primary/80 shadow-md hover:shadow-lg transition-shadow dark:shadow-primary/20',
+      secondary: 'bg-gradient-to-r from-secondary to-secondary/90 text-secondary-foreground hover:from-secondary hover:to-secondary/80 shadow-md hover:shadow-lg transition-shadow dark:shadow-secondary/20',
+      outline: 'border-2 border-border bg-background hover:bg-accent/10 hover:text-accent-foreground hover:border-accent/50 transition-all',
+      ghost: 'hover:bg-accent/10 hover:text-accent-foreground hover:shadow-sm transition-all',
+      default: 'bg-background text-foreground hover:bg-accent/10 hover:shadow-sm transition-all',
     };
 
     // Enhanced size styles with better proportions

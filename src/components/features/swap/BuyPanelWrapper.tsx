@@ -7,7 +7,7 @@ import BuyPanel from './BuyPanel';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 
 export default function BuyPanelWrapper() {
-  const { isBuyPanelOpen, setIsBuyPanelOpen } = useClientContext();
+  const { isBuyPanelOpen, setIsBuyPanelOpen, activeBuyPanelTab } = useClientContext();
 
   const handleClose = () => {
     setIsBuyPanelOpen(false);
@@ -32,7 +32,7 @@ export default function BuyPanelWrapper() {
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <BuyPanel onClose={handleClose} />
+              <BuyPanel onClose={handleClose} defaultTab={activeBuyPanelTab === 'farm' ? 'farm' : activeBuyPanelTab === 'stake' ? 'stake' : 'swap'} />
             </motion.div>
           </motion.div>
         </ErrorBoundary>

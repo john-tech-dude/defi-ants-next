@@ -14,6 +14,7 @@ import Roadmap from '@/components/Roadmap';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { Container } from '@/components/ui/container';
 import BuyPanelWrapper from '@/components/features/swap/BuyPanelWrapper';
+import { useClientContext } from '@/contexts/ClientContext';
 
 // Import client components directly
 import ClientPageContent from './ClientPageContent';
@@ -36,6 +37,16 @@ const LoadingSkeleton = () => (
 );
 
 export default function Home() {
+  const { setIsBuyPanelOpen } = useClientContext();
+
+  const handleAddLiquidity = () => {
+    setIsBuyPanelOpen(true, 'farm');
+  };
+
+  const handleStake = () => {
+    setIsBuyPanelOpen(true, 'stake');
+  };
+
   return (
     <div className="relative min-h-screen bg-background text-foreground">
       <Navbar />
@@ -81,21 +92,27 @@ export default function Home() {
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-card rounded-xl p-6 border">
-                <h3 className="text-2xl font-bold mb-4">🔒 Staking</h3>
+              <div className="bg-card rounded-xl p-6 border shadow-md hover:shadow-lg transition-shadow">
+                <h3 className="text-2xl font-bold mb-4 text-foreground">🔒 Staking</h3>
                 <p className="text-muted-foreground mb-4">
-                  Lock your ANTs to earn staking rewards. Coming Q3 2025.
+                  Lock your ANTs to earn staking rewards. Coming Q3 2027.
                 </p>
-                <button className="w-full py-3 bg-primary text-white rounded-lg font-medium">
-                  Coming Soon
+                <button
+                  onClick={handleStake}
+                  className="w-full py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md"
+                >
+                  Stake Now
                 </button>
               </div>
-              <div className="bg-card rounded-xl p-6 border">
-                <h3 className="text-2xl font-bold mb-4">🌾 Yield Farming</h3>
+              <div className="bg-card rounded-xl p-6 border shadow-md hover:shadow-lg transition-shadow">
+                <h3 className="text-2xl font-bold mb-4 text-foreground">🌾 Yield Farming</h3>
                 <p className="text-muted-foreground mb-4">
                   Provide liquidity to earn APY rewards. Available on Raydium.
                 </p>
-                <button className="w-full py-3 bg-primary text-white rounded-lg font-medium">
+                <button
+                  onClick={handleAddLiquidity}
+                  className="w-full py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors shadow-sm hover:shadow-md"
+                >
                   Add Liquidity
                 </button>
               </div>
@@ -114,12 +131,12 @@ export default function Home() {
                 Vote on protocol decisions and shape the future of DeFi ANT
               </p>
             </div>
-            <div className="bg-card rounded-xl p-8 border max-w-2xl mx-auto text-center">
-              <h3 className="text-2xl font-bold mb-4">🗳️ DAO Governance</h3>
+            <div className="bg-card rounded-xl p-8 border shadow-md max-w-2xl mx-auto text-center">
+              <h3 className="text-2xl font-bold mb-4 text-foreground">🗳️ DAO Governance</h3>
               <p className="text-muted-foreground mb-6">
                 Hold ANTs to vote on proposals. Coming Q4 2025.
               </p>
-              <button className="py-3 px-8 bg-primary text-white rounded-lg font-medium">
+              <button className="py-3 px-8 bg-primary text-white rounded-lg font-medium shadow-sm hover:shadow-md transition-shadow">
                 View Proposals
               </button>
             </div>
