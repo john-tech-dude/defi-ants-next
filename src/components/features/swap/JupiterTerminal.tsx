@@ -6,6 +6,7 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { toast } from 'sonner';
 import { WalletIcon, ArrowLeftRight } from 'lucide-react';
 import { PublicKey } from '@solana/web3.js';
+import { MAINNET_RPC, WSOL_MINT, swapOutputMint } from '@/config/solana';
 
 // Define window.Jupiter for TypeScript with v4 API
 declare global {
@@ -51,19 +52,20 @@ interface JupiterTerminalProps {
 }
 
 // Default token mints
-const DEFAULT_INPUT_MINT = 'So11111111111111111111111111111111111111112'; // SOL
-const DEFAULT_OUTPUT_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'; // USDC
+const DEFAULT_INPUT_MINT = WSOL_MINT;
+const DEFAULT_OUTPUT_MINT = swapOutputMint();
 
 export function JupiterTerminal({
   onSuccess,
   onError,
   onInitialized,
   inputMint = DEFAULT_INPUT_MINT,
-  outputMint = process.env.NEXT_PUBLIC_TOKEN_MINT || DEFAULT_OUTPUT_MINT,
+  outputMint = DEFAULT_OUTPUT_MINT,
   fixedInputMint = false,
   fixedOutputMint = false
 }: JupiterTerminalProps) {
-  const { publicKey, wallet, connect, connected, disconnect } = useWallet();
+  const walletContext = useWallet();
+  const { publicKey, wallet, connect, connected } = walletContext;
   const { connection } = useConnection();
   const [isLoading, setIsLoading] = useState(true);
   const [scriptLoaded, setScriptLoaded] = useState(false);
@@ -132,16 +134,10 @@ export function JupiterTerminal({
 
     const initJupiter = async () => {
       try {
-        // Get the wallet adapter with proper typing
-        const walletAdapter = wallet?.adapter || null;
-
-        // If wallet is not connected, we'll use wallet passthrough
-        const enableWalletPassthrough = !wallet || !connected;
-
         console.log('Initializing Jupiter Terminal with config:', {
           displayMode: 'integrated',
-          endpoint: process.env.NEXT_PUBLIC_RPC_URL || 'https://api.mainnet-beta.solana.com',
-          enableWalletPassthrough,
+          endpoint: MAINNET_RPC,
+          enableWalletPassthrough: true,
           defaultExplorer: 'Solscan',
           strictTokenList: false,
           formProps: {
@@ -153,13 +149,13 @@ export function JupiterTerminal({
           }
         });
 
-        // Initialize Jupiter Terminal with wallet connection using v4 API
+        // The connected wallet signs. Passthrough stays on so Jupiter does not open a second wallet.
         const terminal = await window.Jupiter.init({
           displayMode: 'integrated',
           integratedTargetId: 'jupiter-terminal-container',
-          endpoint: process.env.NEXT_PUBLIC_RPC_URL || 'https://api.mainnet-beta.solana.com',
-          passThroughWallet: walletAdapter,
-          enableWalletPassthrough,
+          endpoint: MAINNET_RPC,
+          enableWalletPassthrough: true,
+          passthroughWalletContextState: walletContext,
           defaultExplorer: 'Solscan',
           strictTokenList: false, // Allow all tokens
           formProps: {

@@ -277,7 +277,7 @@ export default function FAQ() {
           FAQ
         </div>
         <h2 className="text-3xl font-display tracking-wide text-foreground sm:text-4xl">
-          Frequently asked questions
+          Frequently asked <span className="gradient-text">questions</span>
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-base text-muted-foreground sm:text-lg">
           Staking, rewards, and the wallets you can connect.
@@ -296,7 +296,7 @@ export default function FAQ() {
       </div>
 
       <div className="mt-12 rounded-2xl border border-border bg-background/80 px-6 py-8 text-center">
-        <h3 className="text-xl font-semibold text-foreground">Still have a question?</h3>
+        <h3 className="text-xl font-semibold text-foreground">Still have a <span className="gradient-text">question?</span></h3>
         <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
           The community channel is the fastest place to ask. Support answers email during the week.
         </p>

@@ -5,6 +5,7 @@ import { Program, AnchorProvider, web3, BN } from '@project-serum/anchor';
 import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import idl from '../config/staking.json';
+import { STAKE_PROGRAM_ID, USDC_MINT, isPublicKey } from '@/config/solana';
 
 export interface StakingData {
   stakedAmount: number;
@@ -26,8 +27,12 @@ export interface StakingData {
   lockEndsAt: number | null;
 }
 
-const PROGRAM_ID = new PublicKey(process.env.NEXT_PUBLIC_STAKING_PROGRAM_ID || '');
-const TOKEN_MINT = new PublicKey(process.env.NEXT_PUBLIC_TOKEN_MINT || '');
+const PROGRAM_ID = new PublicKey(
+  isPublicKey(process.env.NEXT_PUBLIC_STAKING_PROGRAM_ID) ? process.env.NEXT_PUBLIC_STAKING_PROGRAM_ID : STAKE_PROGRAM_ID
+);
+const TOKEN_MINT = new PublicKey(
+  isPublicKey(process.env.NEXT_PUBLIC_TOKEN_MINT) ? process.env.NEXT_PUBLIC_TOKEN_MINT : USDC_MINT
+);
 
 export const useStaking = () => {
   const { connection } = useConnection();

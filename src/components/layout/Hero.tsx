@@ -375,7 +375,7 @@ const Hero = ({ className }: HeroProps) => {
                   className="text-base md:text-lg lg:text-xl font-display tracking-wide text-foreground leading-tight mt-2"
                   variants={fadeInDown}
                 >
-                  Join the Revolution!
+                  Join the <span className="gradient-text">Revolution!</span>
                 </motion.h2>
                 <div className="flex justify-center w-full">
                   <motion.div

@@ -279,8 +279,8 @@ const SocialSection: FC = () => {
         }}
         className="text-center max-w-3xl mx-auto mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-display tracking-wide gradient-text mb-4">
-          Join Our Community
+        <h2 className="text-3xl md:text-4xl font-display tracking-wide mb-4">
+          Join Our <span className="gradient-text">Community</span>
         </h2>
         <p className="text-lg text-gray-300">
           Connect with fellow ANTs, get support, and stay updated on the latest developments.
@@ -530,8 +530,8 @@ const Community: FC = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-display tracking-wide gradient-text mb-4">
-            DeFi ANT Staking Platform
+          <h2 className="text-3xl md:text-4xl font-display tracking-wide mb-4">
+            DeFi ANT Staking <span className="gradient-text">Platform</span>
           </h2>
           <p className={`text-lg ${
             isDark ? 'text-gray-300' : 'text-gray-600'

@@ -2,14 +2,16 @@
 
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { X } from 'lucide-react';
 import JupiterPlugin from './JupiterPlugin';
 import { StakingTab } from '@/components/features/staking/StakingTab';
+import { useNativeStake } from '@/hooks/useNativeStake';
+import RWAYieldFarming from '@/components/features/staking/RWAYieldFarming';
 
 // Types
-type Tab = 'swap' | 'stake';
+type Tab = 'swap' | 'stake' | 'farm';
 
 interface BuyPanelProps {
   onClose: () => void;
@@ -17,33 +19,9 @@ interface BuyPanelProps {
 }
 
 export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps) {
-  const { publicKey, wallet, connect, connected, disconnect } = useWallet();
+  const { publicKey } = useWallet();
   const [activeTab, setActiveTab] = useState<Tab>(defaultTab);
-
-  // Mock staking data - replace with real data from your staking program
-  const stakingData = useMemo(() => ({
-    userBalance: 10000, // Mock balance
-    stakedAmount: 5000, // Mock staked amount
-    rewards: 250, // Mock rewards
-    apy: 15, // Mock APY in percentage
-    totalStaked: 1000000, // Mock total staked
-  }), []);
-
-  // Mock staking functions - replace with real staking program calls
-  const handleStake = async (amount: number) => {
-    console.log('Staking', amount, 'tokens');
-    // Implement real staking logic here
-  };
-
-  const handleUnstake = async (amount: number) => {
-    console.log('Unstaking', amount, 'tokens');
-    // Implement real unstaking logic here
-  };
-
-  const handleClaim = async () => {
-    console.log('Claiming rewards');
-    // Implement real claim logic here
-  };
+  const nativeStake = useNativeStake();
 
   // Memoize tab content to prevent unnecessary re-renders
   const tabContent = useMemo(() => {
@@ -52,22 +30,25 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
         return (
           <StakingTab
             publicKey={publicKey?.toString()}
-            onStake={handleStake}
-            onUnstake={handleUnstake}
-            onClaim={handleClaim}
-            userBalance={stakingData.userBalance}
-            stakedAmount={stakingData.stakedAmount}
-            rewards={stakingData.rewards}
-            apy={stakingData.apy}
-            totalStaked={stakingData.totalStaked}
+            onStake={nativeStake.stake}
+            onUnstake={nativeStake.unstake}
+            onClaim={nativeStake.withdraw}
+            userBalance={Math.max(0, nativeStake.solBalance - 0.02)}
+            stakedAmount={nativeStake.stakedSol}
+            rewards={nativeStake.withdrawableSol}
+            apy={7}
+            totalStaked={nativeStake.stakedSol}
+            error={nativeStake.error}
           />
         );
       case 'swap':
         return <JupiterPlugin onSuccess={onClose} />;
+      case 'farm':
+        return <RWAYieldFarming />;
       default:
         return null;
     }
-  }, [activeTab, onClose, publicKey, stakingData, handleStake, handleUnstake, handleClaim]);
+  }, [activeTab, onClose, publicKey, nativeStake]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
@@ -81,7 +62,7 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-800">
           <h2 className="text-xl font-bold">
-            {activeTab === 'swap' ? 'Swap' : 'Stake'} ANTS
+            {activeTab === 'swap' ? 'Swap SOL for USDC' : activeTab === 'stake' ? 'Stake SOL' : 'RWA Yield Farming'}
           </h2>
           <div className="flex items-center space-x-3">
             {/* Wallet Connection */}
@@ -118,6 +99,16 @@ export default function BuyPanel({ onClose, defaultTab = 'swap' }: BuyPanelProps
             }`}
           >
             Stake
+          </button>
+          <button
+            onClick={() => setActiveTab('farm')}
+            className={`flex-1 py-3 px-4 text-sm font-medium transition-colors ${
+              activeTab === 'farm'
+                ? 'bg-gray-800 text-white border-b-2 border-blue-500'
+                : 'text-gray-400 hover:text-white hover:bg-gray-800'
+            }`}
+          >
+            Farm
           </button>
         </div>
 

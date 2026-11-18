@@ -28,7 +28,6 @@ import Label from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/simple-tabs';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import Progress from '@/components/ui/progress';
-import Slider from '@/components/ui/slider';
 import Skeleton from '@/components/ui/Skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import useToast from '@/components/ui/use-toast';
@@ -135,7 +134,7 @@ export function StakingTab({
   const [txStatus, setTxStatus] = useState<TransactionStatus>({ status: 'idle', message: '' });
   const [selectedGoal, setSelectedGoal] = useState<StakingGoal | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
-  const [showGoals, setShowGoals] = useState(true);
+  const [showGoals, setShowGoals] = useState(false);
   const [isLoading, setIsLoading] = useState(propIsLoading);
   const [error, setError] = useState<string | null>(propError);
   const [errors, setErrors] = useState<{ amount?: string }>({});
@@ -199,14 +198,6 @@ export function StakingTab({
     }));
   };
 
-  // Handle slider change
-  const handleSliderChange = (value: number[]) => {
-    setFormData(prev => ({
-      ...prev,
-      duration: value[0]
-    }));
-  };
-
   // Handle max button click
   const handleMaxClick = () => {
     const maxAmount = activeTab === 'stake' ? userBalance : stakedAmount;
@@ -260,18 +251,19 @@ export function StakingTab({
       
       toast?.({
         title: `${activeTab === 'stake' ? 'Stake' : 'Unstake'} Successful`,
-        description: `You have successfully ${activeTab === 'stake' ? 'staked' : 'unstaked'} ${amount} tokens.`,
+        description: `You have successfully ${activeTab === 'stake' ? 'staked' : 'unstaked'} ${amount} SOL.`,
       });
     } catch (error) {
+      const message = error instanceof Error ? error.message : `${activeTab === 'stake' ? 'Stake' : 'Unstake'} failed. Please try again.`;
       console.error(`${activeTab === 'stake' ? 'Stake' : 'Unstake'} error:`, error);
       setTxStatus({
         status: 'error',
-        message: `${activeTab === 'stake' ? 'Stake' : 'Unstake'} failed. Please try again.`,
+        message,
       });
       
       toast?.({
         title: 'Error',
-        description: `${activeTab === 'stake' ? 'Stake' : 'Unstake'} failed. Please try again.`,
+        description: message,
         variant: 'destructive',
       });
     } finally {
@@ -296,7 +288,7 @@ export function StakingTab({
       
       toast?.({
         title: 'Rewards Claimed',
-        description: `You have successfully claimed ${rewards} tokens.`,
+        description: `You have withdrawn ${rewards.toFixed(4)} SOL.`,
       });
     } catch (error) {
       console.error('Claim rewards error:', error);
@@ -433,6 +425,12 @@ export function StakingTab({
     <div className="space-y-6">
       {/* Status Messages */}
       <StatusMessage />
+      {error && (
+        <p className="text-sm text-red-500">{error}</p>
+      )}
+      <p className="text-sm text-muted-foreground">
+        This stakes native SOL with the Solana stake program. Deactivating takes about one epoch before the SOL can be withdrawn. Leave 0.02 SOL in the wallet for fees.
+      </p>
       
       {/* Staking Tabs */}
       <Tabs 
@@ -457,11 +455,9 @@ export function StakingTab({
             >
               <Card>
                 <CardHeader>
-                  <CardTitle>Stake Tokens</CardTitle>
+                  <CardTitle>Stake SOL</CardTitle>
                   <CardDescription>
-                    {activeTab === 'stake' 
-                      ? 'Stake your tokens to start earning rewards.'
-                      : 'Unstake your tokens to withdraw them from the staking pool.'}
+                    Delegate SOL to the largest active validator. The amount must cover the stake-account rent.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -491,24 +487,6 @@ export function StakingTab({
                       )}
                     </div>
                     
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <Label>Staking Duration: {formData.duration} days</Label>
-                      </div>
-                      <Slider
-                        min={7}
-                        max={365}
-                        step={1}
-                        value={[formData.duration]}
-                        onValueChange={handleSliderChange}
-                        className="w-full"
-                      />
-                      <div className="flex justify-between text-sm text-muted-foreground">
-                        <span>7 days</span>
-                        <span>1 year</span>
-                      </div>
-                    </div>
-                    
                     <Button 
                       type="submit" 
                       className="w-full py-6 text-lg"
@@ -520,7 +498,7 @@ export function StakingTab({
                           Processing...
                         </>
                       ) : (
-                        `${activeTab === 'stake' ? 'Stake' : 'Unstake'} Tokens`
+                        'Stake SOL'
                       )}
                     </Button>
                   </form>
@@ -542,9 +520,9 @@ export function StakingTab({
             >
               <Card>
                 <CardHeader>
-                  <CardTitle>Unstake Tokens</CardTitle>
+                  <CardTitle>Unstake SOL</CardTitle>
                   <CardDescription>
-                    Unstake your tokens to withdraw them from the staking pool.
+                    Deactivate delegated SOL. Withdraw it from the Withdrawable balance after the cooldown epoch.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -585,7 +563,7 @@ export function StakingTab({
                           Processing...
                         </>
                       ) : (
-                        'Unstake Tokens'
+                        'Unstake SOL'
                       )}
                     </Button>
                   </form>
@@ -637,14 +615,14 @@ export function StakingTab({
                 {stakingStats.apy.toFixed(2)}%
               </div>
               <p className="text-xs text-muted-foreground">
-                ~{dailyReward.toFixed(2)} tokens/day
+                ~{dailyReward.toFixed(4)} SOL/day estimated
               </p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Next Reward</CardTitle>
+              <CardTitle className="text-sm font-medium">Withdrawable SOL</CardTitle>
               <Clock className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -653,7 +631,7 @@ export function StakingTab({
               </div>
               <div className="flex justify-between items-center">
                 <p className="text-xs text-muted-foreground">
-                  {stakingStats.daysRemaining} days remaining
+                  After the cooldown epoch
                 </p>
                 <Button 
                   variant="ghost" 
@@ -662,7 +640,7 @@ export function StakingTab({
                   onClick={handleClaimRewards}
                   disabled={stakingStats.userRewards <= 0 || isLoading}
                 >
-                  Claim
+                  Withdraw
                 </Button>
               </div>
             </CardContent>

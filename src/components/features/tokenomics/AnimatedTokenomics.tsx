@@ -333,8 +333,8 @@ const AnimatedTokenomics = () => {
               <PieChartIcon className="w-4 h-4" />
               Tokenomics
             </div>
-            <h2 className="text-4xl md:text-5xl font-display tracking-wide mb-4 gradient-text">
-              Token Distribution
+            <h2 className="text-4xl md:text-5xl font-display tracking-wide mb-4">
+              Token <span className="gradient-text">Distribution</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               A fair and sustainable token distribution designed for long-term growth with transparent vesting schedules
@@ -355,9 +355,9 @@ const AnimatedTokenomics = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
+                  <h3 className="text-2xl font-bold mb-6 text-foreground flex items-center">
                     <TrendingUp className="w-6 h-6 mr-2 text-primary-500" />
-                    Allocation Breakdown
+                    Allocation <span className="gradient-text">Breakdown</span>
                   </h3>
                   <div className="grid grid-cols-1 gap-3">
                     {TOKEN_ALLOCATIONS.map((allocation, index) => (
@@ -384,8 +384,8 @@ const AnimatedTokenomics = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-            Token Utilities
+          <h3 className="text-3xl font-bold mb-4 text-foreground">
+            Token <span className="gradient-text">Utilities</span>
           </h3>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Powering the <span className="gradient-text">DeFi</span>ANT! ecosystem with multiple use cases

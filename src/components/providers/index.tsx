@@ -23,13 +23,32 @@ export function Providers({ children }: ProvidersProps) {
     // Suppress known browser extension errors
     const originalError = console.error;
     console.error = (...args) => {
-      const message = args[0]?.toString() || '';
-      // Filter out Phantom wallet extension errors and wallet adapter errors
+      const message = args
+        .map((arg) => {
+          if (typeof arg === 'string') return arg;
+          if (arg instanceof Error) return `${arg.name} ${arg.message}`;
+          try {
+            return String(arg);
+          } catch {
+            return '';
+          }
+        })
+        .join(' ');
+      // Glow (ojbcfhjmpigfobfclfflafhblgemeidi) logs this when Phantom already
+      // owns window.phantom.solana. It is an extension conflict, not an app error.
       if (
         message.includes('Unable to set window.solana') ||
+        message.includes('window.phantom') ||
+        message.includes('try uninstalling Phantom') ||
         message.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
         message.includes('chrome-extension') ||
-        message.includes('window.navigator.wallets is not an array')
+        message.includes('window.navigator.wallets is not an array') ||
+        message.includes('WalletNotReadyError') ||
+        message.includes('Wallet not ready') ||
+        message.includes('Access forbidden') ||
+        message.includes('403') ||
+        message.includes('FormattedUltraQuoteResponse') ||
+        message.includes('UltraQuoteResponse')
       ) {
         return; // Suppress these errors
       }

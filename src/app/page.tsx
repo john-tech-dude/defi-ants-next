@@ -75,7 +75,7 @@ export default function Home() {
         >
           <Container>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Staking & Yield Farming</h2>
+              <h2 className="text-4xl font-display tracking-wide mb-4">Staking & Yield <span className="gradient-text">Farming</span></h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Stake your ANTs to earn rewards or provide liquidity to generate yield
               </p>
@@ -109,7 +109,7 @@ export default function Home() {
         >
           <Container>
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Governance</h2>
+              <h2 className="text-4xl font-display tracking-wide mb-4">Colony <span className="gradient-text">Governance</span></h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 Vote on protocol decisions and shape the future of DeFi ANT
               </p>

@@ -3,7 +3,7 @@
 import { ReactNode, useMemo, useState, useEffect } from 'react';
 import { ConnectionProvider, WalletProvider as SolanaWalletProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { WalletAdapterNetwork, WalletNotReadyError } from '@solana/wallet-adapter-base';
 import { clusterApiUrl } from '@solana/web3.js';
 import { toast } from 'sonner';
 
@@ -65,9 +65,21 @@ export function WalletProvider({ children }: WalletProviderProps) {
     const errorMessage = error?.message || 'Failed to connect wallet';
     const errorName = error?.name || '';
 
+    // Wallet selected but extension not detected/installed
+    if (
+      error instanceof WalletNotReadyError ||
+      errorName.includes('WalletNotReady') ||
+      errorMessage.includes('not ready') ||
+      errorMessage.includes('Wallet not ready')
+    ) {
+      toast.error('Wallet not installed. Please install the wallet extension and try again.');
+      return;
+    }
+
     // Don't log or show toast for Phantom extension conflicts or user rejection
     if (
       errorMessage.includes('Unable to set window.solana') ||
+      errorMessage.includes('window.phantom') ||
       errorMessage.includes('try uninstalling Phantom') ||
       errorMessage.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
       errorMessage.includes('User rejected') ||

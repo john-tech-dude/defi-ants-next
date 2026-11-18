@@ -57,9 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${bangers.variable}`} suppressHydrationWarning>
       <head>
-        <Script
-          id="suppress-extension-errors"
-          strategy="beforeInteractive"
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -68,10 +66,17 @@ export default function RootLayout({
                   const message = args[0]?.toString() || '';
                   if (
                     message.includes('Unable to set window.solana') ||
+                    message.includes('window.phantom') ||
                     message.includes('ojbcfhjmpigfobfclfflafhblgemeidi') ||
                     message.includes('chrome-extension') ||
                     message.includes('try uninstalling Phantom') ||
                     message.includes('WalletConnectionError') ||
+                    message.includes('WalletNotReadyError') ||
+                    message.includes('Wallet not ready') ||
+                    message.includes('Access forbidden') ||
+                    message.includes('403') ||
+                    message.includes('FormattedUltraQuoteResponse') ||
+                    message.includes('UltraQuoteResponse') ||
                     message.includes('Unexpected error')
                   ) {
                     return;

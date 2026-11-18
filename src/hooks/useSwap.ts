@@ -32,7 +32,7 @@ export function useSwap() {
     const antToken: Token = {
       symbol: 'ANT',
       name: 'ANT Token',
-      address: 'YOUR_ANT_TOKEN_MINT_ADDRESS',
+      address: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
       decimals: 9,
       logoURI: 'https://example.com/ant-logo.png'
     };

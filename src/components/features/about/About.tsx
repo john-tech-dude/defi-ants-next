@@ -310,10 +310,9 @@ export default function About() {
               <Title
                 as="h3"
                 variant="h3"
-                gradient="primary"
                 className="text-2xl sm:text-3xl mb-3 sm:mb-4"
               >
-                Why ride with <span className="gradient-text">DeFi</span>ANT!?
+                Why ride with <span className="gradient-text">DeFi ANT!?</span>
               </Title>
 
               <motion.p variants={itemVariants} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
